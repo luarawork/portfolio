@@ -5,7 +5,7 @@ design e gestão. Construído à mão em HTML, CSS e JavaScript — sem framewor
 sem build step. O próprio código é parte do portfólio: legível, documentado e
 acessível por princípio.
 
-🔗 **Produção:** https://luaraoliveira.com
+🔗 **Produção:** https://luara.work/
 
 ---
 
