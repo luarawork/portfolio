@@ -1,0 +1,8 @@
+# robots.txt — Luara Oliveira · Portfólio
+User-agent: *
+Allow: /
+Disallow: /em-construcao.html
+Disallow: /en/em-construcao.html
+Disallow: /es/em-construcao.html
+
+Sitemap: https://luaraoliveira.com/sitemap.xml

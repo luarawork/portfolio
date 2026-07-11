@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AcessaBR — Documentação do Projeto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --serif:'Lora',Georgia,serif;
+  --sans:'Source Sans 3',system-ui,sans-serif;
+  --green:#1A5C3A;
+  --green-tint:#E8F5EE;
+  --ink:#1A1A18;
+  --ink-2:#6B6B65;
+  --bg:#F5F4F0;
+  --card:#FFFFFF;
+  --border:#E0DED8;
+  --page-bg:#DEDBD3;
+}
+html{scroll-behavior:smooth}
+body{background:var(--page-bg);font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(222,219,211,.88);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(0,0,0,.08);
+  padding:0 32px;
+  display:flex;align-items:center;gap:0;height:56px;
+}
+.nav__logo{font-family:var(--serif);font-weight:600;font-size:18px;color:var(--green);margin-right:32px;text-decoration:none;white-space:nowrap}
+.nav__links{display:flex;gap:0;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
+.nav__links::-webkit-scrollbar{display:none}
+.nav__links a{
+  font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none;
+  padding:0 14px;height:56px;display:flex;align-items:center;white-space:nowrap;
+  border-bottom:2px solid transparent;transition:color .15s,border-color .15s;
+}
+.nav__links a:hover{color:var(--green)}
+.nav__links a.active{color:var(--green);border-bottom-color:var(--green)}
+.nav__tag{
+  margin-left:auto;font-size:12px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--green);background:var(--green-tint);
+  padding:5px 12px;border-radius:999px;white-space:nowrap;
+}
+
+/* ── SECTIONS ── */
+section{scroll-margin-top:72px}
+.container{max-width:900px;margin:0 auto;padding:0 32px}
+.container--wide{max-width:1200px;margin:0 auto;padding:0 32px}
+
+/* ── HERO ── */
+.hero{padding:80px 32px 72px;max-width:900px;margin:0 auto}
+.hero__eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--green);background:var(--green-tint);padding:6px 14px;border-radius:999px;margin-bottom:24px;
+}
+.hero__title{font-family:var(--serif);font-weight:600;font-size:clamp(36px,5vw,56px);line-height:1.12;letter-spacing:-.02em;margin-bottom:20px;text-wrap:balance}
+.hero__title em{font-style:italic;color:var(--green)}
+.hero__sub{font-size:18px;color:var(--ink-2);max-width:58ch;line-height:1.6;margin-bottom:36px}
+.hero__meta{display:flex;flex-wrap:wrap;gap:10px}
+.hero__pill{
+  font-size:13px;font-weight:600;color:var(--ink-2);
+  background:var(--card);border:1px solid var(--border);
+  padding:6px 14px;border-radius:999px;
+}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--border);margin:0}
+
+/* ── SECTION HEADER ── */
+.sec-head{padding:64px 0 32px}
+.sec-head__num{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.sec-head__title{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3vw,32px);line-height:1.2;letter-spacing:-.01em;margin-bottom:14px}
+.sec-head__sub{font-size:17px;color:var(--ink-2);max-width:60ch;line-height:1.6}
+
+/* ── PROBLEMA ── */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+@media(max-width:680px){.problem-grid{grid-template-columns:1fr}}
+.problem-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.problem-card__label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px}
+.problem-card__text{font-size:15.5px;line-height:1.6;color:var(--ink)}
+.stat-block{background:var(--green);color:#fff;border-radius:14px;padding:28px;margin-top:20px}
+.stat-block__num{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;margin-bottom:8px}
+.stat-block__text{font-size:15px;opacity:.85;line-height:1.5}
+
+/* ── PÚBLICO ── */
+.profile-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 32px;margin-top:32px}
+.profile-card__name{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:4px}
+.profile-card__role{font-size:14px;color:var(--green);font-weight:700;margin-bottom:20px}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:680px){.profile-grid{grid-template-columns:1fr}}
+.profile-item__label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px}
+.profile-item__text{font-size:15px;color:var(--ink);line-height:1.5}
+.not-list{margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+.not-list__label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C0392B;margin-bottom:12px}
+.not-list ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.not-list li{font-size:15px;color:var(--ink);padding-left:20px;position:relative;line-height:1.5}
+.not-list li::before{content:"×";position:absolute;left:0;color:#C0392B;font-weight:700}
+
+/* ── DIAGNÓSTICO ── */
+.diag-table{width:100%;border-collapse:collapse;margin-top:28px;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border)}
+.diag-table th{background:#F0EDE6;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding:14px 20px;text-align:left}
+.diag-table td{padding:16px 20px;border-top:1px solid var(--border);font-size:15px;vertical-align:top;line-height:1.5}
+.diag-table td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.diag-table td:last-child{color:var(--ink-2)}
+
+/* ── PRINCÍPIOS ── */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+@media(max-width:720px){.principles{grid-template-columns:1fr}}
+.principle{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.principle__num{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--green);opacity:.25;line-height:1;margin-bottom:12px}
+.principle__title{font-weight:700;font-size:16px;margin-bottom:8px}
+.principle__text{font-size:15px;color:var(--ink-2);line-height:1.55}
+
+/* ── DECISÕES ── */
+.decisions{display:flex;flex-direction:column;gap:0;margin-top:32px;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.decision{background:var(--card);padding:22px 24px;border-bottom:1px solid var(--border)}
+.decision:last-child{border-bottom:none}
+.decision__q{font-weight:700;font-size:15.5px;color:var(--ink);margin-bottom:8px;display:flex;gap:10px;align-items:flex-start}
+.decision__q::before{content:"✕";color:#C0392B;font-size:14px;flex-shrink:0;margin-top:1px}
+.decision__a{font-size:15px;color:var(--ink-2);line-height:1.55;padding-left:24px}
+.decision__a::before{content:"→ ";}
+
+/* ── FLUXO ── */
+.flow{display:flex;flex-direction:column;gap:0;margin-top:32px}
+.flow-step{display:flex;gap:20px;align-items:flex-start}
+.flow-step__line{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.flow-step__dot{width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.flow-step__connector{width:2px;flex:1;min-height:24px;background:var(--border);margin:4px 0}
+.flow-step:last-child .flow-step__connector{display:none}
+.flow-step__content{padding:6px 0 28px}
+.flow-step__title{font-weight:700;font-size:16px;margin-bottom:4px}
+.flow-step__text{font-size:15px;color:var(--ink-2);line-height:1.5}
+
+/* ── ESTADOS ── */
+.states-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:28px}
+.state-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px}
+.state-card__label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+.state-card__text{font-size:14.5px;color:var(--ink);line-height:1.5}
+
+/* ── PROTÓTIPO ── */
+.proto-section{background:var(--page-bg);padding:64px 0}
+.proto-wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.proto-header{margin-bottom:40px}
+.proto-iframe-wrap{
+  background:#E4E1D8;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(0,0,0,.1);
+  box-shadow:0 24px 64px -20px rgba(0,0,0,.3);
+}
+.proto-iframe-wrap iframe{
+  display:block;width:100%;border:none;
+  height:900px;
+}
+.proto-note{
+  margin-top:16px;font-size:13.5px;color:var(--ink-2);
+  display:flex;align-items:center;gap:8px;
+}
+.proto-note::before{content:"↑";font-size:18px;color:var(--green);font-weight:700}
+
+/* ── MÉTRICAS ── */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:28px}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+.metric-card__label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.metric-card__text{font-size:14px;color:var(--ink-2);line-height:1.5}
+
+/* ── APRENDIZADOS ── */
+.learnings{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.learning{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;gap:14px;align-items:flex-start}
+.learning__icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.learning__text{font-size:15px;color:var(--ink);line-height:1.55}
+
+/* ── FECHAMENTO ── */
+.closing{background:#0d1f1a;color:#fff;padding:96px 32px 72px;text-align:center}
+.closing__eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c9a961;margin-bottom:36px}
+.closing__quote{
+  font-family:var(--serif);font-style:italic;font-size:clamp(20px,3vw,28px);
+  line-height:1.45;letter-spacing:-.01em;color:#f0ebe0;
+  max-width:28ch;margin:0 auto 36px;
+}
+.closing__rule{width:48px;height:1px;background:#c9a961;margin:0 auto 32px;opacity:.6}
+.closing__text{font-size:15.5px;color:rgba(240,235,224,.65);max-width:52ch;margin:0 auto 52px;line-height:1.65}
+.closing__links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:72px}
+.closing__link{
+  font-size:13.5px;font-weight:700;padding:11px 24px;border-radius:7px;text-decoration:none;
+  border:1px solid rgba(201,169,97,.4);color:#c9a961;transition:background .15s,border-color .15s;letter-spacing:.02em;
+}
+.closing__link:hover{background:rgba(201,169,97,.08);border-color:rgba(201,169,97,.7)}
+.closing__link--fill{background:rgba(201,169,97,.12);border-color:rgba(201,169,97,.5)}
+.closing__sig{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,224,.3)}
+
+/* ── FOOTER ── */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer p{font-size:13px;color:var(--ink-2)}
+footer a{color:var(--green);font-weight:600;text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:600px){
+  .hero{padding:48px 20px 40px}
+  .container,.container--wide{padding:0 20px}
+  nav{padding:0 20px}
+  .nav__tag{display:none}
+  .closing{padding:64px 20px 48px}
+  footer{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav__logo" href="#topo">AcessaBR</a>
+  <div class="nav__links">
+    <a href="#problema">Problema</a>
+    <a href="#publico">Público</a>
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#solucao">Solução</a>
+    <a href="#decisoes">Decisões</a>
+    <a href="#prototipo">Protótipo</a>
+    <a href="#metricas">Métricas</a>
+  </div>
+  <span class="nav__tag">Case UX/UI 2025</span>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="topo">
+<div class="hero">
+  <div class="hero__eyebrow">Projeto conceitual · Web responsiva · 2025</div>
+  <h1 class="hero__title">Design que serve<br><em>quem o sistema esqueceu</em></h1>
+  <p class="hero__sub">Uma plataforma que descobre, explica e guia o acesso a benefícios sociais para quem mais precisa — sem jargão, sem burocracia, sem deixar ninguém pra trás.</p>
+  <div class="hero__meta">
+    <span class="hero__pill">UX Research</span>
+    <span class="hero__pill">Service Design</span>
+    <span class="hero__pill">UI para usuário não-digital</span>
+    <span class="hero__pill">Acessibilidade</span>
+    <span class="hero__pill">Produto público</span>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PROBLEMA ── -->
+<section id="problema">
+<div class="container">
+  <div class="sec-head">
+    <p class="sec-head__num">01 — O Problema</p>
+    <h2 class="sec-head__title">Os benefícios existem.<br>O que falta é uma porta de entrada humana.</h2>
+    <p class="sec-head__sub">O Brasil tem mais de 15 programas de assistência social federais ativos, com dinheiro disponível e milhões de elegíveis que nunca acessam o que têm direito.</p>
+  </div>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <p class="problem-card__label">O que existe</p>
+      <p class="problem-card__text">Bolsa Família, BPC, Auxílio Gás, Tarifa Social, CadÚnico — todos com critérios públicos e recursos garantidos.</p>
+    </div>
+    <div class="problem-card">
+      <p class="problem-card__label">O que falta</p>
+      <p class="problem-card__text">Uma interface que fale a língua de quem mais precisa. O problema não é falta de informação: é excesso de ruído inacessível.</p>
+    </div>
+    <div class="problem-card">
+      <p class="problem-card__label">O que o usuário enfrenta hoje</p>
+      <p class="problem-card__text">Para descobrir se tem direito ao Auxílio Gás, uma pessoa navega por 4+ sites, interpreta linguagem jurídica e precisa saber de memória qual ministério gerencia o quê.</p>
+    </div>
+    <div class="problem-card">
+      <p class="problem-card__label">Por que isso é um problema de design</p>
+      <p class="problem-card__text">Os canais existentes pressupõem que o usuário já sabe o que quer. Nenhum resolve o momento anterior: "eu nem sei se tenho direito a alguma coisa."</p>
+    </div>
+  </div>
+
+  <div class="stat-block">
+    <div class="stat-block__num">+2 milhões</div>
+    <div class="stat-block__text">de famílias elegíveis ao Bolsa Família não estavam cadastradas no CadÚnico em 2024 — a porta de entrada para quase todos os benefícios. Fonte: MDS.</div>
+  </div>
+</div>
+</section>
+
+<div class="divider" style="margin-top:64px"></div>
+
+<!-- ── PÚBLICO ── -->
+<section id="publico">
+<div class="container">
+  <div class="sec-head">
+    <p class="sec-head__num">02 — Público-Alvo</p>
+    <h2 class="sec-head__title">Quem é esse usuário — e o que ele não é</h2>
+    <p class="sec-head__sub">Cada decisão de interface foi justificada com base nesse perfil. Padrões convencionais de UX são suspeitos até provarem que funcionam aqui.</p>
+  </div>
+
+  <div class="profile-card">
+    <p class="profile-card__name">Maria, 43 anos</p>
+    <p class="profile-card__role">Perfil primário · Chefe de família, Nordeste do Brasil</p>
+    <div class="profile-grid">
+      <div class="profile-item">
+        <p class="profile-item__label">Escolaridade</p>
+        <p class="profile-item__text">Ensino fundamental incompleto ou completo</p>
+      </div>
+      <div class="profile-item">
+        <p class="profile-item__label">Acesso à internet</p>
+        <p class="profile-item__text">Exclusivamente pelo celular, via dados móveis</p>
+      </div>
+      <div class="profile-item">
+        <p class="profile-item__label">Relação com apps</p>
+        <p class="profile-item__text">Não instala aplicativos — falta de espaço ou desconfiança</p>
+      </div>
+      <div class="profile-item">
+        <p class="profile-item__label">Referência de UX</p>
+        <p class="profile-item__text">Compara pelo que sente, não pelo que sabe. Medo de errar, de ser enganada, de perder o que já tem.</p>
+      </div>
+    </div>
+    <div class="not-list">
+      <p class="not-list__label">Esse usuário não é</p>
+      <ul>
+        <li>O usuário que "aprende rápido"</li>
+        <li>Alguém com paciência para onboarding longo</li>
+        <li>Quem lê texto corrido em tela</li>
+        <li>Quem confia em sites que pedem CPF logo de cara</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider" style="margin-top:64px"></div>
+
+<!-- ── DIAGNÓSTICO ── -->
+<section id="diagnostico">
+<div class="container">
+  <div class="sec-head">
+    <p class="sec-head__num">03 — Diagnóstico</p>
+    <h2 class="sec-head__title">O estado atual não foi projetado para quem mais precisa</h2>
+    <p class="sec-head__sub">Mapeamento dos canais existentes e seus problemas principais.</p>
+  </div>
+
+  <table class="diag-table">
+    <thead>
+      <tr><th>Canal</th><th>Problema principal</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>gov.br</td><td>Linguagem jurídica, hierarquia confusa, exige login antes de informar</td></tr>
+      <tr><td>Site do MDS</td><td>Informação fragmentada por programa, sem visão unificada para o usuário</td></tr>
+      <tr><td>App Meu INSS</td><td>Focado em quem já é beneficiário — não resolve o momento da descoberta</td></tr>
+      <tr><td>Ligação 121</td><td>Fila longa, horário limitado, exige verbalizar a dúvida com precisão</td></tr>
+      <tr><td>CRAS presencial</td><td>Deslocamento, filas, dependência de dia útil e disponibilidade de transporte</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<div class="divider" style="margin-top:64px"></div>
+
+<!-- ── SOLUÇÃO ── -->
+<section id="solucao">
+<div class="container">
+  <div class="sec-head">
+    <p class="sec-head__num">04 — Solução</p>
+    <h2 class="sec-head__title">AcessaBR — uma plataforma em três momentos</h2>
+    <p class="sec-head__sub">Não é um portal de notícias sobre benefícios. É uma ferramenta de ação, projetada para o momento anterior ao cadastro.</p>
+  </div>
+
+  <div class="principles">
+    <div class="principle">
+      <div class="principle__num">01</div>
+      <p class="principle__title">Descoberta guiada</p>
+      <p class="principle__text">5 perguntas em linguagem humana sobre composição familiar, renda e situações específicas. Resultado: lista personalizada de benefícios prováveis.</p>
+    </div>
+    <div class="principle">
+      <div class="principle__num">02</div>
+      <p class="principle__title">Explicação acessível</p>
+      <p class="principle__text">Cada benefício tem: o que é em uma frase, quanto vale, quem pode receber, o que precisa fazer. Nível de leitura do 6º ano. Ícones com label obrigatório.</p>
+    </div>
+    <div class="principle">
+      <div class="principle__num">03</div>
+      <p class="principle__title">Guia de ação</p>
+      <p class="principle__text">Passo a passo concreto para se inscrever: onde ir, o que levar, qual o CRAS mais próximo. Tudo dentro da plataforma, sem redirecionamento para outro site.</p>
+    </div>
+  </div>
+
+  <div class="sec-head" style="padding-top:40px">
+    <h3 class="sec-head__title" style="font-size:22px">Três princípios que guiaram cada decisão</h3>
+  </div>
+  <div class="principles">
+    <div class="principle">
+      <div class="principle__num">P1</div>
+      <p class="principle__title">Perguntar, não formulário</p>
+      <p class="principle__text">O usuário não preenche campos — ele responde perguntas uma de cada vez. A interface conduz, não exige.</p>
+    </div>
+    <div class="principle">
+      <div class="principle__num">P2</div>
+      <p class="principle__title">Resultado antes de cadastro</p>
+      <p class="principle__text">Nenhum CPF, nenhum login antes de mostrar o que a pessoa tem direito. Confiança se constrói com valor, não com coleta de dado.</p>
+    </div>
+    <div class="principle">
+      <div class="principle__num">P3</div>
+      <p class="principle__title">Ação possível, não informação impossível</p>
+      <p class="principle__text">Cada benefício termina com "o que fazer agora" concreto. Não abre nova aba. Não abandona o usuário.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider" style="margin-top:64px"></div>
+
+<!-- ── DECISÕES ── -->
+<section id="decisoes">
+<div class="container">
+  <div class="sec-head">
+    <p class="sec-head__num">05 — Decisões de UI</p>
+    <h2 class="sec-head__title">O que eu não fiz — e por quê</h2>
+    <p class="sec-head__sub">Esta é a seção mais importante do case. Documentar o que foi descartado e a razão é o que diferencia trabalho sênior de trabalho júnior.</p>
+  </div>
+
+  <div class="decisions">
+    <div class="decision">
+      <p class="decision__q">Dropdown com opções de renda</p>
+      <p class="decision__a">Usuário não sabe sua renda exata. Usei faixas com exemplos contextuais: "Menos de R$ 650 por pessoa (ex: família de 4 com renda até R$ 2.600)".</p>
+    </div>
+    <div class="decision">
+      <p class="decision__q">CPF no início do fluxo</p>
+      <p class="decision__a">Pesquisas com populações vulneráveis mostram desconfiança imediata com coleta de dado pessoal. O CPF só entra se o usuário quiser salvar o resultado.</p>
+    </div>
+    <div class="decision">
+      <p class="decision__q">Campo de texto livre</p>
+      <p class="decision__a">Digitação é barreira real para esse público. Todas as respostas são por botão ou seleção. O teclado só aparece para CEP.</p>
+    </div>
+    <div class="decision">
+      <p class="decision__q">Ícones sem texto</p>
+      <p class="decision__a">Ícones sem label são convenção cultural aprendida. Para esse público, cada ícone tem label obrigatório ao lado.</p>
+    </div>
+    <div class="decision">
+      <p class="decision__q">Barra de progresso em porcentagem</p>
+      <p class="decision__a">"67% concluído" é abstrato. Usei "Pergunta 4 de 6" com bolinhas visuais — concreto e escaneável em qualquer nível de letramento.</p>
+    </div>
+    <div class="decision">
+      <p class="decision__q">Todos os benefícios de uma vez</p>
+      <p class="decision__a">Hierarquizei por probabilidade e impacto. O mais provável aparece primeiro, em destaque visual. Sobrecarga de informação paralisa, não informa.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider" style="margin-top:64px"></div>
+
+<!-- ── FLUXO ── -->
+<section id="fluxo">
+<div class="container">
+  <div class="sec-head">
+    <p class="sec-head__num">06 — Fluxo Principal</p>
+    <h2 class="sec-head__title">Da entrada ao resultado: 5 perguntas</h2>
+  </div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-step__line"><div class="flow-step__dot">1</div><div class="flow-step__connector"></div></div>
+      <div class="flow-step__content"><p class="flow-step__title">Quantas pessoas moram na sua casa?</p><p class="flow-step__text">Número de moradores define a base para cálculo de renda per capita.</p></div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step__line"><div class="flow-step__dot">2</div><div class="flow-step__connector"></div></div>
+      <div class="flow-step__content"><p class="flow-step__title">Qual é a renda mensal de todo mundo?</p><p class="flow-step__text">Por faixas com exemplos. "Não sei ao certo" é uma opção válida, sem punição.</p></div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step__line"><div class="flow-step__dot">3</div><div class="flow-step__connector"></div></div>
+      <div class="flow-step__content"><p class="flow-step__title">Tem crianças ou adolescentes?</p><p class="flow-step__text">Determina elegibilidade a adicionais do Bolsa Família por faixa etária.</p></div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step__line"><div class="flow-step__dot">4</div><div class="flow-step__connector"></div></div>
+      <div class="flow-step__content"><p class="flow-step__title">Mora com idosos ou pessoas com deficiência?</p><p class="flow-step__text">Abre elegibilidade ao BPC — benefício específico para esse grupo.</p></div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step__line"><div class="flow-step__dot">5</div><div class="flow-step__connector"></div></div>
+      <div class="flow-step__content"><p class="flow-step__title">Já tem cadastro no CadÚnico?</p><p class="flow-step__text">Define o "próximo passo" mostrado no resultado: atualizar ou se cadastrar.</p></div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step__line"><div class="flow-step__dot" style="background:#C9A227;font-size:13px">✓</div></div>
+      <div class="flow-step__content"><p class="flow-step__title">Resultado personalizado</p><p class="flow-step__text">Lista de benefícios prováveis, hierarquizada por match, com guia de ação para cada um.</p></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider" style="margin-top:64px"></div>
+
+<!-- ── ESTADOS ── -->
+<section id="estados">
+<div class="container">
+  <div class="sec-head">
+    <p class="sec-head__num">07 — Estados de Interface</p>
+    <h2 class="sec-head__title">Documentar estados é onde júnior para</h2>
+    <p class="sec-head__sub">Cada estado abaixo representa uma tela distinta no case. Mostrar apenas o estado "feliz" é incompleto.</p>
+  </div>
+  <div class="states-grid">
+    <div class="state-card"><p class="state-card__label">Vazio</p><p class="state-card__text">Primeira entrada, sem respostas ainda. Sem pressão, sem login solicitado.</p></div>
+    <div class="state-card"><p class="state-card__label">Em progresso</p><p class="state-card__text">Meio do fluxo de perguntas com resposta selecionada e progresso visível.</p></div>
+    <div class="state-card"><p class="state-card__label">Analisando</p><p class="state-card__text">Transição com feedback visual — reforça que o sistema está trabalhando.</p></div>
+    <div class="state-card"><p class="state-card__label">Resultado positivo</p><p class="state-card__text">Família com múltiplos benefícios elegíveis, hierarquizados por probabilidade.</p></div>
+    <div class="state-card"><p class="state-card__label">Resultado vazio</p><p class="state-card__text">Nenhum benefício encontrado — mensagem empática + CadÚnico preventivo.</p></div>
+    <div class="state-card"><p class="state-card__label">Detalhe</p><p class="state-card__text">Bottom sheet com passo a passo para um benefício específico.</p></div>
+    <div class="state-card"><p class="state-card__label">Erro de CEP</p><p class="state-card__text">Campo inválido com mensagem sem culpa e sugestão de ação.</p></div>
+    <div class="state-card"><p class="state-card__label">Mobile 320px</p><p class="state-card__text">Menor Android popular no Brasil — tudo precisa funcionar nessa tela.</p></div>
+  </div>
+</div>
+</section>
+
+<div class="divider" style="margin-top:64px"></div>
+
+<!-- ── PROTÓTIPO ── -->
+<section id="prototipo">
+<div class="proto-section" style="background:var(--page-bg);padding:64px 0">
+<div class="proto-wrap">
+  <div class="proto-header container" style="max-width:900px">
+    <p class="sec-head__num">08 — Protótipo Interativo</p>
+    <h2 class="sec-head__title" style="font-family:var(--serif);font-weight:600;font-size:clamp(24px,3vw,32px);line-height:1.2;letter-spacing:-.01em;margin-bottom:14px">Navegue pelo fluxo completo</h2>
+    <p class="sec-head__sub" style="font-size:17px;color:var(--ink-2);max-width:60ch;line-height:1.6;margin-bottom:32px">Responda as 5 perguntas e veja o resultado personalizado. O painel "Tweaks" (canto inferior direito) permite testar variações de cor, destaque e modo de avanço.</p>
+  </div>
+  <div class="proto-iframe-wrap">
+    <iframe
+      srcdoc="<!DOCTYPE html>
+<html lang=&quot;pt-BR&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot; />
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; />
+<title>AcessaBR — Protótipo</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot; />
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin />
+<link href=&quot;https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&amp;family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap&quot; rel=&quot;stylesheet&quot; />
+<style>
+  :root {
+    --serif: 'Lora', Georgia, 'Times New Roman', serif;
+    --sans: 'Source Sans 3', system-ui, sans-serif;
+    --page-bg: #DEDBD3;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--page-bg);
+    font-family: var(--sans);
+    color: #1A1A18;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- presentation page ---------- */
+  .page-head { text-align: center; padding: 44px 20px 6px; }
+  .page-head h1 {
+    font-family: var(--serif); font-weight: 600; font-size: 30px;
+    letter-spacing: -.01em; margin: 0 0 8px; color: #1A1A18;
+  }
+  .page-head p { margin: 0 auto; max-width: 52ch; color: #6F6D64; font-size: 16px; line-height: 1.55; }
+  .stage {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 60px; padding: 40px 24px 96px;
+  }
+  .frame-block { display: flex; flex-direction: column; align-items: center; gap: 18px; width: 100%; max-width: 1300px; }
+  .frame-label {
+    display: flex; align-items: baseline; gap: 10px;
+    font-size: 12.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #87857B;
+  }
+  .frame-label .dim { font-weight: 600; letter-spacing: .03em; text-transform: none; color: #A9A79D; }
+  .fit-wrap { margin: 0 auto; }
+
+  /* ---------- phone frame ---------- */
+  .phone__bezel {
+    width: 412px; height: 812px; background: #16160F; border-radius: 48px; padding: 11px;
+    box-shadow: 0 34px 70px -24px rgba(20,20,15,.45), inset 0 0 0 2px #2c2c24;
+  }
+  .phone__screen {
+    position: relative; width: 390px; height: 790px; border-radius: 37px; overflow: hidden; background: #F5F4F0;
+  }
+  .phone__notch {
+    position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+    width: 116px; height: 28px; background: #16160F; border-radius: 16px; z-index: 60;
+  }
+
+  /* ---------- browser frame ---------- */
+  .browser {
+    width: 1280px; border-radius: 16px; overflow: hidden; background: #fff;
+    border: 1px solid #CFCDC4; box-shadow: 0 34px 80px -28px rgba(20,20,15,.5);
+  }
+  .browser__bar {
+    height: 48px; background: #EBE9E2; display: flex; align-items: center; gap: 9px; padding: 0 18px;
+    border-bottom: 1px solid #DAD8CF;
+  }
+  .tl { width: 12px; height: 12px; border-radius: 50%; }
+  .tl--r { background: #E5675B; } .tl--y { background: #E5B04A; } .tl--g { background: #58B560; }
+  .browser__url {
+    flex: 1; max-width: 460px; margin: 0 auto; height: 30px; background: #fff; border: 1px solid #DAD8CF;
+    border-radius: 9px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-size: 13px; color: #6B6B65;
+  }
+  .browser__screen { position: relative; width: 1280px; height: 760px; overflow: hidden; background: #F5F4F0; }
+
+  /* ===================================================== */
+  /* ===============  ACESSA APP  ========================= */
+  /* ===================================================== */
+  .acessa-app {
+    container-type: inline-size;
+    height: 100%;
+    display: flex; flex-direction: column;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px; line-height: 1.6;
+    --bg: #F5F4F0; --card: #FFFFFF; --card-border: #E0DED8;
+    --ink: #1A1A18; --ink-2: #6B6B65; --opt-border: #D0CEC8;
+    --primary: #1A5C3A;
+    --tint: color-mix(in srgb, var(--primary) 10%, #fff);
+    --tint-strong: color-mix(in srgb, var(--primary) 17%, #fff);
+    --dot-current: color-mix(in srgb, var(--primary) 42%, #fff);
+  }
+  .acessa-app *, .acessa-app *::before, .acessa-app *::after { box-sizing: border-box; }
+  .screen { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+  /* ---------- question ---------- */
+  .screen--question { overflow-y: auto; padding: 22px 22px 30px; }
+  .qhead { display: flex; flex-direction: column; gap: 16px; margin-bottom: 26px; }
+  .backbtn {
+    display: inline-flex; align-items: center; gap: 5px; align-self: flex-start;
+    background: none; border: none; font: inherit; font-weight: 600; color: var(--primary);
+    cursor: pointer; padding: 8px 8px 8px 2px; min-height: 44px; border-radius: 8px;
+  }
+  .backbtn:hover { background: var(--tint); }
+  .backbtn--ghost { height: 8px; min-height: 0; padding: 0; pointer-events: none; }
+  .progress__label { font-size: 15px; font-weight: 700; color: var(--ink-2); letter-spacing: .01em; }
+  .dots { display: flex; gap: 9px; margin-top: 11px; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; transition: background .2s, box-shadow .2s; }
+  .dot--done { background: var(--primary); }
+  .dot--current { background: var(--dot-current); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 16%, transparent); }
+  .dot--empty { background: var(--opt-border); }
+
+  .qbody { display: flex; flex-direction: column; }
+  .question {
+    font-family: var(--serif); font-weight: 600; font-size: 27px; line-height: 1.28;
+    letter-spacing: -.01em; color: var(--ink); margin: 4px 0 10px; text-wrap: balance;
+  }
+  .qhelp { font-size: 16px; color: var(--ink-2); margin: 0 0 24px; max-width: 36ch; }
+  .options { display: flex; flex-direction: column; gap: 12px; }
+  .option {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%;
+    text-align: left; background: var(--card); border: 1.5px solid var(--opt-border); border-radius: 12px;
+    padding: 15px 18px; min-height: 56px; font: inherit; color: var(--ink); cursor: pointer;
+    transition: border-color .15s, background .15s, box-shadow .15s, transform .06s;
+  }
+  .option:hover { border-color: color-mix(in srgb, var(--primary) 45%, var(--opt-border)); }
+  .option:active { transform: translateY(1px); }
+  .option.is-selected {
+    background: var(--tint); border-color: var(--primary); color: var(--primary);
+    box-shadow: inset 0 0 0 1px var(--primary);
+  }
+  .option--neutral { background: #FAFAF7; border-style: dashed; color: var(--ink-2); }
+  .option--neutral.is-selected { background: var(--tint); border-style: solid; color: var(--primary); }
+  .option:disabled { cursor: default; opacity: .5; }
+  .option.is-selected:disabled { opacity: 1; }
+  .option__main { display: flex; flex-direction: column; gap: 3px; }
+  .option__label { font-weight: 600; font-size: 16.5px; }
+  .option__ex { font-size: 14px; font-weight: 400; color: var(--ink-2); }
+  .option.is-selected .option__ex { color: color-mix(in srgb, var(--primary) 65%, var(--ink-2)); }
+  .option__mark { color: var(--primary); flex-shrink: 0; width: 18px; height: 18px; display: flex; }
+
+  .why { margin-top: 22px; }
+  .why__trigger {
+    display: inline-flex; align-items: center; gap: 8px; background: none; border: none; font: inherit;
+    font-weight: 600; color: var(--primary); cursor: pointer; padding: 8px 4px; min-height: 44px; border-radius: 8px;
+  }
+  .why__chev { display: inline-flex; }
+  .why__panel { overflow: hidden; max-height: 0; transition: max-height .26s ease; }
+  .why__panel.is-open { max-height: 240px; }
+  .why__panel p {
+    margin: 6px 0 0; background: var(--tint); border-radius: 12px; padding: 15px 17px;
+    font-size: 15.5px; color: color-mix(in srgb, var(--primary) 30%, var(--ink)); line-height: 1.55;
+  }
+  .continue {
+    margin-top: 26px; display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%;
+    min-height: 54px; background: var(--primary); color: #fff; border: none; border-radius: 10px;
+    font: inherit; font-weight: 700; font-size: 17px; cursor: pointer; transition: filter .15s, opacity .15s;
+  }
+  .continue:hover { filter: brightness(1.08); }
+  .continue:disabled { opacity: .38; cursor: not-allowed; filter: none; }
+
+  /* ---------- analyzing ---------- */
+  .screen--analyzing { align-items: center; justify-content: center; padding: 30px; text-align: center; }
+  .analyzing { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .spinner { display: flex; gap: 9px; }
+  .spinner span { width: 12px; height: 12px; border-radius: 50%; background: var(--primary); opacity: .3; animation: bounce 1s infinite ease-in-out; }
+  .spinner span:nth-child(2) { animation-delay: .15s; }
+  .spinner span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%,80%,100% { transform: translateY(0); opacity: .3; } 40% { transform: translateY(-9px); opacity: 1; } }
+  .analyzing__text { font-family: var(--serif); font-weight: 600; font-size: 23px; color: var(--ink); margin: 0; }
+  .analyzing__sub { display: flex; align-items: center; gap: 8px; color: var(--ink-2); font-size: 15px; margin: 0; max-width: 32ch; }
+  .analyzing__sub svg { color: var(--primary); flex-shrink: 0; }
+
+  /* ---------- results ---------- */
+  .screen--results { position: relative; }
+  .results__scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 26px 22px 0; }
+  .results__head { margin-bottom: 22px; }
+  .results__eyebrow { text-transform: uppercase; letter-spacing: .13em; font-size: 12.5px; font-weight: 700; color: var(--primary); margin: 0 0 10px; }
+  .results__title { font-family: var(--serif); font-weight: 600; font-size: 28px; line-height: 1.24; letter-spacing: -.01em; margin: 0 0 12px; text-wrap: balance; }
+  .results__sub { display: flex; align-items: center; gap: 8px; color: var(--ink-2); font-size: 15px; margin: 0; }
+  .results__sub svg { color: var(--primary); flex-shrink: 0; }
+
+  .cards { display: flex; flex-direction: column; gap: 14px; }
+  .benefit {
+    position: relative; display: flex; flex-direction: column; background: var(--card);
+    border: 1px solid var(--card-border); border-radius: 14px; padding: 18px 18px 16px;
+  }
+  .hl-borda.benefit--top { border: 2px solid var(--primary); }
+  .hl-sombra.benefit--top { box-shadow: 0 10px 28px -10px color-mix(in srgb, var(--primary) 42%, transparent); }
+  .hl-ambos.benefit--top { border: 2px solid var(--primary); box-shadow: 0 10px 28px -12px color-mix(in srgb, var(--primary) 46%, transparent); }
+  .badge { display: inline-block; align-self: flex-start; font-size: 13px; font-weight: 700; padding: 5px 12px; border-radius: 999px; margin-bottom: 13px; }
+  .badge--alto { background: var(--tint-strong); color: var(--primary); }
+  .badge--medio { background: #FFF3E0; color: #7A4500; }
+  .badge--confirmar { background: #F0F0F0; color: #555550; }
+  .benefit__name { font-family: var(--serif); font-weight: 600; font-size: 21px; margin: 0 0 7px; display: flex; align-items: center; gap: 10px; }
+  .benefit__dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-alto { background: var(--primary); } .dot-medio { background: #C7791E; } .dot-confirmar { background: #9A958A; }
+  .benefit__value { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .benefit__desc { font-size: 15.5px; color: var(--ink-2); margin: 0 0 14px; line-height: 1.5; }
+  .match { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: var(--primary); margin: auto 0 16px; }
+  .match--neutral { color: #8A857A; }
+  .cta {
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 48px;
+    background: var(--primary); color: #fff; border: none; border-radius: 8px; font: inherit; font-weight: 700;
+    font-size: 16px; cursor: pointer; transition: filter .15s, background .15s;
+  }
+  .cta:hover { filter: brightness(1.08); }
+  .benefit:not(.benefit--top) .cta { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
+  .benefit:not(.benefit--top) .cta:hover { background: var(--tint); filter: none; }
+
+  .results__foot { padding: 24px 0 6px; }
+  .restart { display: inline-flex; align-items: center; gap: 8px; background: none; border: none; color: var(--primary); font: inherit; font-weight: 700; font-size: 16px; cursor: pointer; padding: 10px 4px; min-height: 44px; border-radius: 8px; }
+  .restart:hover { background: var(--tint); }
+  .disclaimer { font-size: 14px; color: var(--ink-2); line-height: 1.55; margin: 8px 0 0; max-width: 48ch; }
+  .results__spacer { height: 20px; }
+
+  .banner {
+    flex-shrink: 0; padding: 14px 18px;
+    background: #fff; border-top: 1px solid var(--card-border); box-shadow: 0 -8px 24px -14px rgba(0,0,0,.22);
+  }
+  .banner__inner { display: flex; align-items: center; gap: 14px; width: 100%; }
+  .banner__text { flex: 1; font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+  .banner__btn {
+    flex-shrink: 0; min-height: 48px; padding: 0 18px; background: var(--primary); color: #fff; border: none;
+    border-radius: 8px; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; white-space: nowrap; transition: filter .15s;
+  }
+  .banner__btn:hover { filter: brightness(1.08); }
+
+  /* ---------- detail sheet ---------- */
+  .sheet-backdrop { position: absolute; inset: 0; background: rgba(20,20,16,.44); display: flex; align-items: flex-end; justify-content: center; z-index: 70; animation: fade .2s ease; }
+  .sheet { position: relative; background: #fff; width: 100%; max-height: 88%; overflow-y: auto; border-radius: 22px 22px 0 0; padding: 14px 22px 26px; animation: slideup .3s cubic-bezier(.2,.7,.3,1); }
+  .sheet__grip { width: 44px; height: 5px; border-radius: 3px; background: var(--opt-border); margin: 0 auto 16px; }
+  .sheet__close { position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--ink-2); cursor: pointer; padding: 6px; border-radius: 8px; min-height: 40px; min-width: 40px; display: flex; align-items: center; justify-content: center; }
+  .sheet__close:hover { background: var(--bg); }
+  .sheet__title { font-family: var(--serif); font-weight: 600; font-size: 24px; margin: 8px 0 4px; }
+  .sheet__value { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
+  .sheet__lead { font-weight: 700; font-size: 16px; margin: 0 0 16px; }
+  .steps { list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-direction: column; gap: 15px; }
+  .step { display: flex; gap: 13px; align-items: flex-start; }
+  .step__num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--tint); color: var(--primary); font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+  .step__text { font-size: 15.5px; color: var(--ink); line-height: 1.5; padding-top: 2px; }
+  .sheet__note { display: flex; gap: 9px; align-items: flex-start; font-size: 14px; color: var(--ink-2); background: var(--bg); border-radius: 12px; padding: 14px; margin: 0; line-height: 1.5; }
+  .sheet__note svg { color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideup { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+  /* ===================================================== */
+  /* ===============  DESKTOP (container query)  ========== */
+  /* ===================================================== */
+  @container (min-width: 720px) {
+    .screen--question { padding: 56px 56px 64px; align-items: center; }
+    .qhead, .qbody { width: 100%; max-width: 680px; }
+    .qhead { margin-bottom: 34px; }
+    .question { font-size: 36px; margin-top: 8px; }
+    .qhelp { font-size: 18px; margin-bottom: 30px; }
+    .option { padding: 18px 22px; min-height: 62px; }
+    .option__label { font-size: 18px; }
+    .option__ex { font-size: 15px; }
+    .continue { max-width: 300px; align-self: flex-start; }
+
+    .results__scroll { padding: 48px 56px 0; }
+    .results__head, .cards, .results__foot, .results__spacer { width: 100%; max-width: 1080px; margin-left: auto; margin-right: auto; }
+    .results__eyebrow { font-size: 13px; }
+    .results__title { font-size: 38px; max-width: 20ch; }
+    .results__sub { font-size: 16px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; margin-top: 6px; }
+    .benefit { padding: 24px 22px 20px; }
+    .benefit__name { font-size: 22px; }
+    .analyzing__text { font-size: 26px; }
+
+    .banner { padding: 18px 56px; }
+    .banner__inner { width: 100%; max-width: 1080px; margin: 0 auto; display: flex; align-items: center; gap: 18px; }
+    .banner__text { font-size: 16px; }
+
+    .sheet-backdrop { align-items: center; }
+    .sheet { max-width: 540px; max-height: 80%; border-radius: 18px; padding: 18px 30px 30px; }
+    .sheet__grip { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div id=&quot;root&quot;></div>
+
+  <script src=&quot;https://unpkg.com/react@18.3.1/umd/react.development.js&quot; integrity=&quot;sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L&quot; crossorigin=&quot;anonymous&quot;></script>
+  <script src=&quot;https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js&quot; integrity=&quot;sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm&quot; crossorigin=&quot;anonymous&quot;></script>
+  <script src=&quot;https://unpkg.com/@babel/standalone@7.29.0/babel.min.js&quot; integrity=&quot;sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y&quot; crossorigin=&quot;anonymous&quot;></script>
+
+  <script type=&quot;text/babel&quot;>// data.jsx — Conteúdo do fluxo AcessaBR (perguntas + benefícios)
+// Exporta QUESTIONS e BENEFITS para window.
+
+const QUESTIONS = [
+  {
+    id: &quot;moradores&quot;,
+    title: &quot;Quantas pessoas moram na sua casa, contando você?&quot;,
+    help: &quot;Conte todo mundo que divide as despesas e as refeições com você.&quot;,
+    why:
+      &quot;Quanto maior a família, maior a chance de ter direito a alguns benefícios. Também usamos esse número para estimar a renda por pessoa.&quot;,
+    options: [
+      { label: &quot;Moro sozinho(a)&quot; },
+      { label: &quot;2 ou 3 pessoas&quot; },
+      { label: &quot;4 ou 5 pessoas&quot; },
+      { label: &quot;6 pessoas ou mais&quot; },
+    ],
+  },
+  {
+    id: &quot;renda&quot;,
+    title: &quot;Qual é a renda mensal de todo mundo que mora na sua casa?&quot;,
+    help:
+      &quot;Some os salários, aposentadorias, bicos e qualquer entrada de dinheiro.&quot;,
+    why:
+      &quot;A renda por pessoa (renda total dividida pelo número de moradores) é o principal critério da maioria dos benefícios. Não pedimos o valor exato, só uma faixa aproximada.&quot;,
+    options: [
+      {
+        label: &quot;Menos de R$ 650 por pessoa&quot;,
+        example: &quot;ex: família de 4 com renda até R$ 2.600&quot;,
+      },
+      { label: &quot;Entre R$ 650 e R$ 1.300 por pessoa&quot; },
+      { label: &quot;Mais de R$ 1.300 por pessoa&quot; },
+      { label: &quot;Não sei ao certo&quot;, neutral: true },
+    ],
+  },
+  {
+    id: &quot;criancas&quot;,
+    title: &quot;Tem crianças ou adolescentes morando com você?&quot;,
+    help: &quot;Filhos, netos ou outras crianças de até 17 anos sob seus cuidados.&quot;,
+    why:
+      &quot;Crianças e adolescentes podem dar direito a valores adicionais em alguns benefícios, como o Bolsa Família.&quot;,
+    options: [
+      { label: &quot;Sim, de 0 a 6 anos&quot; },
+      { label: &quot;Sim, de 7 a 17 anos&quot; },
+      { label: &quot;Sim, das duas idades&quot; },
+      { label: &quot;Não tem crianças&quot; },
+    ],
+  },
+  {
+    id: &quot;vulnerabilidade&quot;,
+    title: &quot;Mora com pessoas idosas ou com deficiência?&quot;,
+    help:
+      &quot;Pessoas com 65 anos ou mais, ou com alguma deficiência permanente.&quot;,
+    why:
+      &quot;Pessoas idosas e com deficiência podem ter direito a benefícios específicos, como o BPC (Benefício de Prestação Continuada).&quot;,
+    options: [
+      { label: &quot;Sim, pessoa idosa (65+)&quot; },
+      { label: &quot;Sim, pessoa com deficiência&quot; },
+      { label: &quot;Sim, as duas situações&quot; },
+      { label: &quot;Não&quot; },
+    ],
+  },
+  {
+    id: &quot;cadunico&quot;,
+    title: &quot;Sua família já tem cadastro no CadÚnico?&quot;,
+    help:
+      &quot;É o cadastro do governo, feito no CRAS da sua cidade. Muita gente já tem e nem lembra.&quot;,
+    why:
+      &quot;O CadÚnico é a porta de entrada para quase todos os benefícios. Saber se você já tem ajuda a indicar o próximo passo certo.&quot;,
+    options: [
+      { label: &quot;Sim, já temos&quot; },
+      { label: &quot;Não, ainda não&quot; },
+      { label: &quot;Não sei o que é CadÚnico&quot;, neutral: true },
+    ],
+  },
+];
+
+const BENEFITS = [
+  {
+    id: &quot;bolsa-familia&quot;,
+    name: &quot;Bolsa Família&quot;,
+    badge: &quot;Mais provável&quot;,
+    tier: &quot;alto&quot;,
+    value: &quot;A partir de R$ 600/mês&quot;,
+    desc: &quot;Para famílias com renda até R$ 218 por pessoa.&quot;,
+    cta: &quot;Ver como receber&quot;,
+    steps: [
+      &quot;Confirme que sua família está no CadÚnico e com os dados atualizados.&quot;,
+      &quot;O pagamento é liberado automaticamente quando a família é selecionada.&quot;,
+      &quot;Acompanhe pelo aplicativo Bolsa Família ou no CRAS da sua cidade.&quot;,
+    ],
+  },
+  {
+    id: &quot;auxilio-gas&quot;,
+    name: &quot;Auxílio Gás&quot;,
+    badge: &quot;Provável&quot;,
+    tier: &quot;medio&quot;,
+    value: &quot;Pago a cada 2 meses&quot;,
+    desc: &quot;Para quem está no CadÚnico com renda baixa.&quot;,
+    cta: &quot;Ver como receber&quot;,
+    steps: [
+      &quot;Mantenha o CadÚnico atualizado nos últimos 24 meses.&quot;,
+      &quot;Famílias com Bolsa Família têm prioridade na seleção.&quot;,
+      &quot;O valor cobre cerca de 100% do preço médio do botijão de 13kg.&quot;,
+    ],
+  },
+  {
+    id: &quot;tarifa-social&quot;,
+    name: &quot;Tarifa Social de Energia&quot;,
+    badge: &quot;Verifique&quot;,
+    tier: &quot;confirmar&quot;,
+    value: &quot;Desconto na conta de luz&quot;,
+    desc: &quot;Peça diretamente na sua distribuidora de energia.&quot;,
+    cta: &quot;Ver como receber&quot;,
+    steps: [
+      &quot;Tenha o número do NIS (que vem com o CadÚnico) em mãos.&quot;,
+      &quot;Entre em contato com a distribuidora de energia da sua região.&quot;,
+      &quot;O desconto entra direto na conta de luz nos meses seguintes.&quot;,
+    ],
+  },
+];
+
+Object.assign(window, { QUESTIONS, BENEFITS });
+</script>
+  <script type=&quot;text/babel&quot;>// icons.jsx — ícones funcionais simples (line icons geométricos)
+// Todos com stroke currentColor; usados sempre acompanhados de texto/label.
+
+function IconArrowLeft({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;
+      stroke=&quot;currentColor&quot; strokeWidth=&quot;2&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; aria-hidden=&quot;true&quot;>
+      <path d=&quot;M15 5l-7 7 7 7&quot; />
+    </svg>
+  );
+}
+
+function IconCheck({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;
+      stroke=&quot;currentColor&quot; strokeWidth=&quot;2.4&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; aria-hidden=&quot;true&quot;>
+      <path d=&quot;M5 12.5l4.5 4.5L19 7&quot; />
+    </svg>
+  );
+}
+
+function IconChevron({ size = 18, open = false }) {
+  return (
+    <svg width={size} height={size} viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;
+      stroke=&quot;currentColor&quot; strokeWidth=&quot;2&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; aria-hidden=&quot;true&quot;
+      style={{ transition: &quot;transform .2s ease&quot;, transform: open ? &quot;rotate(180deg)&quot; : &quot;none&quot; }}>
+      <path d=&quot;M6 9l6 6 6-6&quot; />
+    </svg>
+  );
+}
+
+function IconShield({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;
+      stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; aria-hidden=&quot;true&quot;>
+      <path d=&quot;M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3z&quot; />
+      <path d=&quot;M9 12l2 2 4-4&quot; />
+    </svg>
+  );
+}
+
+function IconArrowRight({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;
+      stroke=&quot;currentColor&quot; strokeWidth=&quot;2&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; aria-hidden=&quot;true&quot;>
+      <path d=&quot;M9 5l7 7-7 7&quot; />
+    </svg>
+  );
+}
+
+function IconRefresh({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;
+      stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; aria-hidden=&quot;true&quot;>
+      <path d=&quot;M3.5 12a8.5 8.5 0 0 1 14.5-6l2 2&quot; />
+      <path d=&quot;M20 4v4h-4&quot; />
+      <path d=&quot;M20.5 12a8.5 8.5 0 0 1-14.5 6l-2-2&quot; />
+      <path d=&quot;M4 20v-4h4&quot; />
+    </svg>
+  );
+}
+
+function IconInfo({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;
+      stroke=&quot;currentColor&quot; strokeWidth=&quot;1.8&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; aria-hidden=&quot;true&quot;>
+      <circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot; />
+      <path d=&quot;M12 11v5&quot; />
+      <path d=&quot;M12 7.5v.5&quot; />
+    </svg>
+  );
+}
+
+function IconClose({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;
+      stroke=&quot;currentColor&quot; strokeWidth=&quot;2&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; aria-hidden=&quot;true&quot;>
+      <path d=&quot;M6 6l12 12M18 6L6 18&quot; />
+    </svg>
+  );
+}
+
+// Glifo geométrico de &quot;match&quot;: três segmentos, n preenchidos.
+function MatchGlyph({ filled = 3, color = &quot;#1A5C3A&quot;, size = 5 }) {
+  const segs = [0, 1, 2];
+  return (
+    <span style={{ display: &quot;inline-flex&quot;, gap: 3, alignItems: &quot;flex-end&quot; }} aria-hidden=&quot;true&quot;>
+      {segs.map((i) => (
+        <span key={i} style={{
+          width: size, height: size + i * 4,
+          borderRadius: 1.5,
+          background: i < filled ? color : &quot;#D8D6CF&quot;,
+        }} />
+      ))}
+    </span>
+  );
+}
+
+Object.assign(window, {
+  IconArrowLeft, IconCheck, IconChevron, IconShield, IconArrowRight,
+  IconRefresh, IconInfo, IconClose, MatchGlyph,
+});
+</script>
+  <script type=&quot;text/babel&quot;>// @ds-adherence-ignore -- omelette starter scaffold (raw elements/hex/px by design)
+
+/* BEGIN USAGE */
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+// Exports (to window): useTweaks, TweaksPanel, TweakSection, TweakRow, TweakSlider,
+//   TweakToggle, TweakRadio, TweakSelect, TweakText, TweakNumber, TweakColor, TweakButton.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type=&quot;range&quot;>, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     &quot;primaryColor&quot;: &quot;#D97757&quot;,
+//     &quot;palette&quot;: [&quot;#D97757&quot;, &quot;#29261b&quot;, &quot;#f6f4ef&quot;],
+//     &quot;fontSize&quot;: 16,
+//     &quot;density&quot;: &quot;regular&quot;,
+//     &quot;dark&quot;: false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label=&quot;Typography&quot; />
+//           <TweakSlider label=&quot;Font size&quot; value={t.fontSize} min={10} max={32} unit=&quot;px&quot;
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label=&quot;Density&quot; value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label=&quot;Theme&quot; />
+//           <TweakColor  label=&quot;Primary&quot; value={t.primaryColor}
+//                        options={['#D97757', '#2A6FDB', '#1F8A5B', '#7A5AE0']}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakColor  label=&quot;Palette&quot; value={t.palette}
+//                        options={[['#D97757', '#29261b', '#f6f4ef'],
+//                                  ['#475569', '#0f172a', '#f1f5f9']]}
+//                        onChange={(v) => setTweak('palette', v)} />
+//           <TweakToggle label=&quot;Dark mode&quot; value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// TweakRadio is the segmented control for 2–3 short options (auto-falls-back to
+// TweakSelect past ~16/~10 chars per label); reach for TweakSelect directly when
+// options are many or long. For color tweaks always curate 3-4 options rather than
+// a free picker; an option can also be a whole 2–5 color palette (the stored value
+// is the array). The Tweak* controls are a floor, not a ceiling — build custom
+// controls inside the panel if a tweak calls for UI they don't cover.
+/* END USAGE */
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>&quot;);
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on=&quot;1&quot;]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on=&quot;1&quot;] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;box-sizing:border-box;min-width:0;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+
+  .twk-chips{display:flex;gap:6px}
+  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
+    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
+    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
+    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
+  .twk-chip:hover{transform:translateY(-1px);
+    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
+  .twk-chip[data-on=&quot;1&quot;]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.15)}
+  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
+    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i:first-child{box-shadow:none}
+  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a &quot;[object Object]&quot; key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' &amp;&amp; keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    // Same-window signal so in-page listeners (deck-stage rail thumbnails)
+    // can react — the parent message only reaches the host, not peers.
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className=&quot;twk-panel&quot; data-omelette-chrome=&quot;&quot;
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className=&quot;twk-hd&quot; onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className=&quot;twk-x&quot; aria-label=&quot;Close tweaks&quot;
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className=&quot;twk-body&quot;>
+          {children}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className=&quot;twk-sect&quot;>{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className=&quot;twk-lbl&quot;>
+        <span>{label}</span>
+        {value != null &amp;&amp; <span className=&quot;twk-val&quot;>{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type=&quot;range&quot; className=&quot;twk-slider&quot; min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className=&quot;twk-row twk-row-h&quot;>
+      <div className=&quot;twk-lbl&quot;><span>{label}</span></div>
+      <button type=&quot;button&quot; className=&quot;twk-toggle&quot; data-on={value ? '1' : '0'}
+              role=&quot;switch&quot; aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  // Segments wrap mid-word once per-segment width runs out. The track is
+  // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px
+  // to its own padding, and 11.5px system-ui averages ~6.3px/char — so 2
+  // options fit ~16 chars each, 3 fit ~10. Past that (or >3 options), fall
+  // back to a dropdown rather than wrap.
+  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
+  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
+  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
+  if (!fitsAsSegments) {
+    // <select> emits strings — map back to the original option value so the
+    // fallback stays type-preserving (numbers, booleans) like the segment path.
+    const resolve = (s) => {
+      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
+      return m === undefined ? s : typeof m === 'object' ? m.value : m;
+    };
+    return <TweakSelect label={label} value={value} options={options}
+                        onChange={(s) => onChange(resolve(s))} />;
+  }
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role=&quot;radiogroup&quot; onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className=&quot;twk-seg-thumb&quot;
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type=&quot;button&quot; role=&quot;radio&quot; aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className=&quot;twk-field&quot; value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className=&quot;twk-field&quot; type=&quot;text&quot; value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null &amp;&amp; n < min) return min;
+    if (max != null &amp;&amp; n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className=&quot;twk-num&quot;>
+      <span className=&quot;twk-num-lbl&quot; onPointerDown={onScrubStart}>{label}</span>
+      <input type=&quot;number&quot; value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit &amp;&amp; <span className=&quot;twk-num-unit&quot;>{unit}</span>}
+    </div>
+  );
+}
+
+// Relative-luminance contrast pick — checkmarks drawn over a swatch need to
+// read on both #111 and #fafafa without per-option configuration. Hex input
+// only (#rgb / #rrggbb); named or rgb()/hsl() colors fall through to &quot;light&quot;.
+function __twkIsLight(hex) {
+  const h = String(hex).replace('#', '');
+  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
+  const n = parseInt(x.slice(0, 6), 16);
+  if (Number.isNaN(n)) return true;
+  const r = (n >> 16) &amp; 255, g = (n >> 8) &amp; 255, b = n &amp; 255;
+  return r * 299 + g * 587 + b * 114 > 148000;
+}
+
+const __TwkCheck = ({ light }) => (
+  <svg viewBox=&quot;0 0 14 14&quot; aria-hidden=&quot;true&quot;>
+    <path d=&quot;M3 7.2 5.8 10 11 4.2&quot; fill=&quot;none&quot; strokeWidth=&quot;2.2&quot;
+          strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot;
+          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
+  </svg>
+);
+
+// TweakColor — curated color/palette picker. Each option is either a single
+// hex string or an array of 1-5 hex strings; the card adapts — a lone color
+// renders solid, a palette renders colors[0] as the hero (left ~2/3) with the
+// rest stacked in a sharp column on the right. onChange emits the
+// option in the shape it was passed (string stays string, array stays array).
+// Without options it falls back to the native color input for back-compat.
+function TweakColor({ label, value, options, onChange }) {
+  if (!options || !options.length) {
+    return (
+      <div className=&quot;twk-row twk-row-h&quot;>
+        <div className=&quot;twk-lbl&quot;><span>{label}</span></div>
+        <input type=&quot;color&quot; className=&quot;twk-swatch&quot; value={value}
+               onChange={(e) => onChange(e.target.value)} />
+      </div>
+    );
+  }
+  // Native <input type=color> emits lowercase hex per the HTML spec, so
+  // compare case-insensitively. String() guards JSON.stringify(undefined),
+  // which returns the primitive undefined (no .toLowerCase).
+  const key = (o) => String(JSON.stringify(o)).toLowerCase();
+  const cur = key(value);
+  return (
+    <TweakRow label={label}>
+      <div className=&quot;twk-chips&quot; role=&quot;radiogroup&quot;>
+        {options.map((o, i) => {
+          const colors = Array.isArray(o) ? o : [o];
+          const [hero, ...rest] = colors;
+          const sup = rest.slice(0, 4);
+          const on = key(o) === cur;
+          return (
+            <button key={i} type=&quot;button&quot; className=&quot;twk-chip&quot; role=&quot;radio&quot;
+                    aria-checked={on} data-on={on ? '1' : '0'}
+                    aria-label={colors.join(', ')} title={colors.join(' · ')}
+                    style={{ background: hero }}
+                    onClick={() => onChange(o)}>
+              {sup.length > 0 &amp;&amp; (
+                <span>
+                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
+                </span>
+              )}
+              {on &amp;&amp; <__TwkCheck light={__twkIsLight(hero)} />}
+            </button>
+          );
+        })}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type=&quot;button&quot; className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+</script>
+  <script type=&quot;text/babel&quot;>// app.jsx — AcessaBR: fluxo interativo (perguntas → análise → resultado)
+const { useState, useEffect, useRef } = React;
+
+const MATCH = {
+  alto: { filled: 3, label: &quot;Compatibilidade alta&quot;, neutral: false },
+  medio: { filled: 2, label: &quot;Compatibilidade média&quot;, neutral: false },
+  confirmar: { filled: 1, label: &quot;Precisa de confirmação&quot;, neutral: true },
+};
+
+function ProgressDots({ total, step }) {
+  return (
+    <div className=&quot;progress&quot;>
+      <span className=&quot;progress__label&quot;>Pergunta {step + 1} de {total}</span>
+      <div className=&quot;dots&quot; aria-hidden=&quot;true&quot;>
+        {Array.from({ length: total }).map((_, i) => {
+          const state = i < step ? &quot;done&quot; : i === step ? &quot;current&quot; : &quot;empty&quot;;
+          return <span key={i} className={`dot dot--${state}`} />;
+        })}
+      </div>
+    </div>
+  );
+}
+
+function WhyBox({ open, text, onToggle }) {
+  return (
+    <div className=&quot;why&quot;>
+      <button className=&quot;why__trigger&quot; onClick={onToggle} aria-expanded={open}>
+        <IconInfo size={18} />
+        <span>Por que você precisa saber disso?</span>
+        <span className=&quot;why__chev&quot;><IconChevron size={16} open={open} /></span>
+      </button>
+      <div className={`why__panel ${open ? &quot;is-open&quot; : &quot;&quot;}`}>
+        <p>{text}</p>
+      </div>
+    </div>
+  );
+}
+
+function Question({ q, total, step, selected, onSelect, onBack, advanceMode, locked, onContinue }) {
+  const [whyOpen, setWhyOpen] = useState(false);
+  useEffect(() => { setWhyOpen(false); }, [q.id]);
+
+  return (
+    <div className=&quot;screen screen--question&quot;>
+      <header className=&quot;qhead&quot;>
+        {step > 0 ? (
+          <button className=&quot;backbtn&quot; onClick={onBack}>
+            <IconArrowLeft size={20} /><span>Voltar</span>
+          </button>
+        ) : <span className=&quot;backbtn backbtn--ghost&quot; aria-hidden=&quot;true&quot; />}
+        <ProgressDots total={total} step={step} />
+      </header>
+
+      <div className=&quot;qbody&quot;>
+        <h1 className=&quot;question&quot;>{q.title}</h1>
+        <p className=&quot;qhelp&quot;>{q.help}</p>
+
+        <div className=&quot;options&quot; role=&quot;group&quot; aria-label={q.title}>
+          {q.options.map((opt, i) => {
+            const isSel = selected === i;
+            const cls = [
+              &quot;option&quot;,
+              opt.neutral ? &quot;option--neutral&quot; : &quot;&quot;,
+              isSel ? &quot;is-selected&quot; : &quot;&quot;,
+            ].join(&quot; &quot;);
+            return (
+              <button key={i} className={cls} onClick={() => onSelect(i)} disabled={locked &amp;&amp; !isSel}>
+                <span className=&quot;option__main&quot;>
+                  <span className=&quot;option__label&quot;>{opt.label}</span>
+                  {opt.example &amp;&amp; <span className=&quot;option__ex&quot;>{opt.example}</span>}
+                </span>
+                <span className=&quot;option__mark&quot;>{isSel &amp;&amp; <IconCheck size={18} />}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <WhyBox open={whyOpen} text={q.why} onToggle={() => setWhyOpen((v) => !v)} />
+
+        {advanceMode === &quot;confirm&quot; &amp;&amp; (
+          <button className=&quot;continue&quot; disabled={selected == null} onClick={onContinue}>
+            <span>{step + 1 === total ? &quot;Ver meus benefícios&quot; : &quot;Continuar&quot;}</span>
+            <IconArrowRight size={18} />
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function Analyzing() {
+  return (
+    <div className=&quot;screen screen--analyzing&quot;>
+      <div className=&quot;analyzing&quot;>
+        <div className=&quot;spinner&quot; aria-hidden=&quot;true&quot;>
+          <span /><span /><span />
+        </div>
+        <p className=&quot;analyzing__text&quot;>Analisando suas respostas…</p>
+        <p className=&quot;analyzing__sub&quot;>
+          <IconShield size={16} />
+          <span>Nada está sendo salvo. Tudo acontece no seu aparelho.</span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function BenefitCard({ b, showIcons, highlight, onOpen }) {
+  const m = MATCH[b.tier];
+  const isTop = b.tier === &quot;alto&quot;;
+  const cls = [&quot;benefit&quot;, isTop ? `benefit--top hl-${highlight}` : &quot;&quot;].join(&quot; &quot;);
+  return (
+    <article className={cls}>
+      <div className={`badge badge--${b.tier}`}>{b.badge}</div>
+      <h3 className=&quot;benefit__name&quot;>
+        {showIcons &amp;&amp; <span className={`benefit__dot dot-${b.tier}`} aria-hidden=&quot;true&quot; />}
+        {b.name}
+      </h3>
+      <div className=&quot;benefit__value&quot;>{b.value}</div>
+      <p className=&quot;benefit__desc&quot;>{b.desc}</p>
+      <div className={`match ${m.neutral ? &quot;match--neutral&quot; : &quot;&quot;}`}>
+        <MatchGlyph filled={m.filled} color={m.neutral ? &quot;#8A857A&quot; : &quot;var(--primary)&quot;} />
+        <span>{m.label}</span>
+      </div>
+      <button className=&quot;cta&quot; onClick={() => onOpen(b)}>
+        <span>{b.cta}</span>
+        <IconArrowRight size={18} />
+      </button>
+    </article>
+  );
+}
+
+function DetailSheet({ benefit, onClose }) {
+  useEffect(() => {
+    function onKey(e) { if (e.key === &quot;Escape&quot;) onClose(); }
+    window.addEventListener(&quot;keydown&quot;, onKey);
+    return () => window.removeEventListener(&quot;keydown&quot;, onKey);
+  }, [onClose]);
+  if (!benefit) return null;
+  return (
+    <div className=&quot;sheet-backdrop&quot; onClick={onClose}>
+      <div className=&quot;sheet&quot; onClick={(e) => e.stopPropagation()} role=&quot;dialog&quot; aria-label={benefit.name}>
+        <div className=&quot;sheet__grip&quot; aria-hidden=&quot;true&quot; />
+        <button className=&quot;sheet__close&quot; onClick={onClose} aria-label=&quot;Fechar&quot;>
+          <IconClose size={22} />
+        </button>
+        <div className={`badge badge--${benefit.tier}`}>{benefit.badge}</div>
+        <h2 className=&quot;sheet__title&quot;>{benefit.name}</h2>
+        <div className=&quot;sheet__value&quot;>{benefit.value}</div>
+        <p className=&quot;sheet__lead&quot;>Como receber, passo a passo:</p>
+        <ol className=&quot;steps&quot;>
+          {benefit.steps.map((s, i) => (
+            <li key={i} className=&quot;step&quot;>
+              <span className=&quot;step__num&quot;>{i + 1}</span>
+              <span className=&quot;step__text&quot;>{s}</span>
+            </li>
+          ))}
+        </ol>
+        <p className=&quot;sheet__note&quot;>
+          <IconShield size={16} />
+          <span>O AcessaBR não faz o pedido por você. Mostramos o caminho — quem confirma o direito é o órgão responsável.</span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+const CADASTRO = {
+  id: &quot;cadastro&quot;,
+  name: &quot;Como entrar no CadÚnico&quot;,
+  badge: &quot;Primeiro passo&quot;,
+  tier: &quot;alto&quot;,
+  value: &quot;Gratuito, feito no CRAS da sua cidade&quot;,
+  steps: [
+    &quot;Procure o CRAS mais próximo de casa — a prefeitura informa o endereço por telefone ou site.&quot;,
+    &quot;Leve documento com foto, CPF e um comprovante de endereço recente.&quot;,
+    &quot;Um atendente faz o cadastro da família. Leve os dados de todos que moram com você.&quot;,
+  ],
+};
+
+function Results({ onRestart, showIcons, highlight, hasCadunico }) {
+  const [sheet, setSheet] = useState(null);
+  return (
+    <div className=&quot;screen screen--results&quot;>
+      <div className=&quot;results__scroll&quot;>
+        <header className=&quot;results__head&quot;>
+          <p className=&quot;results__eyebrow&quot;>Seu resultado</p>
+          <h1 className=&quot;results__title&quot;>Encontramos 3 benefícios para sua família</h1>
+          <p className=&quot;results__sub&quot;>
+            <IconShield size={16} />
+            <span>Com base nas suas respostas. Nenhum dado foi salvo.</span>
+          </p>
+        </header>
+
+        <div className=&quot;cards&quot;>
+          {window.BENEFITS.map((b) => (
+            <BenefitCard key={b.id} b={b} showIcons={showIcons} highlight={highlight} onOpen={setSheet} />
+          ))}
+        </div>
+
+        <div className=&quot;results__foot&quot;>
+          <button className=&quot;restart&quot; onClick={onRestart}>
+            <IconRefresh size={18} />
+            <span>Recomeçar com outras respostas</span>
+          </button>
+          <p className=&quot;disclaimer&quot;>
+            Estes são benefícios prováveis, não garantidos. A confirmação depende do
+            seu cadastro no CadÚnico.
+          </p>
+        </div>
+        <div className=&quot;results__spacer&quot; />
+      </div>
+
+      <div className=&quot;banner&quot;>
+        <div className=&quot;banner__inner&quot;>
+          <div className=&quot;banner__text&quot;>
+            {hasCadunico
+              ? &quot;Já tem CadÚnico? Confira se ele está atualizado — é o que mantém os benefícios ativos.&quot;
+              : &quot;Ainda não tem CadÚnico? É por onde tudo começa.&quot;}
+          </div>
+          <button className=&quot;banner__btn&quot; onClick={() => setSheet(CADASTRO)}>
+            {hasCadunico ? &quot;Como atualizar&quot; : &quot;Como me cadastrar&quot;}
+          </button>
+        </div>
+      </div>
+
+      <DetailSheet benefit={sheet} onClose={() => setSheet(null)} />
+    </div>
+  );
+}
+
+function AcessaApp({ tweaks }) {
+  const t = tweaks || {};
+  const advanceMode = t.advanceMode || &quot;auto&quot;;
+  const showIcons = t.showIcons !== false;
+  const highlight = t.highlight || &quot;ambos&quot;;
+
+  const questions = window.QUESTIONS;
+  const [phase, setPhase] = useState(&quot;questions&quot;); // questions | analyzing | results
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [locked, setLocked] = useState(false);
+  const timer = useRef(null);
+
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  function goNext(curStep) {
+    if (curStep + 1 >= questions.length) {
+      setPhase(&quot;analyzing&quot;);
+      timer.current = setTimeout(() => setPhase(&quot;results&quot;), 1400);
+    } else {
+      setStep(curStep + 1);
+      setLocked(false);
+    }
+  }
+
+  function handleSelect(optIndex) {
+    const q = questions[step];
+    setAnswers((a) => ({ ...a, [q.id]: optIndex }));
+    if (advanceMode === &quot;auto&quot;) {
+      setLocked(true);
+      timer.current = setTimeout(() => goNext(step), 460);
+    }
+  }
+
+  function handleContinue() { goNext(step); }
+
+  function handleBack() {
+    clearTimeout(timer.current);
+    setLocked(false);
+    setStep((s) => Math.max(0, s - 1));
+  }
+
+  function restart() {
+    clearTimeout(timer.current);
+    setAnswers({});
+    setStep(0);
+    setLocked(false);
+    setPhase(&quot;questions&quot;);
+  }
+
+  const rootStyle = { &quot;--primary&quot;: t.primaryColor || &quot;#1A5C3A&quot; };
+  const hasCadunico = answers[&quot;cadunico&quot;] === 0;
+
+  return (
+    <div className=&quot;acessa-app&quot; style={rootStyle}>
+      {phase === &quot;questions&quot; &amp;&amp; (
+        <Question
+          q={questions[step]}
+          total={questions.length}
+          step={step}
+          selected={answers[questions[step].id] ?? null}
+          onSelect={handleSelect}
+          onBack={handleBack}
+          onContinue={handleContinue}
+          advanceMode={advanceMode}
+          locked={locked}
+        />
+      )}
+      {phase === &quot;analyzing&quot; &amp;&amp; <Analyzing />}
+      {phase === &quot;results&quot; &amp;&amp; (
+        <Results
+          onRestart={restart}
+          showIcons={showIcons}
+          highlight={highlight}
+          hasCadunico={hasCadunico}
+        />
+      )}
+    </div>
+  );
+}
+
+Object.assign(window, { AcessaApp });
+</script>
+
+  <script type=&quot;text/babel&quot;>
+    const { useState, useEffect } = React;
+
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      &quot;primaryColor&quot;: &quot;#1A5C3A&quot;,
+      &quot;highlight&quot;: &quot;ambos&quot;,
+      &quot;showIcons&quot;: true,
+      &quot;advance&quot;: &quot;Automático&quot;
+    }/*EDITMODE-END*/;
+
+    function PhoneFrame({ children }) {
+      return (
+        <div className=&quot;fit-wrap&quot; data-fit=&quot;412&quot;>
+          <div className=&quot;phone__bezel&quot;>
+            <div className=&quot;phone__screen&quot;>
+              <div className=&quot;phone__notch&quot; />
+              {children}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function BrowserFrame({ children }) {
+      return (
+        <div className=&quot;fit-wrap&quot; data-fit=&quot;1280&quot;>
+          <div className=&quot;browser&quot;>
+            <div className=&quot;browser__bar&quot;>
+              <span className=&quot;tl tl--r&quot; /><span className=&quot;tl tl--y&quot; /><span className=&quot;tl tl--g&quot; />
+              <div className=&quot;browser__url&quot;>acessabr.gov.br/descobrir</div>
+            </div>
+            <div className=&quot;browser__screen&quot;>{children}</div>
+          </div>
+        </div>
+      );
+    }
+
+    function Page() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+      const tweaks = {
+        primaryColor: t.primaryColor,
+        highlight: t.highlight,
+        showIcons: t.showIcons,
+        advanceMode: t.advance === &quot;Com botão&quot; ? &quot;confirm&quot; : &quot;auto&quot;,
+      };
+
+      useEffect(() => {
+        function fit() {
+          document.querySelectorAll(&quot;.fit-wrap&quot;).forEach((w) => {
+            const inner = w.firstElementChild;
+            const nat = parseFloat(w.dataset.fit);
+            const avail = w.parentElement.clientWidth;
+            const s = Math.min(1, avail / nat);
+            inner.style.transform = &quot;scale(&quot; + s + &quot;)&quot;;
+            inner.style.transformOrigin = &quot;top left&quot;;
+            w.style.width = nat * s + &quot;px&quot;;
+            w.style.height = inner.offsetHeight * s + &quot;px&quot;;
+          });
+        }
+        fit();
+        const ro = new ResizeObserver(fit);
+        ro.observe(document.body);
+        window.addEventListener(&quot;resize&quot;, fit);
+        const id = setTimeout(fit, 350);
+        const id2 = setTimeout(fit, 1200);
+        return () => { ro.disconnect(); window.removeEventListener(&quot;resize&quot;, fit); clearTimeout(id); clearTimeout(id2); };
+      }, []);
+
+      return (
+        <React.Fragment>
+          <div className=&quot;page-head&quot;>
+            <h1>AcessaBR — Tela de descoberta de benefícios</h1>
+            <p>Protótipo interativo do fluxo de 5 perguntas até o resultado. Responda as perguntas em qualquer um dos aparelhos abaixo.</p>
+          </div>
+
+          <div className=&quot;stage&quot;>
+            <div className=&quot;frame-block&quot;>
+              <div className=&quot;frame-label&quot;>Mobile <span className=&quot;dim&quot;>390 px</span></div>
+              <PhoneFrame><AcessaApp tweaks={tweaks} /></PhoneFrame>
+            </div>
+
+            <div className=&quot;frame-block&quot;>
+              <div className=&quot;frame-label&quot;>Desktop <span className=&quot;dim&quot;>1280 px · cards em grid de 3 colunas</span></div>
+              <BrowserFrame><AcessaApp tweaks={tweaks} /></BrowserFrame>
+            </div>
+          </div>
+
+          <TweaksPanel>
+            <TweakSection label=&quot;Identidade&quot; />
+            <TweakColor label=&quot;Cor primária&quot; value={t.primaryColor}
+              options={[&quot;#1A5C3A&quot;, &quot;#155150&quot;, &quot;#1E4C7A&quot;, &quot;#5A3A78&quot;]}
+              onChange={(v) => setTweak(&quot;primaryColor&quot;, v)} />
+            <TweakToggle label=&quot;Ícones nos cards&quot; value={t.showIcons}
+              onChange={(v) => setTweak(&quot;showIcons&quot;, v)} />
+            <TweakSection label=&quot;Card principal&quot; />
+            <TweakRadio label=&quot;Destaque&quot; value={t.highlight}
+              options={[&quot;borda&quot;, &quot;sombra&quot;, &quot;ambos&quot;]}
+              onChange={(v) => setTweak(&quot;highlight&quot;, v)} />
+            <TweakSection label=&quot;Fluxo de perguntas&quot; />
+            <TweakRadio label=&quot;Avançar&quot; value={t.advance}
+              options={[&quot;Automático&quot;, &quot;Com botão&quot;]}
+              onChange={(v) => setTweak(&quot;advance&quot;, v)} />
+          </TweaksPanel>
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById(&quot;root&quot;)).render(<Page />);
+  </script>
+</body>
+</html>
+"
+      title="AcessaBR — Protótipo Interativo"
+      sandbox="allow-scripts allow-same-origin"
+      loading="lazy"
+    ></iframe>
+  </div>
+  <p class="proto-note container" style="max-width:900px;margin-top:16px">Protótipo funcional com fluxo de 5 perguntas, tela de resultado e detalhamento de benefícios. Responsivo — experimente redimensionar a janela.</p>
+</div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── MÉTRICAS ── -->
+<section id="metricas">
+<div class="container">
+  <div class="sec-head">
+    <p class="sec-head__num">09 — Métricas de Sucesso</p>
+    <h2 class="sec-head__title">Pensar em produto, não só em tela</h2>
+    <p class="sec-head__sub">Definir o que seria "sucesso" antes de construir é o que separa design estratégico de execução tática.</p>
+  </div>
+  <div class="metrics-grid">
+    <div class="metric-card"><p class="metric-card__label">Taxa de conclusão do fluxo</p><p class="metric-card__text">Quantos usuários chegam ao resultado sem abandonar no meio.</p></div>
+    <div class="metric-card"><p class="metric-card__label">Tempo até resultado</p><p class="metric-card__text">Velocidade do fluxo de 5 perguntas — benchmarked com o público real.</p></div>
+    <div class="metric-card"><p class="metric-card__label">Cliques em "como receber"</p><p class="metric-card__text">Engajamento com a camada de ação — não só de descoberta.</p></div>
+    <div class="metric-card"><p class="metric-card__label">Taxa de retorno</p><p class="metric-card__text">Usuário que volta após a primeira visita — sinal de confiança no serviço.</p></div>
+    <div class="metric-card"><p class="metric-card__label">Benefícios não conhecidos</p><p class="metric-card__text">Quantos usuários descobriram algo que não sabiam que tinham direito.</p></div>
+  </div>
+
+  <div class="sec-head" style="padding-top:40px">
+    <h3 class="sec-head__title" style="font-size:22px">O que eu aprenderia com testes</h3>
+  </div>
+  <div class="learnings">
+    <div class="learning"><div class="learning__icon">⚠</div><div class="learning__text"><strong>A pergunta de renda é a mais arriscada.</strong> Usuário pode subestimar, superestimar ou não saber. Testaria variações de framing antes de publicar.</div></div>
+    <div class="learning"><div class="learning__icon">⚠</div><div class="learning__text"><strong>O resultado pode gerar ansiedade.</strong> A linguagem precisa deixar claro que o usuário não "solicitou" nada — é só uma descoberta, sem compromisso.</div></div>
+    <div class="learning"><div class="learning__icon">⚠</div><div class="learning__text"><strong>Áudio opcional pode ser subusado.</strong> Se o ícone de áudio não for reconhecível, ninguém toca. Testaria com e sem label visível.</div></div>
+    <div class="learning"><div class="learning__icon">⚠</div><div class="learning__text"><strong>Android 320px com teclado virtual.</strong> Em telas muito pequenas, o botão de resposta pode competir com o teclado. Precisa de teste em device real.</div></div>
+  </div>
+</div>
+</section>
+
+<div class="divider" style="margin-top:64px"></div>
+
+<!-- ── FECHAMENTO ── -->
+<div class="closing">
+  <p class="closing__eyebrow">Aprendizado</p>
+  <blockquote class="closing__quote">
+    "Quando o design parte de quem foi esquecido, a pergunta deixa de ser 'como simplificar a interface' e passa a ser 'como devolver dignidade ao acesso'."
+  </blockquote>
+  <div class="closing__rule"></div>
+  <p class="closing__text">O projeto evidenciou que a barreira entre o cidadão e o benefício não é burocrática — é linguística. Cabe ao designer cuidar desse espaço.</p>
+  <div class="closing__links">
+    <a class="closing__link closing__link--fill" href="https://behance.net/aluar" target="_blank">Ver portfólio no Behance</a>
+    <a class="closing__link" href="https://linkedin.com/in/luaraoliveir" target="_blank">LinkedIn</a>
+  </div>
+  <p class="closing__sig">Luara Oliveira · Service Design</p>
+</div>
+
+<footer>
+  <p>AcessaBR — Projeto conceitual de UX/UI · 2025</p>
+  <p>Luara Oliveira · <a href="https://behance.net/aluar" target="_blank">Behance</a> · <a href="https://linkedin.com/in/luaraoliveir" target="_blank">LinkedIn</a></p>
+</footer>
+
+<script>
+const links = document.querySelectorAll('.nav__links a');
+const sections = document.querySelectorAll('section[id]');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector('.nav__links a[href="#'+e.target.id+'"]');
+      if(a) a.classList.add('active');
+    }
+  });
+}, {rootMargin:'-40% 0px -55% 0px'});
+sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

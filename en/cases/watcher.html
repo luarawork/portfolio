@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Watcher — UX/UI Mobile · Luara Oliveira</title>
+<meta name="description" content="A concept streaming app that competes on behavior, not catalog. A redesign of discovery for when the user doesn't know what to watch."/>
+<link rel="canonical" href="https://luaraoliveira.com/en/cases/watcher.html"/>
+
+<link rel="alternate" hreflang="pt-BR" href="https://luaraoliveira.com/cases/watcher.html"/>
+<link rel="alternate" hreflang="en" href="https://luaraoliveira.com/en/cases/watcher.html"/>
+<link rel="alternate" hreflang="es" href="https://luaraoliveira.com/es/cases/watcher.html"/>
+<link rel="alternate" hreflang="x-default" href="https://luaraoliveira.com/cases/watcher.html"/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:title" content="Watcher — UX/UI Mobile"/>
+<meta property="og:description" content="A concept streaming app that competes on behavior, not catalog."/>
+<meta property="og:image" content="https://luaraoliveira.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="../../assets/css/base.css"/>
+<link rel="stylesheet" href="../../assets/css/case.css"/>
+
+<!-- ── Cor-assinatura: preto + amarelo, bold contemporâneo ── -->
+<style>
+:root {
+  --bg-base:#0A0A0A; --bg-card:#161616; --bg-hover:#1f1f1f;
+  --accent-primary:#F5D407; --accent-bright:#F8E04A; --accent-secondary:#F5D407;
+  --text-primary:#EFEFEF; --text-body:#aeaeae; --text-meta:#8f8f8f;
+  --line-soft:rgba(245,212,7,.20); --line-hair:rgba(255,255,255,.07);
+  --tint-accent:rgba(245,212,7,.07); --tint-strong:rgba(245,212,7,.13);
+  --nav-bg:rgba(10,10,10,.86); --grid-rgb:245,212,7;
+  --serif:'Playfair Display',Georgia,serif;
+}
+/* Display Bebas para títulos deste case (bold, contemporâneo) */
+.case-hero__title, .case-title, .case-closing__quote { font-family:'Bebas Neue', Impact, sans-serif; letter-spacing:.01em; font-weight:400; }
+.case-hero__title { font-size:clamp(64px,12vw,124px); line-height:.96; }
+.case-hero__title em { font-style:normal; color:var(--accent-primary); }
+.case-title { font-size:clamp(34px,5.5vw,56px); line-height:1.02; }
+.case-title em { font-style:normal; color:var(--accent-primary); }
+.case-closing__quote { font-family:var(--serif); }
+/* Selo conceitual amarelo-discreto neste tema */
+.selo--conceito { color:var(--text-body); }
+/* Bloco de citação de problema */
+.quote-block { border-left:2px solid var(--accent-primary); padding:6px 0 6px 26px; margin:24px 0; }
+.quote-block p { font-family:var(--serif); font-style:italic; font-size:20px; line-height:1.5; color:var(--text-primary); }
+.quote-block cite { display:block; font-family:var(--mono); font-style:normal; font-size:11px; letter-spacing:.06em; color:var(--text-meta); margin-top:12px; }
+/* HMW */
+.hmw { background:var(--accent-primary); color:#0A0A0A; border-radius:var(--radius); padding:26px 28px; }
+.hmw__label { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; opacity:.7; margin-bottom:10px; }
+.hmw__text { font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:1.1; }
+/* Métricas de mercado (fontes externas) */
+.mkt-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line-soft); border:1px solid var(--line-soft); border-radius:var(--radius); overflow:hidden; }
+.mkt-cell { background:var(--bg-card); padding:24px; }
+.mkt-num { font-family:'Bebas Neue',sans-serif; font-size:48px; line-height:1; color:var(--accent-primary); }
+.mkt-lbl { font-size:13px; color:var(--text-body); line-height:1.5; margin:8px 0 10px; }
+.mkt-src { font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; color:var(--text-meta); }
+/* Telas mobile placeholder */
+.phones { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.phone { display:flex; flex-direction:column; gap:10px; }
+.phone__frame { aspect-ratio:9/19; border-radius:18px; border:1px solid var(--line-soft);
+  background:repeating-linear-gradient(135deg,transparent 0 11px,var(--tint-accent) 11px 12px),var(--bg-card);
+  display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.phone__frame img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.phone__frame span { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; color:var(--text-meta); text-align:center; padding:0 8px; }
+.phone__cap { font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; color:var(--text-body); text-transform:uppercase; }
+/* Swatches */
+.sw-row { display:flex; height:80px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line-soft); margin-bottom:14px; }
+.sw { flex:1; display:flex; align-items:flex-end; padding:8px; }
+.sw span { font-family:var(--mono); font-size:9px; letter-spacing:.02em; }
+@media (max-width:760px){ .phones{ grid-template-columns:1fr 1fr; } .mkt-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Skip to content</a>
+
+<nav class="nav" aria-label="Main navigation">
+  <a class="nav__brand" href="../index.html">Luara Oliveira</a>
+  <div class="nav__right">
+    <div class="nav__socials">
+      <a class="icon-btn" href="https://www.linkedin.com/in/luaraoliveir/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg></a>
+      <a class="icon-btn" href="https://www.behance.net/aluar" target="_blank" rel="noopener" aria-label="Behance (opens in a new tab)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 8.6c.5 0 .96.04 1.38.13.42.08.77.22 1.07.42.3.2.53.46.7.8.16.34.24.76.24 1.27 0 .55-.13 1-.38 1.37-.25.36-.62.66-1.1.88.66.2 1.16.53 1.5 1 .33.47.5 1.04.5 1.7 0 .54-.1 1-.32 1.4-.2.4-.49.72-.84.97-.36.25-.77.43-1.23.55-.46.12-.93.18-1.4.18H2V8.6h6.2zm-.37 4.04c.42 0 .76-.1 1.03-.3.27-.2.4-.53.4-.97 0-.25-.04-.45-.13-.6a.94.94 0 0 0-.36-.37 1.5 1.5 0 0 0-.5-.18 3.4 3.4 0 0 0-.6-.05H4.84v2.47h2.99zm.16 4.24c.23 0 .45-.02.66-.07.2-.04.39-.12.54-.23.15-.1.28-.25.37-.43.09-.18.13-.41.13-.69 0-.54-.15-.93-.46-1.16-.3-.23-.71-.34-1.22-.34h-3.4v2.92h3.38zM16.4 16.6c.36.35.88.52 1.55.52.48 0 .9-.12 1.25-.36.35-.24.56-.5.64-.76h2.05c-.33 1.02-.83 1.74-1.51 2.18-.68.44-1.5.66-2.46.66-.67 0-1.27-.1-1.81-.32a3.8 3.8 0 0 1-1.37-.92 4.1 4.1 0 0 1-.86-1.42 5.2 5.2 0 0 1-.3-1.82c0-.64.1-1.24.31-1.78.2-.55.5-1.02.88-1.42.38-.4.83-.71 1.36-.94a4.5 4.5 0 0 1 1.78-.34c.71 0 1.33.14 1.86.41.53.28.96.65 1.3 1.12.34.47.58 1 .73 1.6.15.6.2 1.22.16 1.88h-6.1c0 .68.23 1.25.6 1.6zm2.72-4.36c-.28-.31-.74-.48-1.32-.48-.38 0-.7.07-.95.2-.25.13-.46.29-.61.48-.15.19-.26.39-.32.6-.06.21-.1.4-.11.57h3.78c-.06-.59-.25-1.04-.47-1.37zM15 8.9h4.74v1.16H15V8.9z"/></svg></a>
+      <a class="icon-btn" href="../em-construcao.html" aria-label="GitHub (under construction)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.57 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.33-1.73-1.33-1.73-1.09-.73.08-.71.08-.71 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6 0c2.28-1.53 3.29-1.21 3.29-1.21.66 1.64.24 2.86.12 3.16.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.52-5.49 5.81.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .32.21.69.83.57A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg></a>
+      <a class="icon-btn" href="http://wa.me/5584998468414" target="_blank" rel="noopener" aria-label="WhatsApp (opens in a new tab)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.87 11.87 0 0 1-1.59-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.42 3.49 11.82 11.82 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.69-1.45L.06 24zm6.6-3.8c1.68.99 3.28 1.59 5.4 1.59 5.45 0 9.89-4.43 9.89-9.88a9.86 9.86 0 0 0-9.88-9.89c-5.46 0-9.9 4.44-9.9 9.89 0 2.23.65 3.9 1.75 5.65l-1 3.66 3.74-.98zm11.39-5.55c-.07-.12-.27-.2-.56-.34-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.07 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41z"/></svg></a>
+    </div>
+    <div class="lang" role="group" aria-label="Select language">
+      <a href="../../cases/watcher.html" hreflang="pt-BR" lang="pt-BR">PT</a>
+      <a href="watcher.html" hreflang="en" aria-current="true" lang="en">EN</a>
+      <a href="../../es/cases/watcher.html" hreflang="es" lang="es">ES</a>
+    </div>
+  </div>
+</nav>
+
+<main id="conteudo">
+
+  <a class="case-fab" href="../index.html#cases">Portfolio</a>
+  <header class="case-hero" data-screen-label="Case Watcher">
+    <div class="case-hero__top">
+      <span class="selo selo--conceito">Concept project</span>
+      <span class="case-hero__track">UX/UI · Mobile · Streaming</span>
+    </div>
+    <h1 class="case-hero__title">WATCH<em>ER</em></h1>
+    <p class="case-hero__lead">A streaming app that doesn't compete on catalog — it competes on behavior. Redesigning discovery for when the user doesn't know what they want to watch.</p>
+    <div class="case-hero__tags tags" aria-label="Disciplines covered">
+      <span class="tag">Mobile</span><span class="tag">UI</span><span class="tag">Design System</span><span class="tag">Research</span><span class="tag">Prototyping</span>
+    </div>
+    <div class="case-meta">
+      <div class="case-meta__item"><p class="case-meta__label">Type</p><p class="case-meta__value"><strong>Concept project</strong><br>UX/UI study</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Duration</p><p class="case-meta__value">8 weeks<br>(dedicated study)</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Methods</p><p class="case-meta__value">12 interviews,<br>wireframe, prototype</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Validation</p><p class="case-meta__value">Usability testing<br><strong>n = 6 participants</strong></p></div>
+    </div>
+  </header>
+
+  <!-- ── CONTEXTO ── -->
+  <section class="case-section reveal" aria-labelledby="ctx">
+    <p class="case-eyebrow">Context and problem</p>
+    <h2 class="case-title" id="ctx">The <em>real</em> problem</h2>
+    <div class="lead-cols">
+      <div class="prose">
+        <p>The streaming market grew 74% in platform supply over the last five years — but the user experience stagnated in the 2008 model: a grid of thumbnails, a search bar, rigid categories.</p>
+        <p>The problem isn't a lack of content. It's the cognitive cost of choosing. Users consistently report one specific feeling:</p>
+        <div class="quote-block">
+          <p>“I have 30 minutes to watch something. I spent 28 scrolling and closed the app.”</p>
+          <cite>— Interviewee #04, 27, user of 3+ simultaneous platforms</cite>
+        </div>
+        <p>The core hypothesis: the streaming interface needs to respond to <strong>emotional state and temporal context</strong>, not just historical preferences.</p>
+      </div>
+      <div>
+        <div class="mkt-grid">
+          <div class="mkt-cell"><div class="mkt-num">74%</div><p class="mkt-lbl">of users scroll without converting</p><p class="mkt-src">↗ Nielsen, 2023</p></div>
+          <div class="mkt-cell"><div class="mkt-num">18min</div><p class="mkt-lbl">average time lost in discovery</p><p class="mkt-src">↗ Interviews conducted</p></div>
+          <div class="mkt-cell"><div class="mkt-num">3.2</div><p class="mkt-lbl">simultaneous platforms per user</p><p class="mkt-src">↗ Statista, 2023</p></div>
+          <div class="mkt-cell"><div class="mkt-num">61%</div><p class="mkt-lbl">leave without watching anything</p><p class="mkt-src">↗ Deloitte Media Report</p></div>
+        </div>
+        <div class="hmw" style="margin-top:18px">
+          <p class="hmw__label">How might we…</p>
+          <p class="hmw__text">Reduce the cognitive cost of choosing without removing the user's sense of control?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESEARCH ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="res">
+    <p class="case-eyebrow">Research</p>
+    <h2 class="case-title" id="res">Hypotheses <em>tested</em></h2>
+    <p class="prose" style="margin-bottom:28px">Before the interviews, I documented three explicit hypotheses. That forced me to look for contrary evidence — not just confirmatory.</p>
+    <div class="grid-3" style="margin-bottom:36px">
+      <div class="card"><p class="card__label">Hypothesis 01 · Confirmed</p><h3 class="card__title">Too much content causes paralysis</h3><p class="card__text">More filters don't help. Interfaces with many filters increase decision time by 40%. The solution is to have an opinion, not to expand options.</p></div>
+      <div class="card"><p class="card__label">Hypothesis 02 · Refuted</p><h3 class="card__title">Users want automatic recommendation</h3><p class="card__text">I assumed invisible algorithms would solve the problem. But 68% of interviewees reported distrust of recommendations that felt “too automatic”.</p></div>
+      <div class="card"><p class="card__label">Hypothesis 03 · Partly confirmed</p><h3 class="card__title">Context matters more than history</h3><p class="card__text">“What I watch on a Friday night is completely different from what I want on a Monday morning.” — Interviewee #09</p></div>
+    </div>
+    <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin-bottom:6px">Key insights from the interviews</h3>
+    <p class="prose" style="margin-bottom:24px;font-size:14px;color:var(--text-meta)">12 in-depth interviews, 45–60 min each. Profiles: ages 22–38, active users of 2+ platforms.</p>
+    <div class="grid-2">
+      <div class="card"><p class="card__label">INS 01</p><h4 class="card__title" style="font-size:17px">Available time changes the choice criterion</h4><p class="card__text">With less than 40 minutes, users prefer short episodes — but most platforms don't filter by duration prominently.</p></div>
+      <div class="card"><p class="card__label">INS 02</p><h4 class="card__title" style="font-size:17px">Search is used as a last resort</h4><p class="card__text">Only 22% start the session with search. Most prefer to be “guided” — but reject the feeling of losing control.</p></div>
+      <div class="card"><p class="card__label">INS 03</p><h4 class="card__title" style="font-size:17px">Thumbnails sell the wrong content</h4><p class="card__text">Most can't infer the emotional tone of content from the thumbnail. “I can't tell if it's heavy or light just from the cover.”</p></div>
+      <div class="card"><p class="card__label">INS 04</p><h4 class="card__title" style="font-size:17px">Personal lists create inertia</h4><p class="card__text">Saved lists pile up content that “seemed interesting before” and become a second source of paralysis. 7 of 12 no longer use their own lists.</p></div>
+    </div>
+  </section>
+
+  <!-- ── PROCESSO ── -->
+  <section class="case-section reveal" aria-labelledby="proc">
+    <p class="case-eyebrow">Design process</p>
+    <h2 class="case-title" id="proc">Justified <em>decisions</em></h2>
+    <p class="prose" style="margin-bottom:32px">Every interface decision was documented with the question: “why this choice, and what did we discard?”</p>
+    <div class="grid-tight" style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--line-hair);border:1px solid var(--line-hair);border-radius:var(--radius);overflow:hidden;margin-bottom:40px">
+      <div class="card" style="border:none;border-radius:0"><p class="card__label">Fase 01</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Desk Research</p><p class="card__text" style="font-size:13px">Competitive analysis of 4 platforms. Gap mapping.</p></div>
+      <div class="card" style="border:none;border-radius:0"><p class="card__label">Fase 02</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Interviews</p><p class="card__text" style="font-size:13px">12 interviews. Affinity coding. 4 themes.</p></div>
+      <div class="card" style="border:none;border-radius:0;background:var(--tint-strong)"><p class="card__label">Fase 03</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Wireframes</p><p class="card__text" style="font-size:13px">3 iterations. v1 discarded after testing with 5 users.</p></div>
+      <div class="card" style="border:none;border-radius:0"><p class="card__label">Fase 04</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Prototype</p><p class="card__text" style="font-size:13px">High fidelity. 6 participants. 2 rounds of refinement.</p></div>
+      <div class="card" style="border:none;border-radius:0"><p class="card__label">Fase 05</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Handoff</p><p class="card__text" style="font-size:13px">Tokens, components, states and edge cases documented.</p></div>
+    </div>
+
+    <div class="lead-cols" style="align-items:start">
+      <div>
+        <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin-bottom:8px">Wireframes — documented iteration</h3>
+        <p class="prose" style="font-size:14px;margin-bottom:18px">The wireframe phase isn't a “rough draft”. It's where information-architecture hypotheses are tested before any visual investment.</p>
+        <div class="img-slot" style="aspect-ratio:16/11"><span class="img-slot__note">Wireframe v1 → v2 · low fidelity</span></div>
+        <div class="highlight" style="margin-top:16px;border-left-color:var(--accent-primary)">
+          <p class="card__text"><strong style="color:var(--text-primary)">What v1 revealed:</strong> the “streaming finder” structure as a form flow drove abandonment. v2 replaced the form with a three-choice conversation.</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin-bottom:8px">Interface decisions</h3>
+        <p class="prose" style="font-size:14px;margin-bottom:18px">Documenting decisions turns a portfolio into a record of reasoning — not an album of pretty screens.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="card"><p class="card__label" style="color:var(--accent-primary)">Decision</p><h4 class="card__title" style="font-size:16px">Conversational onboarding, not a form</h4><p class="card__text">The “Hi! How are you?” screen uses conversational language and offers 3 intent options — not dozens of filters.</p><div style="height:1px;background:var(--line-hair);margin:14px 0"></div><p class="card__label">Discarded alternative</p><p class="card__text" style="color:var(--text-meta)">A form with genre, price and feature fields — it replicated the very paralysis we were trying to solve.</p></div>
+          <div class="card"><p class="card__label" style="color:var(--accent-primary)">Decision</p><h4 class="card__title" style="font-size:16px">Emotional tone above the thumbnail</h4><p class="card__text">Each title carries visible mood and duration labels, answering the insight that the cover doesn't convey tone.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin:44px 0 6px">High-fidelity prototype — main flows</h3>
+    <p class="prose" style="font-size:14px;margin-bottom:22px">Four screens cover the critical flow: contextual entry → discovery → detail → profile.</p>
+    <div class="phones">
+      <div class="phone"><div class="phone__frame"><span>Contextual onboarding</span></div><p class="phone__cap">01 · Entry</p></div>
+      <div class="phone"><div class="phone__frame"><span>Home — discovery</span></div><p class="phone__cap">02 · Discovery</p></div>
+      <div class="phone"><div class="phone__frame"><span>Content detail</span></div><p class="phone__cap">03 · Detail</p></div>
+      <div class="phone"><div class="phone__frame"><span>User profile</span></div><p class="phone__cap">04 · Profile</p></div>
+    </div>
+  </section>
+
+  <!-- ── DESIGN SYSTEM ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="ds">
+    <p class="case-eyebrow">Design system</p>
+    <h2 class="case-title" id="ds">Design <em>system</em></h2>
+    <p class="prose" style="margin-bottom:32px">Not just a style guide — a system with documented tokens, accessibility decisions and component usage criteria.</p>
+    <div class="lead-cols" style="align-items:start">
+      <div>
+        <h3 class="card__title" style="font-family:var(--serif);font-size:20px;margin-bottom:8px">Palette — a grounded decision</h3>
+        <p class="prose" style="font-size:14px;margin-bottom:18px">Deep black reduces eye strain in the main context of use (dark environment). Yellow #F5D407 reaches AA contrast on dark backgrounds without losing vibrancy.</p>
+        <div class="sw-row">
+          <div class="sw" style="background:#0A0A0A;flex:2"><span style="color:#EFEFEF">#0A0A0A · BG</span></div>
+          <div class="sw" style="background:#161616"><span style="color:#EFEFEF">#161616</span></div>
+          <div class="sw" style="background:#F5D407"><span style="color:#0A0A0A">#F5D407</span></div>
+          <div class="sw" style="background:#EFEFEF;flex:.6"><span style="color:#0A0A0A">Text</span></div>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px"><span style="color:var(--text-meta)">Yellow / Black</span><span style="color:var(--accent-primary)">8.2:1 · WCAG AA</span></div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;margin-top:8px"><span style="color:var(--text-meta)">White / Black</span><span style="color:var(--accent-primary)">15.1:1 · WCAG AAA</span></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="card__title" style="font-family:var(--serif);font-size:20px;margin-bottom:8px">Typography — editorial system</h3>
+        <div class="card" style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-hair)"><span style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--text-primary)">WATCHER</span><span style="font-family:var(--mono);font-size:11px;color:var(--text-meta);text-align:right">Bebas Neue · 32px<br>Display / Brand</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-hair)"><span style="font-size:17px;color:var(--text-primary)">Interface text</span><span style="font-family:var(--mono);font-size:11px;color:var(--text-meta);text-align:right">DM Sans · 17px<br>UI / Body</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0"><span style="font-family:var(--mono);font-size:14px;color:var(--text-primary)">token.size.md</span><span style="font-family:var(--mono);font-size:11px;color:var(--text-meta);text-align:right">DM Mono · 13px<br>Labels / Meta</span></div>
+        </div>
+        <div class="card" style="margin-top:16px"><p class="card__label">Spacing</p><p class="card__text">An 8px base unit; all spacing is a multiple of 4px — ensuring consistency at handoff.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── IMPACTO ── -->
+  <section class="case-section reveal" aria-labelledby="imp">
+    <p class="case-eyebrow">Results and learnings</p>
+    <h2 class="case-title" id="imp">Measured <em>impact</em></h2>
+    <p class="prose" style="margin-bottom:32px">Results from usability testing with 6 participants (n=6), compared to the reference flow of current platforms. As a concept project, these are prototype results — not production.</p>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="metric metric--hero"><div><div class="metric__num">−62%</div><p class="metric__label">time to choice</p></div><div class="prose"><p style="color:var(--text-primary);font-weight:500;font-size:17px;margin-bottom:6px">Reduction in decision time</p><p style="font-size:14px">Participants took 6.8 min on average to choose (vs. 18 min on current platforms). Conversational onboarding was the main factor — removing the “what do I want?” step before discovery.</p></div></div>
+      <div class="metric metric--hero"><div><div class="metric__num">83</div><p class="metric__label">SUS Score / 100</p></div><div class="prose"><p style="color:var(--text-primary);font-weight:500;font-size:17px;margin-bottom:6px">System Usability Scale</p><p style="font-size:14px">A score of 83/100 on the SUS after a free-task test (reference benchmark: ~70 for large platforms). Above 80 — rated “Excellent” on the Bangor scale.</p></div></div>
+      <div class="metric metric--hero"><div><div class="metric__num">5/6</div><p class="metric__label">would return to the flow</p></div><div class="prose"><p style="color:var(--text-primary);font-weight:500;font-size:17px;margin-bottom:6px">Stated intent to use</p><p style="font-size:14px">5 of 6 said they'd prefer to use this flow on their current streaming service. The only “no” cited the lack of integration with an existing account — a scope limitation, not a design one.</p></div></div>
+    </div>
+
+    <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin:48px 0 6px">What I'd do differently</h3>
+    <p class="prose" style="font-size:14px;margin-bottom:24px">Seniority includes honesty about limitations and iterations not made.</p>
+    <div class="grid-3">
+      <div class="card"><p class="card__label">01</p><h4 class="card__title" style="font-size:17px">Test before high fidelity</h4><p class="card__text">I built high-fidelity wireframes too early. Paper testing would have saved 2 weeks of refinement.</p></div>
+      <div class="card"><p class="card__label">02</p><h4 class="card__title" style="font-size:17px">Document hypotheses before interviews</h4><p class="card__text">I went into the first interviews without explicit hypotheses — slower analysis and more confirmation bias.</p></div>
+      <div class="card"><p class="card__label">03</p><h4 class="card__title" style="font-size:17px">Accessibility at the start, not the end</h4><p class="card__text">WCAG was checked at the end. Next project, contrast and motion enter as criteria from the style guide onward.</p></div>
+    </div>
+  </section>
+
+  <!-- ── FECHAMENTO ── -->
+  <section class="case-closing reveal" aria-labelledby="fim">
+    <div class="case-closing__inner">
+      <p class="case-closing__eyebrow" id="fim">Takeaway</p>
+      <p class="case-closing__quote">When the interface responds to the user's state — and not just to the catalog — discovery stops being a task and becomes the pleasure it should be.</p>
+      <div class="case-closing__rule"></div>
+      <p class="case-closing__text">Watcher is a concept study, but the method is real: explicit hypothesis, contrary evidence, documented decision.</p>
+      <div class="case-closing__links">
+        <a class="btn" href="../index.html#cases">← All cases</a>
+        <a class="btn btn--fill" href="itsm-servicenow.html">Next: ITSM →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p>© 2026 Luara Oliveira</p>
+    <p>Designed, coded and published by me.</p>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>

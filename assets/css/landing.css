@@ -1,0 +1,364 @@
+/* ============================================================================
+   Luara Oliveira — Portfólio
+   landing.css · Componentes exclusivos da home (hero, sobre, cases,
+   competências, contato). Herda tokens e esqueleto de base.css.
+   ========================================================================== */
+
+/* ---- Hero ------------------------------------------------------------------ */
+.hero {
+  padding-top: 138px;
+  padding-bottom: var(--sec-pad);
+  border-top: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-items: center;
+}
+.hero__text { min-width: 0; }
+
+/* Retrato — card editorial com o mesmo vocabulário das skill-cards.
+   Borda superior accent, borda lateral suave, cantos minimamente arredondados.
+   A imagem preenche o card com object-fit cover — sem blend-mode nem gradientes. */
+.hero__portrait {
+  width: 300px;
+  flex-shrink: 0;
+  align-self: stretch;
+  min-height: 400px;
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid rgba(168,196,212,.22);
+  border-top: 2px solid var(--accent-secondary);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: default;
+  transition: border-color .2s, box-shadow .2s;
+}
+.hero__portrait:hover {
+  border-color: rgba(168,196,212,.38);
+  box-shadow: 0 8px 32px rgba(0,0,0,.28);
+}
+.hero__portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 8%;
+  display: block;
+  filter: saturate(.9) brightness(.96);
+  transition: filter .35s ease, transform .35s ease;
+}
+.hero__portrait:hover img {
+  filter: saturate(1.05) brightness(1);
+  transform: scale(1.025);
+}
+.hero__eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+  margin-bottom: 26px;
+}
+.hero__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(48px, 8vw, 84px);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+  color: var(--text-primary);
+  margin-bottom: 30px;
+}
+.hero__lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(20px, 2.5vw, 27px);
+  line-height: 1.45;
+  color: var(--accent-primary);
+  max-width: 36ch;
+  margin-bottom: 22px;
+  text-wrap: balance;
+}
+.hero__tagline {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.65;
+  color: var(--text-body);
+  max-width: 56ch;
+  margin-bottom: 34px;
+  text-wrap: pretty;
+}
+.hero__disciplines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .08em;
+  color: var(--text-body);
+}
+.hero__disciplines span { display: inline-flex; align-items: center; white-space: nowrap; }
+.hero__disciplines span:not(:last-child)::after {
+  content: '/';
+  margin: 0 9px;
+  color: var(--accent-secondary);
+  opacity: .6;
+}
+
+/* ---- Sobre + box "Princípio de trabalho" ----------------------------------- */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+.about__body { margin-top: 0; }
+.about__body p { font-size: 16.5px; color: var(--text-body); line-height: 1.75; max-width: 56ch; }
+.about__body p + p { margin-top: 16px; }
+
+.principle-box {
+  background: var(--bg-card);
+  border: 1px solid var(--line-soft);
+  border-top: 2px solid var(--accent-secondary);
+  border-radius: var(--radius);
+  padding: 26px 28px;
+}
+.principle-box__label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+  margin-bottom: 16px;
+}
+.principle-box__text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* ---- Cases ----------------------------------------------------------------- */
+.cases__grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.case-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color .18s, background .18s, transform .18s;
+}
+.case-card:hover { border-color: var(--sig, var(--accent-secondary)); background: var(--bg-hover); transform: translateY(-3px); }
+
+/* Slot de capa 16:10 — hoje tipográfico, pronto para receber thumbnail.
+   Cada case projeta sua cor-assinatura (--sig) como prévia de identidade,
+   mantendo o enquadramento uniforme do portfólio. */
+.case-card__cover {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background:
+    repeating-linear-gradient(135deg,
+      transparent 0 11px,
+      color-mix(in srgb, var(--sig) 7%, transparent) 11px 12px),
+    color-mix(in srgb, var(--sig) 13%, var(--bg-base));
+  border-bottom: 1px solid var(--line-soft);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.case-card__cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.case-card__wordmark {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(34px, 6vw, 50px);
+  line-height: .98;
+  letter-spacing: -.01em;
+  color: color-mix(in srgb, var(--sig) 62%, transparent);
+  padding: 0 24px 18px;
+  text-wrap: balance;
+}
+.case-card__track {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--sig) 75%, var(--text-meta));
+}
+
+.case-card__body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.case-card__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.case-card__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  color: var(--text-primary);
+}
+.case-card__desc { font-size: 15px; color: var(--text-body); line-height: 1.6; }
+.case-card__metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .05em;
+  color: var(--accent-bright);
+}
+.case-card__metric::before { content: '↗'; color: var(--sig); }
+.case-card__foot { margin-top: auto; display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+.case-card__cta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.case-card:hover .case-card__cta { color: var(--accent-bright); }
+.case-card__cta::after { content: '→'; transition: transform .18s; }
+.case-card:hover .case-card__cta::after { transform: translateX(4px); }
+
+/* tags menores dentro do card */
+.case-card .tags .tag { font-size: 10.5px; padding: 5px 9px; }
+
+/* ---- Competências ---------------------------------------------------------- */
+.skills__grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+}
+.skill-card--wide { grid-column: 1 / -1; }
+.skill-card--accent { border-top: 2px solid var(--accent-secondary); }
+.skill-card__index {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--accent-secondary);
+  margin-bottom: 12px;
+}
+.skill-card__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.skill-card__list { display: flex; flex-wrap: wrap; gap: 8px; }
+/* Tags de competência acendem ao passar o mouse */
+.skill-card__list .tag {
+  transition: color .16s, border-color .16s, background .16s;
+  cursor: default;
+}
+.skill-card__list .tag:hover {
+  color: var(--accent-bright);
+  border-color: var(--accent-secondary);
+  background: var(--tint-accent);
+}
+
+/* ---- Contato --------------------------------------------------------------- */
+.contact__lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.4;
+  color: var(--text-primary);
+  max-width: 42ch;
+  margin: 6px 0 30px;
+  text-wrap: balance;
+}
+.contact__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; }
+.contact__secondary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line-hair);
+}
+.contact__secondary a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: var(--text-body);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: color .16s, border-color .16s;
+}
+.contact__secondary a:hover { color: var(--accent-bright); border-color: var(--accent-secondary); }
+
+/* ---- Reveal (entrada como enriquecimento — nunca esconde o conteúdo) -------
+   A animação interpola APENAS transform (não opacity). Assim, mesmo num motor
+   de animação que não avança (movimento reduzido / pipelines de captura/PDF),
+   o pior caso é um deslocamento de 16px — o texto continua 100% legível.
+   Em navegadores reais, vira um leve deslize de baixo para cima. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal.is-visible { animation: revealUp .6s cubic-bezier(.22,.61,.36,1); }
+}
+@keyframes revealUp {
+  from { transform: translateY(16px); }
+  to   { transform: none; }
+}
+
+/* ---- Responsivo ------------------------------------------------------------ */
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 116px;
+  }
+  .hero__portrait {
+    width: 100%;
+    max-width: 300px;
+    height: 360px;
+    justify-self: start;
+  }
+  .about__grid { grid-template-columns: 1fr; gap: 24px; }
+
+  /* Cards de case e competência: adiciona margem lateral própria no mobile
+     para garantir respiro visual mesmo que o .wrap já tenha padding. */
+  .cases__grid { grid-template-columns: 1fr; gap: 16px; }
+  .case-card { min-width: 0; }
+
+  .skills__grid { grid-template-columns: 1fr; gap: 12px; }
+  .skill-card { min-width: 0; }
+
+  /* Disciplines: permitir quebra de linha sem transbordar */
+  .hero__disciplines { gap: 8px 0; }
+  .hero__disciplines span { white-space: normal; }
+
+  /* Texto do hero: garantir que não estoure o container */
+  .hero__text { min-width: 0; max-width: 100%; overflow-wrap: break-word; }
+  .hero__lead { max-width: 100%; }
+  .hero__tagline { max-width: 100%; }
+
+  /* Principle box: sem overflow */
+  .principle-box { min-width: 0; }
+}

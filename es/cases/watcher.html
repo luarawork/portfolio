@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Watcher — UX/UI Mobile · Luara Oliveira</title>
+<meta name="description" content="App de streaming conceptual que compite con el comportamiento, no con el catálogo. Rediseño del descubrimiento para cuando el usuario no sabe qué ver."/>
+<link rel="canonical" href="https://luaraoliveira.com/es/cases/watcher.html"/>
+
+<link rel="alternate" hreflang="pt-BR" href="https://luaraoliveira.com/cases/watcher.html"/>
+<link rel="alternate" hreflang="en" href="https://luaraoliveira.com/en/cases/watcher.html"/>
+<link rel="alternate" hreflang="es" href="https://luaraoliveira.com/es/cases/watcher.html"/>
+<link rel="alternate" hreflang="x-default" href="https://luaraoliveira.com/cases/watcher.html"/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:locale" content="es_ES"/>
+<meta property="og:title" content="Watcher — UX/UI Mobile"/>
+<meta property="og:description" content="App de streaming conceptual que compite con el comportamiento, no con el catálogo."/>
+<meta property="og:image" content="https://luaraoliveira.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="../../assets/css/base.css"/>
+<link rel="stylesheet" href="../../assets/css/case.css"/>
+
+<!-- ── Cor-assinatura: preto + amarelo, bold contemporâneo ── -->
+<style>
+:root {
+  --bg-base:#0A0A0A; --bg-card:#161616; --bg-hover:#1f1f1f;
+  --accent-primary:#F5D407; --accent-bright:#F8E04A; --accent-secondary:#F5D407;
+  --text-primary:#EFEFEF; --text-body:#aeaeae; --text-meta:#8f8f8f;
+  --line-soft:rgba(245,212,7,.20); --line-hair:rgba(255,255,255,.07);
+  --tint-accent:rgba(245,212,7,.07); --tint-strong:rgba(245,212,7,.13);
+  --nav-bg:rgba(10,10,10,.86); --grid-rgb:245,212,7;
+  --serif:'Playfair Display',Georgia,serif;
+}
+/* Display Bebas para títulos deste case (bold, contemporâneo) */
+.case-hero__title, .case-title, .case-closing__quote { font-family:'Bebas Neue', Impact, sans-serif; letter-spacing:.01em; font-weight:400; }
+.case-hero__title { font-size:clamp(64px,12vw,124px); line-height:.96; }
+.case-hero__title em { font-style:normal; color:var(--accent-primary); }
+.case-title { font-size:clamp(34px,5.5vw,56px); line-height:1.02; }
+.case-title em { font-style:normal; color:var(--accent-primary); }
+.case-closing__quote { font-family:var(--serif); }
+/* Selo conceitual amarelo-discreto neste tema */
+.selo--conceito { color:var(--text-body); }
+/* Bloco de citação de problema */
+.quote-block { border-left:2px solid var(--accent-primary); padding:6px 0 6px 26px; margin:24px 0; }
+.quote-block p { font-family:var(--serif); font-style:italic; font-size:20px; line-height:1.5; color:var(--text-primary); }
+.quote-block cite { display:block; font-family:var(--mono); font-style:normal; font-size:11px; letter-spacing:.06em; color:var(--text-meta); margin-top:12px; }
+/* HMW */
+.hmw { background:var(--accent-primary); color:#0A0A0A; border-radius:var(--radius); padding:26px 28px; }
+.hmw__label { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; opacity:.7; margin-bottom:10px; }
+.hmw__text { font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:1.1; }
+/* Métricas de mercado (fontes externas) */
+.mkt-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line-soft); border:1px solid var(--line-soft); border-radius:var(--radius); overflow:hidden; }
+.mkt-cell { background:var(--bg-card); padding:24px; }
+.mkt-num { font-family:'Bebas Neue',sans-serif; font-size:48px; line-height:1; color:var(--accent-primary); }
+.mkt-lbl { font-size:13px; color:var(--text-body); line-height:1.5; margin:8px 0 10px; }
+.mkt-src { font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; color:var(--text-meta); }
+/* Telas mobile placeholder */
+.phones { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.phone { display:flex; flex-direction:column; gap:10px; }
+.phone__frame { aspect-ratio:9/19; border-radius:18px; border:1px solid var(--line-soft);
+  background:repeating-linear-gradient(135deg,transparent 0 11px,var(--tint-accent) 11px 12px),var(--bg-card);
+  display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.phone__frame img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.phone__frame span { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; color:var(--text-meta); text-align:center; padding:0 8px; }
+.phone__cap { font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; color:var(--text-body); text-transform:uppercase; }
+/* Swatches */
+.sw-row { display:flex; height:80px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line-soft); margin-bottom:14px; }
+.sw { flex:1; display:flex; align-items:flex-end; padding:8px; }
+.sw span { font-family:var(--mono); font-size:9px; letter-spacing:.02em; }
+@media (max-width:760px){ .phones{ grid-template-columns:1fr 1fr; } .mkt-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Saltar al contenido</a>
+
+<nav class="nav" aria-label="Navegación principal">
+  <a class="nav__brand" href="../index.html">Luara Oliveira</a>
+  <div class="nav__right">
+    <div class="nav__socials">
+      <a class="icon-btn" href="https://www.linkedin.com/in/luaraoliveir/" target="_blank" rel="noopener" aria-label="LinkedIn (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg></a>
+      <a class="icon-btn" href="https://www.behance.net/aluar" target="_blank" rel="noopener" aria-label="Behance (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 8.6c.5 0 .96.04 1.38.13.42.08.77.22 1.07.42.3.2.53.46.7.8.16.34.24.76.24 1.27 0 .55-.13 1-.38 1.37-.25.36-.62.66-1.1.88.66.2 1.16.53 1.5 1 .33.47.5 1.04.5 1.7 0 .54-.1 1-.32 1.4-.2.4-.49.72-.84.97-.36.25-.77.43-1.23.55-.46.12-.93.18-1.4.18H2V8.6h6.2zm-.37 4.04c.42 0 .76-.1 1.03-.3.27-.2.4-.53.4-.97 0-.25-.04-.45-.13-.6a.94.94 0 0 0-.36-.37 1.5 1.5 0 0 0-.5-.18 3.4 3.4 0 0 0-.6-.05H4.84v2.47h2.99zm.16 4.24c.23 0 .45-.02.66-.07.2-.04.39-.12.54-.23.15-.1.28-.25.37-.43.09-.18.13-.41.13-.69 0-.54-.15-.93-.46-1.16-.3-.23-.71-.34-1.22-.34h-3.4v2.92h3.38zM16.4 16.6c.36.35.88.52 1.55.52.48 0 .9-.12 1.25-.36.35-.24.56-.5.64-.76h2.05c-.33 1.02-.83 1.74-1.51 2.18-.68.44-1.5.66-2.46.66-.67 0-1.27-.1-1.81-.32a3.8 3.8 0 0 1-1.37-.92 4.1 4.1 0 0 1-.86-1.42 5.2 5.2 0 0 1-.3-1.82c0-.64.1-1.24.31-1.78.2-.55.5-1.02.88-1.42.38-.4.83-.71 1.36-.94a4.5 4.5 0 0 1 1.78-.34c.71 0 1.33.14 1.86.41.53.28.96.65 1.3 1.12.34.47.58 1 .73 1.6.15.6.2 1.22.16 1.88h-6.1c0 .68.23 1.25.6 1.6zm2.72-4.36c-.28-.31-.74-.48-1.32-.48-.38 0-.7.07-.95.2-.25.13-.46.29-.61.48-.15.19-.26.39-.32.6-.06.21-.1.4-.11.57h3.78c-.06-.59-.25-1.04-.47-1.37zM15 8.9h4.74v1.16H15V8.9z"/></svg></a>
+      <a class="icon-btn" href="../em-construcao.html" aria-label="GitHub (en construcción)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.57 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.33-1.73-1.33-1.73-1.09-.73.08-.71.08-.71 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6 0c2.28-1.53 3.29-1.21 3.29-1.21.66 1.64.24 2.86.12 3.16.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.52-5.49 5.81.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .32.21.69.83.57A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg></a>
+      <a class="icon-btn" href="http://wa.me/5584998468414" target="_blank" rel="noopener" aria-label="WhatsApp (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.87 11.87 0 0 1-1.59-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.42 3.49 11.82 11.82 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.69-1.45L.06 24zm6.6-3.8c1.68.99 3.28 1.59 5.4 1.59 5.45 0 9.89-4.43 9.89-9.88a9.86 9.86 0 0 0-9.88-9.89c-5.46 0-9.9 4.44-9.9 9.89 0 2.23.65 3.9 1.75 5.65l-1 3.66 3.74-.98zm11.39-5.55c-.07-.12-.27-.2-.56-.34-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.07 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41z"/></svg></a>
+    </div>
+    <div class="lang" role="group" aria-label="Seleccionar idioma">
+      <a href="../../cases/watcher.html" hreflang="pt-BR" lang="pt-BR">PT</a>
+      <a href="../../en/cases/watcher.html" hreflang="en" lang="en">EN</a>
+      <a href="watcher.html" hreflang="es" aria-current="true" lang="es">ES</a>
+    </div>
+  </div>
+</nav>
+
+<main id="conteudo">
+
+  <a class="case-fab" href="../index.html#cases">Portafolio</a>
+  <header class="case-hero" data-screen-label="Caso Watcher">
+    <div class="case-hero__top">
+      <span class="selo selo--conceito">Proyecto conceptual</span>
+      <span class="case-hero__track">UX/UI · Mobile · Streaming</span>
+    </div>
+    <h1 class="case-hero__title">WATCH<em>ER</em></h1>
+    <p class="case-hero__lead">Una app de streaming que no compite con el catálogo — compite con el comportamiento. Rediseñar el descubrimiento para cuando el usuario no sabe qué quiere ver.</p>
+    <div class="case-hero__tags tags" aria-label="Disciplinas tratadas">
+      <span class="tag">Mobile</span><span class="tag">UI</span><span class="tag">Design System</span><span class="tag">Investigación</span><span class="tag">Prototipado</span>
+    </div>
+    <div class="case-meta">
+      <div class="case-meta__item"><p class="case-meta__label">Tipo</p><p class="case-meta__value"><strong>Proyecto conceptual</strong><br>Estudio de UX/UI</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Duración</p><p class="case-meta__value">8 semanas<br>(estudio dedicado)</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Métodos</p><p class="case-meta__value">12 entrevistas,<br>wireframe, prototipo</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Validación</p><p class="case-meta__value">Test de usabilidad<br><strong>n = 6 participantes</strong></p></div>
+    </div>
+  </header>
+
+  <!-- ── CONTEXTO ── -->
+  <section class="case-section reveal" aria-labelledby="ctx">
+    <p class="case-eyebrow">Contexto y problema</p>
+    <h2 class="case-title" id="ctx">El problema <em>real</em></h2>
+    <div class="lead-cols">
+      <div class="prose">
+        <p>El mercado de streaming creció un 74% en oferta de plataformas en los últimos cinco años — pero la experiencia de usuario se estancó en el modelo de 2008: cuadrícula de thumbnails, barra de búsqueda, categorías rígidas.</p>
+        <p>El problema no es la falta de contenido. Es el costo cognitivo de elegir. Los usuarios relatan de forma consistente una sensación específica:</p>
+        <div class="quote-block">
+          <p>“Tengo 30 minutos para ver algo. Pasé 28 haciendo scroll y cerré la app.”</p>
+          <cite>— Entrevistado #04, 27 años, usuario de 3+ plataformas simultáneas</cite>
+        </div>
+        <p>La hipótesis central: la interfaz de streaming necesita responder al <strong>estado emocional y al contexto temporal</strong>, no solo a las preferencias históricas.</p>
+      </div>
+      <div>
+        <div class="mkt-grid">
+          <div class="mkt-cell"><div class="mkt-num">74%</div><p class="mkt-lbl">de los usuarios hacen scroll sin convertir</p><p class="mkt-src">↗ Nielsen, 2023</p></div>
+          <div class="mkt-cell"><div class="mkt-num">18min</div><p class="mkt-lbl">tiempo medio perdido en descubrimiento</p><p class="mkt-src">↗ Entrevistas realizadas</p></div>
+          <div class="mkt-cell"><div class="mkt-num">3.2</div><p class="mkt-lbl">plataformas simultáneas por usuario</p><p class="mkt-src">↗ Statista, 2023</p></div>
+          <div class="mkt-cell"><div class="mkt-num">61%</div><p class="mkt-lbl">abandonan sin ver nada</p><p class="mkt-src">↗ Deloitte Media Report</p></div>
+        </div>
+        <div class="hmw" style="margin-top:18px">
+          <p class="hmw__label">Cómo podríamos…</p>
+          <p class="hmw__text">¿Reducir el costo cognitivo de elegir sin eliminar la sensación de control del usuario?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESEARCH ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="res">
+    <p class="case-eyebrow">Research</p>
+    <h2 class="case-title" id="res">Hipótesis <em>testadas</em></h2>
+    <p class="prose" style="margin-bottom:28px">Antes de las entrevistas, documenté tres hipótesis explícitas. Eso me obligó a buscar evidencia contraria — no solo confirmatoria.</p>
+    <div class="grid-3" style="margin-bottom:36px">
+      <div class="card"><p class="card__label">Hipótesis 01 · Confirmada</p><h3 class="card__title">El exceso de contenido causa parálisis</h3><p class="card__text">Más filtros no ayudan. Las interfaces con muchos filtros aumentan el tiempo de decisión en un 40%. La solución está en opinar, no en ampliar opciones.</p></div>
+      <div class="card"><p class="card__label">Hipótesis 02 · Refutada</p><h3 class="card__title">Los usuarios quieren recomendación automática</h3><p class="card__text">Supuse que los algoritmos invisibles resolverían el problema. Pero el 68% de los entrevistados relató desconfianza ante recomendaciones “demasiado automáticas”.</p></div>
+      <div class="card"><p class="card__label">Hipótesis 03 · Parcialmente confirmada</p><h3 class="card__title">El contexto importa más que el historial</h3><p class="card__text">“Lo que veo un viernes por la noche es completamente diferente de lo que quiero un lunes por la mañana.” — Entrevistado #09</p></div>
+    </div>
+    <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin-bottom:6px">Principales insights de las entrevistas</h3>
+    <p class="prose" style="margin-bottom:24px;font-size:14px;color:var(--text-meta)">12 entrevistas en profundidad, 45–60 min cada una. Perfiles: 22–38 años, usuarios activos de 2+ plataformas.</p>
+    <div class="grid-2">
+      <div class="card"><p class="card__label">INS 01</p><h4 class="card__title" style="font-size:17px">El tiempo disponible cambia el criterio de elección</h4><p class="card__text">Con menos de 40 minutos, los usuarios prefieren episodios cortos — pero la mayoría de las plataformas no filtra por duración de forma prominente.</p></div>
+      <div class="card"><p class="card__label">INS 02</p><h4 class="card__title" style="font-size:17px">La búsqueda se usa como último recurso</h4><p class="card__text">Solo el 22% inicia la sesión con la búsqueda. La mayoría prefiere ser “guiada” — pero rechaza la sensación de falta de control.</p></div>
+      <div class="card"><p class="card__label">INS 03</p><h4 class="card__title" style="font-size:17px">Los thumbnails venden el contenido equivocado</h4><p class="card__text">La mayoría no logra inferir el tono emocional de un contenido por el thumbnail. “No sé si es pesado o ligero solo por la portada.”</p></div>
+      <div class="card"><p class="card__label">INS 04</p><h4 class="card__title" style="font-size:17px">Las listas personales crean inercia</h4><p class="card__text">Las listas guardadas acumulan contenidos que “parecían interesantes antes” y se vuelven una segunda fuente de parálisis. 7 de 12 ya no usan sus propias listas.</p></div>
+    </div>
+  </section>
+
+  <!-- ── PROCESSO ── -->
+  <section class="case-section reveal" aria-labelledby="proc">
+    <p class="case-eyebrow">Proceso de diseño</p>
+    <h2 class="case-title" id="proc">Decisiones <em>justificadas</em></h2>
+    <p class="prose" style="margin-bottom:32px">Cada decisión de interfaz se documentó con la pregunta: “¿por qué esta elección, y qué descartamos?”</p>
+    <div class="grid-tight" style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--line-hair);border:1px solid var(--line-hair);border-radius:var(--radius);overflow:hidden;margin-bottom:40px">
+      <div class="card" style="border:none;border-radius:0"><p class="card__label">Fase 01</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Desk Research</p><p class="card__text" style="font-size:13px">Análisis competitivo de 4 plataformas. Mapeo de gaps.</p></div>
+      <div class="card" style="border:none;border-radius:0"><p class="card__label">Fase 02</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Entrevistas</p><p class="card__text" style="font-size:13px">12 entrevistas. Codificación por afinidad. 4 temas.</p></div>
+      <div class="card" style="border:none;border-radius:0;background:var(--tint-strong)"><p class="card__label">Fase 03</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Wireframes</p><p class="card__text" style="font-size:13px">3 iteraciones. La v1 descartada tras test con 5 usuarios.</p></div>
+      <div class="card" style="border:none;border-radius:0"><p class="card__label">Fase 04</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Prototipo</p><p class="card__text" style="font-size:13px">Alta fidelidad. 6 participantes. 2 rondas de refinamiento.</p></div>
+      <div class="card" style="border:none;border-radius:0"><p class="card__label">Fase 05</p><p style="color:var(--text-primary);font-weight:500;font-size:14px;margin-bottom:6px">Handoff</p><p class="card__text" style="font-size:13px">Tokens, componentes, estados y edge cases documentados.</p></div>
+    </div>
+
+    <div class="lead-cols" style="align-items:start">
+      <div>
+        <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin-bottom:8px">Wireframes — iteración documentada</h3>
+        <p class="prose" style="font-size:14px;margin-bottom:18px">La fase de wireframe no es un “borrador”. Es donde se prueban las hipótesis de arquitectura de información antes de cualquier inversión visual.</p>
+        <div class="img-slot" style="aspect-ratio:16/11"><span class="img-slot__note">Wireframe v1 → v2 · baja fidelidad</span></div>
+        <div class="highlight" style="margin-top:16px;border-left-color:var(--accent-primary)">
+          <p class="card__text"><strong style="color:var(--text-primary)">Lo que reveló la v1:</strong> la estructura de “localizador de streaming” como flujo de formulario generaba abandono. La v2 sustituyó el formulario por una conversación de tres elecciones.</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin-bottom:8px">Decisiones de interfaz</h3>
+        <p class="prose" style="font-size:14px;margin-bottom:18px">La documentación de decisiones transforma un portafolio en un registro de razonamiento — no en un álbum de pantallas bonitas.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="card"><p class="card__label" style="color:var(--accent-primary)">Decisión</p><h4 class="card__title" style="font-size:16px">Onboarding conversacional, no formulario</h4><p class="card__text">La pantalla “¡Hola! ¿Todo bien?” usa lenguaje de conversación y presenta 3 opciones de intención — no decenas de filtros.</p><div style="height:1px;background:var(--line-hair);margin:14px 0"></div><p class="card__label">Alternativa descartada</p><p class="card__text" style="color:var(--text-meta)">Un formulario con campos de género, precio y características — replicaba la parálisis que intentábamos resolver.</p></div>
+          <div class="card"><p class="card__label" style="color:var(--accent-primary)">Decisión</p><h4 class="card__title" style="font-size:16px">Tono emocional por encima del thumbnail</h4><p class="card__text">Cada contenido lleva etiquetas de mood y duración visibles, respondiendo al insight de que la portada no comunica el tono.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin:44px 0 6px">Prototipo de alta fidelidad — flujos principales</h3>
+    <p class="prose" style="font-size:14px;margin-bottom:22px">Cuatro pantallas cubren el flujo crítico: entrada contextual → descubrimiento → detalle → perfil.</p>
+    <div class="phones">
+      <div class="phone"><div class="phone__frame"><span>Onboarding contextual</span></div><p class="phone__cap">01 · Entrada</p></div>
+      <div class="phone"><div class="phone__frame"><span>Home — descubrimiento</span></div><p class="phone__cap">02 · Descubrimiento</p></div>
+      <div class="phone"><div class="phone__frame"><span>Detalle del contenido</span></div><p class="phone__cap">03 · Detalle</p></div>
+      <div class="phone"><div class="phone__frame"><span>Perfil del usuario</span></div><p class="phone__cap">04 · Perfil</p></div>
+    </div>
+  </section>
+
+  <!-- ── DESIGN SYSTEM ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="ds">
+    <p class="case-eyebrow">Sistema de diseño</p>
+    <h2 class="case-title" id="ds">Design <em>system</em></h2>
+    <p class="prose" style="margin-bottom:32px">No solo una guía de estilo — un sistema con tokens documentados, decisiones de accesibilidad y criterios de uso de componentes.</p>
+    <div class="lead-cols" style="align-items:start">
+      <div>
+        <h3 class="card__title" style="font-family:var(--serif);font-size:20px;margin-bottom:8px">Paleta — decisión fundamentada</h3>
+        <p class="prose" style="font-size:14px;margin-bottom:18px">El negro profundo reduce la fatiga ocular en el contexto principal de uso (ambiente oscuro). El amarillo #F5D407 alcanza contraste AA en fondos oscuros sin perder vivacidad.</p>
+        <div class="sw-row">
+          <div class="sw" style="background:#0A0A0A;flex:2"><span style="color:#EFEFEF">#0A0A0A · BG</span></div>
+          <div class="sw" style="background:#161616"><span style="color:#EFEFEF">#161616</span></div>
+          <div class="sw" style="background:#F5D407"><span style="color:#0A0A0A">#F5D407</span></div>
+          <div class="sw" style="background:#EFEFEF;flex:.6"><span style="color:#0A0A0A">Text</span></div>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px"><span style="color:var(--text-meta)">Amarillo / Negro</span><span style="color:var(--accent-primary)">8.2:1 · WCAG AA</span></div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;margin-top:8px"><span style="color:var(--text-meta)">Blanco / Negro</span><span style="color:var(--accent-primary)">15.1:1 · WCAG AAA</span></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="card__title" style="font-family:var(--serif);font-size:20px;margin-bottom:8px">Tipografía — sistema editorial</h3>
+        <div class="card" style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-hair)"><span style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--text-primary)">WATCHER</span><span style="font-family:var(--mono);font-size:11px;color:var(--text-meta);text-align:right">Bebas Neue · 32px<br>Display / Marca</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-hair)"><span style="font-size:17px;color:var(--text-primary)">Texto de interfaz</span><span style="font-family:var(--mono);font-size:11px;color:var(--text-meta);text-align:right">DM Sans · 17px<br>UI / Cuerpo</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0"><span style="font-family:var(--mono);font-size:14px;color:var(--text-primary)">token.size.md</span><span style="font-family:var(--mono);font-size:11px;color:var(--text-meta);text-align:right">DM Mono · 13px<br>Labels / Meta</span></div>
+        </div>
+        <div class="card" style="margin-top:16px"><p class="card__label">Espaciado</p><p class="card__text">Sistema de 8px como unidad base; todos los espaciados son múltiplos de 4px — garantizando consistencia en el handoff.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── IMPACTO ── -->
+  <section class="case-section reveal" aria-labelledby="imp">
+    <p class="case-eyebrow">Resultados y aprendizajes</p>
+    <h2 class="case-title" id="imp">Impacto <em>medido</em></h2>
+    <p class="prose" style="margin-bottom:32px">Resultados del test de usabilidad con 6 participantes (n=6), comparados con el flujo de referencia de las plataformas actuales. Como proyecto conceptual, son resultados del prototipo — no de producción.</p>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="metric metric--hero"><div><div class="metric__num">−62%</div><p class="metric__label">tiempo hasta la elección</p></div><div class="prose"><p style="color:var(--text-primary);font-weight:500;font-size:17px;margin-bottom:6px">Reducción en el tiempo de decisión</p><p style="font-size:14px">Los participantes tardaron en promedio 6,8 min en elegir (vs. 18 min en las plataformas actuales). El onboarding conversacional fue el principal factor — eliminando la etapa de “¿qué quiero?” antes del descubrimiento.</p></div></div>
+      <div class="metric metric--hero"><div><div class="metric__num">83</div><p class="metric__label">SUS Score / 100</p></div><div class="prose"><p style="color:var(--text-primary);font-weight:500;font-size:17px;margin-bottom:6px">System Usability Scale</p><p style="font-size:14px">Puntuación de 83/100 en el SUS tras un test de tarea libre (benchmark de referencia: ~70 para grandes plataformas). Por encima de 80 — clasificado como “Excelente” en la escala Bangor.</p></div></div>
+      <div class="metric metric--hero"><div><div class="metric__num">5/6</div><p class="metric__label">volverían al flujo</p></div><div class="prose"><p style="color:var(--text-primary);font-weight:500;font-size:17px;margin-bottom:6px">Intención declarada de uso</p><p style="font-size:14px">5 de 6 dijeron que preferirían usar este flujo en su streaming actual. El único “no” señaló la ausencia de integración con la cuenta existente — limitación de alcance, no de diseño.</p></div></div>
+    </div>
+
+    <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin:48px 0 6px">Qué haría diferente</h3>
+    <p class="prose" style="font-size:14px;margin-bottom:24px">La senioridad incluye honestidad sobre las limitaciones y las iteraciones no realizadas.</p>
+    <div class="grid-3">
+      <div class="card"><p class="card__label">01</p><h4 class="card__title" style="font-size:17px">Probar antes de la alta fidelidad</h4><p class="card__text">Construí wireframes de alta fidelidad demasiado pronto. Pruebas en papel habrían ahorrado 2 semanas de refinamiento.</p></div>
+      <div class="card"><p class="card__label">02</p><h4 class="card__title" style="font-size:17px">Documentar hipótesis antes de las entrevistas</h4><p class="card__text">Entré en las primeras entrevistas sin hipótesis explícitas — análisis más lento y con mayor sesgo de confirmación.</p></div>
+      <div class="card"><p class="card__label">03</p><h4 class="card__title" style="font-size:17px">Accesibilidad al inicio, no al final</h4><p class="card__text">WCAG se verificó al final. En el próximo proyecto, contraste y motion entran como criterio desde la guía de estilo.</p></div>
+    </div>
+  </section>
+
+  <!-- ── FECHAMENTO ── -->
+  <section class="case-closing reveal" aria-labelledby="fim">
+    <div class="case-closing__inner">
+      <p class="case-closing__eyebrow" id="fim">Aprendizaje</p>
+      <p class="case-closing__quote">Cuando la interfaz responde al estado del usuario — y no solo al catálogo — el descubrimiento deja de ser una tarea y vuelve a ser el placer que debería ser.</p>
+      <div class="case-closing__rule"></div>
+      <p class="case-closing__text">Watcher es un estudio conceptual, pero el método es real: hipótesis explícita, evidencia contraria, decisión documentada.</p>
+      <div class="case-closing__links">
+        <a class="btn" href="../index.html#cases">← Todos los casos</a>
+        <a class="btn btn--fill" href="itsm-servicenow.html">Siguiente: ITSM →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p>© 2026 Luara Oliveira</p>
+    <p>Diseñado, programado y publicado por mí.</p>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>

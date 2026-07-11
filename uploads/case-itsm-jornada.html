@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estruturação da Jornada do Usuário em ITSM</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #081c1a;
+    --card: #0e2b28;
+    --card-light: #143530;
+    --accent: #e8f0ee;
+    --accent-bright: #ffffff;
+    --accent-dim: #4db8a8;
+    --text: #f2f7f6;
+    --text-muted: #7aada6;
+    --text-faint: #3d6b65;
+    --border: rgba(232, 240, 238, 0.1);
+    --border-accent: rgba(232, 240, 238, 0.28);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(168,196,212,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168,196,212,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* CAPA */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 80px;
+    padding-top: 80px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(168,196,212,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .cover-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .cover-subtitle {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-muted);
+    max-width: 480px;
+    line-height: 1.6;
+    margin-bottom: 64px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .meta-item {
+    padding-right: 32px;
+    border-right: 1px solid var(--border);
+    margin-right: 32px;
+  }
+  .meta-item:last-child { border-right: none; margin-right: 0; }
+
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 6px;
+  }
+
+  .meta-value {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* SEÇÕES */
+  section {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-number {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 48px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    max-width: 640px;
+    line-height: 1.8;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .highlight {
+    border-left: 2px solid var(--accent);
+    padding: 24px 32px;
+    background: rgba(168, 196, 212, 0.04);
+    margin: 40px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .highlight p {
+    color: var(--text);
+    font-size: 16px;
+    font-style: italic;
+    font-family: var(--serif);
+    margin: 0;
+  }
+
+  /* DIAGNÓSTICO */
+  .symptom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 48px 0;
+  }
+
+  .symptom-item {
+    background: var(--card);
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .symptom-item:hover { background: var(--card-light); }
+
+  .symptom-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--accent-dim);
+    opacity: 0.4;
+  }
+
+  .symptom-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 10px;
+  }
+
+  .symptom-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  /* PILARES */
+  .pillar {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 32px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .pillar:last-child { border-bottom: none; }
+
+  .pillar-number {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--border-accent);
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  .pillar-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .pillar-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .pillar-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--border-accent);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-top: 16px;
+  }
+
+  /* SUSTENTAÇÃO */
+  .loop-box {
+    background: var(--card);
+    padding: 48px;
+    border-radius: 2px;
+    margin: 48px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .loop-box::after {
+    content: '∞';
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 120px;
+    color: rgba(168, 196, 212, 0.04);
+    font-family: var(--serif);
+    line-height: 1;
+  }
+
+  .loop-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .loop-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  /* IMPACTO */
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 48px 0;
+  }
+
+  .impact-item {
+    background: var(--card);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .impact-item:hover { background: var(--card-light); }
+
+  .impact-number {
+    font-family: var(--serif);
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .impact-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .impact-item-wide {
+    grid-column: span 2;
+    background: var(--card);
+    padding: 40px;
+    transition: background 0.3s ease;
+  }
+
+  .impact-item-wide:hover { background: var(--card-light); }
+
+  /* APRENDIZADO */
+  .learning-list {
+    list-style: none;
+    margin: 40px 0;
+  }
+
+  .learning-list li {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .learning-list li:last-child { border-bottom: none; }
+
+  .learning-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  /* ASSINATURA */
+  .signature {
+    padding: 80px 0;
+    border-bottom: none;
+  }
+
+  .sig-line {
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+    margin-bottom: 32px;
+  }
+
+  .sig-name {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .sig-role {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .sig-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .sig-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .sig-link:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+  }
+
+  .principle {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.5;
+    border-left: 2px solid var(--accent);
+    padding: 20px 32px;
+    margin: 48px 0;
+    max-width: 600px;
+  }
+
+  /* ATUAÇÃO */
+  .role-box {
+    background: var(--card);
+    padding: 40px 48px;
+    border-radius: 2px;
+    margin: 48px 0;
+    border-top: 2px solid var(--accent-dim);
+  }
+
+  .role-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 28px;
+  }
+
+  .role-item-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .role-item-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 0 24px; }
+    .cover-meta { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .meta-item { border-right: none; margin-right: 0; padding-right: 0; }
+    .symptom-grid { grid-template-columns: 1fr; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .impact-item-wide { grid-column: span 1; }
+    .pillar { grid-template-columns: 40px 1fr; gap: 20px; }
+    .loop-box { padding: 32px; }
+    .role-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="page">
+  <div class="cover">
+    <span class="cover-eyebrow">Service Design · ITSM · ServiceNow · UX · EX · Governança · ITIL</span>
+    <h1 class="cover-title">Estruturação da Jornada<br>do Usuário <em>em ITSM</em></h1>
+    <p class="cover-subtitle">ServiceNow como plataforma de transformação da experiência de serviço. O redesenho da jornada, sustentado por governança e boas práticas de gestão de serviços, converteu resistência em adoção estruturada e duradoura.</p>
+    <div class="cover-meta">
+      <div class="meta-item">
+        <div class="meta-label">Setor</div>
+        <div class="meta-value">Corporativo / Produto Interno</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Plataforma</div>
+        <div class="meta-value">ServiceNow ITSM</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Framework</div>
+        <div class="meta-value">ITIL</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Tipo</div>
+        <div class="meta-value">Transformação de Processo</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXTO -->
+<div class="page">
+  <section class="reveal">
+    <span class="section-number">Contexto</span>
+    <h2 class="section-title">Uma plataforma robusta.<br><em>Subutilizada.</em></h2>
+    <p>O ServiceNow estava implementado. Os processos existiam. O catálogo de serviços estava estruturado. As diretrizes de governança seguiam as boas práticas do framework de gestão de serviços de TI. E ainda assim, os usuários não operavam o sistema como deveriam ou simplesmente não o utilizavam.</p>
+    <p>O problema não era a ferramenta. Era a distância entre o usuário e o serviço: uma distância construída por templates que não dialogavam com os problemas reais, por uma taxonomia desconectada do vocabulário cotidiano de quem precisava abrir um chamado, e pela percepção difusa de que contornar o portal era mais eficiente do que utilizá-lo corretamente.</p>
+    <p>Em um ambiente corporativo de grande porte, essa distância tem custo mensurável: chamados mal classificados, redesignações em cadeia, reaberturas recorrentes, tempos de atendimento dilatados e equipes de suporte sobrecarregadas com triagem que deveria ser resolvida na origem.</p>
+
+    <div class="highlight">
+      <p>"O usuário não resistia ao sistema. Resistia à fricção que o sistema impunha e ao desconhecimento do custo que essa resistência gerava para todos."</p>
+    </div>
+
+    <p>O projeto nasceu da necessidade de inverter essa equação: não apenas tecnicamente, mas pela lente da experiência e da governança. Tornar o ServiceNow um portal que o usuário escolheria usar, compreendendo por que isso importava para si e para a organização.</p>
+  </section>
+</div>
+
+<!-- DIAGNÓSTICO -->
+<div class="page">
+  <section class="reveal">
+    <span class="section-number">Diagnóstico</span>
+    <h2 class="section-title">Onde estava<br><em>a fricção</em></h2>
+    <p>O ponto de partida foi mapear os pontos de atrito reais na jornada do usuário — não assumindo o problema a priori, mas identificando sistematicamente onde o comportamento desviava do fluxo esperado e quais as consequências operacionais desse desvio.</p>
+
+    <div class="symptom-grid">
+      <div class="symptom-item">
+        <div class="symptom-label">Ponto de Atrito 01</div>
+        <p class="symptom-text">Chamados abertos nos templates incorretos, gerando redesignações sucessivas e prolongamento desnecessário do tempo de resolução, com impacto direto nos SLAs.</p>
+      </div>
+      <div class="symptom-item">
+        <div class="symptom-label">Ponto de Atrito 02</div>
+        <p class="symptom-text">Baixa aderência ao portal: usuários preferiam contato direto por e-mail ou canais informais, contornando o fluxo estruturado e comprometendo a rastreabilidade e a governança dos chamados.</p>
+      </div>
+      <div class="symptom-item">
+        <div class="symptom-label">Ponto de Atrito 03</div>
+        <p class="symptom-text">Reaberturas recorrentes de chamados, sintoma de atendimento prestado sem resolução efetiva — frequentemente causado por triagem imprecisa desde a abertura.</p>
+      </div>
+      <div class="symptom-item">
+        <div class="symptom-label">Ponto de Atrito 04</div>
+        <p class="symptom-text">Ausência de correspondência entre o vocabulário natural do usuário e a taxonomia do sistema. O usuário não sabia nomear seu problema nos termos do portal, o que resultava em classificações inadequadas desde o primeiro campo preenchido.</p>
+      </div>
+      <div class="symptom-item">
+        <div class="symptom-label">Ponto de Atrito 05</div>
+        <p class="symptom-text">Templates com campos excessivos ou desalinhados ao processo real de atendimento, aumentando a fricção no momento de abertura e contribuindo para o abandono ou o preenchimento inadequado do formulário.</p>
+      </div>
+      <div class="symptom-item">
+        <div class="symptom-label">Ponto de Atrito 06</div>
+        <p class="symptom-text">Desconhecimento do usuário sobre a lógica do processo ITSM: como os chamados são roteados, o impacto da classificação correta no tempo de atendimento e o papel de cada etapa dentro do fluxo de resolução.</p>
+      </div>
+    </div>
+
+    <p>O diagnóstico evidenciou que a fricção não estava concentrada em um único ponto da jornada, mas distribuída ao longo de toda a experiência de abertura e acompanhamento de chamados: da intenção inicial do usuário até a resolução efetiva e fechamento com qualidade.</p>
+  </section>
+</div>
+
+<!-- ABORDAGEM -->
+<div class="page">
+  <section class="reveal">
+    <span class="section-number">Abordagem</span>
+    <h2 class="section-title">Adoção não se impõe.<br><em>Se estrutura.</em></h2>
+    <p>A hipótese central foi que adoção sustentada exige intervenção simultânea em três camadas: o sistema (estrutura, templates e automação), o usuário (compreensão, comportamento e autonomia) e o processo (fluxo, governança e boas práticas de gestão de serviços). Atuar em apenas uma delas produziria resultados parciais e não sustentáveis.</p>
+
+    <div class="principle">
+      "Nenhuma mudança de comportamento se sustenta sem clareza de por que o novo caminho é melhor do que o atalho e sem que o sistema torne esse caminho genuinamente mais fácil de percorrer."
+    </div>
+
+    <p>A atuação foi transversal ao longo de todo o projeto, cobrindo as dimensões técnica, estratégica e de gestão. Isso incluiu desde o levantamento e priorização dos problemas, passando pela definição das iniciativas e seu alinhamento com os requisitos de governança, até a execução direta em frentes técnicas, a coordenação das ações com times internos e a gestão estruturada das entregas quando necessário. As frentes técnicas, educacionais e de comunicação avançaram de forma integrada, não em sequência.</p>
+  </section>
+</div>
+
+<!-- INICIATIVAS -->
+<div class="page">
+  <section class="reveal">
+    <span class="section-number">Iniciativas</span>
+    <h2 class="section-title">Os pilares<br><em>de execução</em></h2>
+
+    <div class="pillar">
+      <div class="pillar-number">01</div>
+      <div class="pillar-content">
+        <div class="pillar-title">Análise comportamental e mapeamento semântico</div>
+        <p class="pillar-desc">A investigação do comportamento dos usuários revelou um padrão consistente: ao acessar o portal, o usuário buscava digitar o problema com suas próprias palavras e encontrar o template correto a partir dessa entrada, sem precisar conhecer a taxonomia do sistema. Essa compreensão comportamental fundamentou o mapeamento semântico, que consistiu no levantamento sistemático das expressões, termos e variações linguísticas utilizadas pelos usuários para descrever cada categoria de problema, vinculando essas entradas diretamente aos templates correspondentes. O resultado foi uma camada de facilitação do portal que eliminou a dependência de conhecimento prévio da estrutura do catálogo para uma navegação precisa.</p>
+        <span class="pillar-tag">Comportamento do Usuário</span>
+        <span class="pillar-tag" style="margin-left:8px;">Estrutura do Sistema</span>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-number">02</div>
+      <div class="pillar-content">
+        <div class="pillar-title">Reestruturação e racionalização dos templates</div>
+        <p class="pillar-desc">Auditoria completa do catálogo de serviços com revisão de cada template, avaliando aderência ao processo real de atendimento e qualidade da experiência de preenchimento. Campos redundantes, perguntas fora do escopo necessário e etapas que criavam atrito sem agregar valor ao diagnóstico do chamado foram eliminados. A racionalização dos formulários reduziu o tempo de abertura, diminuiu os erros de classificação e aumentou a completude das informações entregues às equipes de atendimento.</p>
+        <span class="pillar-tag">Catálogo de Serviços</span>
+        <span class="pillar-tag" style="margin-left:8px;">Governança ITIL</span>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-number">03</div>
+      <div class="pillar-content">
+        <div class="pillar-title">Automação de processos e integração de plataformas</div>
+        <p class="pillar-desc">Mapeamento e automação de fluxos de atendimento com alto volume de abertura, abrangendo incidentes e requisições de diferentes níveis de complexidade, sempre com o objetivo de reduzir o tempo de resolução e garantir consistência de processo independentemente do volume. Parte essencial dessa frente foi o mapeamento de plataformas externas que precisariam ser integradas ao ServiceNow para viabilizar a automação de categorias específicas de chamados. Um exemplo relevante foi a integração com o SailPoint IdentityIQ (IIQ), que permitiu automatizar chamados relacionados à administração de identidades e acessos, eliminando etapas manuais e reduzindo o tempo de atendimento nessa categoria. A automação foi priorizada com base em volume, criticidade operacional e potencial de impacto no SLA.</p>
+        <span class="pillar-tag">Automação</span>
+        <span class="pillar-tag" style="margin-left:8px;">Integração de Sistemas</span>
+        <span class="pillar-tag" style="margin-left:8px;">Eficiência Operacional</span>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-number">04</div>
+      <div class="pillar-content">
+        <div class="pillar-title">Programa de educação, comunicação e gestão de mudança</div>
+        <p class="pillar-desc">Desenvolvimento e execução de um programa estruturado de comunicação interna e gestão de mudança, compreendendo campanhas direcionadas, comunicações por e-mail, materiais de apoio e guias de uso. A estratégia foi construída para ir além do "como usar": explicando aos usuários a lógica do processo ITSM, o impacto da classificação correta no tempo de atendimento e as consequências operacionais de contornar o fluxo estabelecido. Tornar a lógica do processo visível para quem o experimenta como usuário final foi condição para que a mudança de comportamento se tornasse sustentável.</p>
+        <span class="pillar-tag">Gestão de Mudança</span>
+        <span class="pillar-tag" style="margin-left:8px;">Comunicação Interna</span>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-number">05</div>
+      <div class="pillar-content">
+        <div class="pillar-title">Capacitação de fornecedores</div>
+        <p class="pillar-desc">Programa de treinamento direcionado às equipes fornecedoras responsáveis pelo atendimento, garantindo que as melhorias implementadas na jornada de abertura tivessem correspondência na qualidade e consistência do atendimento prestado. O alinhamento de fornecedores com os processos revisados e com os critérios de classificação dos chamados foi tratado como requisito para a efetividade da transformação. A adoção só se consolida quando as duas pontas da jornada operam com o mesmo entendimento.</p>
+        <span class="pillar-tag">Capacitação</span>
+        <span class="pillar-tag" style="margin-left:8px;">Governança de Fornecedores</span>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-number">06</div>
+      <div class="pillar-content">
+        <div class="pillar-title">Expansão da base de conhecimento</div>
+        <p class="pillar-desc">Estruturação e expansão da base de conhecimento como infraestrutura permanente da jornada de serviço, tratada não como recurso periférico, mas como camada de suporte disponível em qualquer fase do processo. A iniciativa compreendeu a produção de artigos, documentação técnica organizada por categoria de chamado e materiais de autoatendimento, tornando o usuário progressivamente mais autônomo e reduzindo a dependência de contato direto com equipes de suporte para demandas que poderiam ser resolvidas de forma independente.</p>
+        <span class="pillar-tag">Knowledge Management</span>
+        <span class="pillar-tag" style="margin-left:8px;">Autoatendimento</span>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- ATUAÇÃO -->
+<div class="page">
+  <section class="reveal">
+    <span class="section-number">Atuação</span>
+    <h2 class="section-title">Presença em todas<br><em>as camadas do projeto</em></h2>
+    <p>A atuação neste projeto não esteve restrita a uma frente específica. A participação foi integral, cobrindo a dimensão técnica, a condução estratégica e a gestão das pessoas e entregas envolvidas ao longo de todo o ciclo.</p>
+
+    <div class="role-box">
+      <div class="role-grid">
+        <div>
+          <div class="role-item-title">Técnica</div>
+          <p class="role-item-desc">Elaboração da documentação técnica do projeto, incluindo o mapeamento e registro dos requisitos da plataforma ServiceNow, com atuação direta como parte da equipe responsável pelo produto internamente. Condução do mapeamento comportamental dos usuários para identificar padrões de acesso e pontos de abandono no portal. Estruturação do mapeamento semântico, com construção das entradas de linguagem natural vinculadas aos templates correspondentes. Participação direta na definição dos fluxos de automação, no mapeamento de integrações com plataformas externas como o SailPoint IdentityIQ (IIQ) e na revisão técnica dos templates do catálogo de serviços.</p>
+        </div>
+        <div>
+          <div class="role-item-title">Estratégica</div>
+          <p class="role-item-desc">Definição das prioridades de intervenção com base em volume, criticidade e impacto operacional. Estruturação do programa de educação e gestão de mudança, incluindo a sequência das frentes e os critérios de sucesso de cada iniciativa. Alinhamento das entregas com os requisitos de governança e com os processos já estabelecidos na organização. Tomada de decisão sobre escopo, sequenciamento e critérios de priorização ao longo de todo o projeto.</p>
+        </div>
+        <div>
+          <div class="role-item-title">Gestão</div>
+          <p class="role-item-desc">Coordenação das frentes com times internos e equipes fornecedoras, garantindo alinhamento entre as entregas técnicas, educacionais e de comunicação. Gestão estruturada das responsabilidades quando a execução era compartilhada, assegurando que qualidade e aderência ao processo fossem mantidas independentemente de quem conduzia cada etapa. Acompanhamento contínuo dos resultados e ajustes de rota conforme o projeto evoluía.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SUSTENTAÇÃO -->
+<div class="page">
+  <section class="reveal">
+    <span class="section-number">Sustentação</span>
+    <h2 class="section-title">Não um projeto.<br><em>Um processo.</em></h2>
+    <p>Um dos riscos mais comuns em iniciativas de adoção é tratar a mudança como evento: algo que acontece, produz resultados e é encerrado. A lógica adotada aqui foi estruturalmente diferente.</p>
+
+    <div class="loop-box">
+      <div class="loop-title">Ciclo de melhoria contínua</div>
+      <p class="loop-desc">Desde a implementação das primeiras mudanças, foi estabelecido um ciclo sistemático de monitoramento e ajuste, acompanhando métricas de uso, identificando novos pontos de atrito e revisando templates, automações e materiais conforme o comportamento dos usuários evoluía. Esse ciclo segue ativo até hoje, incorporado à rotina de gestão do portal.</p>
+    </div>
+
+    <p>A sustentação transforma resultado pontual em maturidade operacional. O que começou como intervenção tornou-se prática institucionalizada, e é essa distinção que caracteriza uma transformação real de processo.</p>
+  </section>
+</div>
+
+<!-- IMPACTO -->
+<div class="page">
+  <section class="reveal">
+    <span class="section-number">Impacto</span>
+    <h2 class="section-title">O que<br><em>mudou</em></h2>
+
+    <div class="impact-grid">
+      <div class="impact-item">
+        <span class="impact-number">+20%</span>
+        <p class="impact-label">de satisfação no NPS interno, medindo a percepção dos usuários sobre a qualidade do serviço de suporte e a experiência com o portal.</p>
+      </div>
+      <div class="impact-item">
+        <span class="impact-number">↑</span>
+        <p class="impact-label">Aumento mensurável na aderência dos usuários ao ServiceNow como canal oficial e estruturado de abertura e acompanhamento de chamados.</p>
+      </div>
+      <div class="impact-item">
+        <span class="impact-number">↓</span>
+        <p class="impact-label">Redução significativa no tempo médio de atendimento, com queda no volume de redesignações de chamados e diminuição das reaberturas por resolução incompleta.</p>
+      </div>
+      <div class="impact-item">
+        <span class="impact-number">↓</span>
+        <p class="impact-label">Redução de chamados mal classificados na abertura, com melhora na precisão do roteamento e na completude das informações entregues às equipes de atendimento.</p>
+      </div>
+      <div class="impact-item impact-item-wide">
+        <p class="impact-label" style="font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 12px;">Além dos indicadores quantitativos, a transformação mais relevante foi de caráter estrutural: o portal deixou de ser percebido como uma exigência burocrática e passou a ser reconhecido pelos usuários como o caminho mais eficiente para resolver um problema, o que é, em essência, o objetivo de qualquer iniciativa de adoção bem-sucedida.</p>
+        <p class="impact-label">Equipes de suporte com triagem mais precisa, usuários com maior autonomia operacional e um processo de atendimento com mais previsibilidade e rastreabilidade do início ao fechamento.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- APRENDIZADO -->
+<div class="page">
+  <section class="reveal">
+    <span class="section-number">Aprendizado</span>
+    <h2 class="section-title">O que o projeto<br><em>consolidou</em></h2>
+
+    <ul class="learning-list">
+      <li>
+        <span class="learning-text">Adoção é um problema de design e governança, não apenas de treinamento. Capacitar o usuário sem simplificar o sistema e sem garantir que o processo esteja corretamente estruturado produz esforço sem resultado duradouro. As três dimensões precisam ser trabalhadas de forma integrada.</span>
+      </li>
+      <li>
+        <span class="learning-text">A linguagem do usuário é dado de projeto, não detalhe de implementação. Um template tecnicamente correto que utiliza terminologia desconhecida pelo usuário ainda produz fricção e erro de classificação. O mapeamento comportamental que precedeu o mapeamento semântico foi decisivo para que a solução partisse de como o usuário pensa, e não de como o sistema está organizado.</span>
+      </li>
+      <li>
+        <span class="learning-text">Transformação de processo exige ação nas duas pontas da jornada. Aprimorar a experiência de quem abre chamados sem garantir a capacitação e o alinhamento de quem os recebe é intervir em metade do sistema. A qualidade do atendimento prestado pelos fornecedores foi tão determinante para o resultado quanto a qualidade da abertura pelos usuários.</span>
+      </li>
+      <li>
+        <span class="learning-text">Automação sem mapeamento de integrações é automação incompleta. A identificação de plataformas externas que precisavam se conectar ao ServiceNow, como o SailPoint IIQ para chamados de identidade e acesso, foi condição para que a automação gerasse impacto real e não apenas deslocasse o trabalho manual para outra etapa do processo.</span>
+      </li>
+      <li>
+        <span class="learning-text">Resultado sustentável exige infraestrutura de escuta e revisão contínua. O ciclo de monitoramento não foi um apêndice do projeto: foi o mecanismo que garantiu que as melhorias permanecessem relevantes à medida que o ambiente, os processos e o perfil dos usuários evoluíam.</span>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<!-- ASSINATURA -->
+<div class="page">
+  <section class="signature reveal">
+    <div class="sig-line"></div>
+    <div class="sig-name">Luara Oliveira</div>
+  </section>
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

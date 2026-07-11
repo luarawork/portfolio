@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>AcessaBR — UX/UI &amp; Acessibilidade · Luara Oliveira</title>
+<meta name="description" content="Plataforma conceitual que descobre, explica e guia o acesso a benefícios sociais. UI desenhada para o usuário de baixo letramento digital — cada decisão justificada pelo público real."/>
+<link rel="canonical" href="https://luaraoliveira.com/cases/acessabr.html"/>
+
+<link rel="alternate" hreflang="pt-BR" href="https://luaraoliveira.com/cases/acessabr.html"/>
+<link rel="alternate" hreflang="en" href="https://luaraoliveira.com/en/cases/acessabr.html"/>
+<link rel="alternate" hreflang="es" href="https://luaraoliveira.com/es/cases/acessabr.html"/>
+<link rel="alternate" hreflang="x-default" href="https://luaraoliveira.com/cases/acessabr.html"/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:locale" content="pt_BR"/>
+<meta property="og:title" content="AcessaBR — UX/UI &amp; Acessibilidade"/>
+<meta property="og:description" content="UI desenhada para o usuário de baixo letramento digital — cada decisão justificada pelo público real."/>
+<meta property="og:image" content="https://luaraoliveira.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="../assets/css/base.css"/>
+<link rel="stylesheet" href="../assets/css/case.css"/>
+
+<!-- ── Cor-assinatura: tema CLARO — creme, verde institucional, terracota ──
+     Prova de que o esqueleto compartilhado funciona em variante clara.
+     Contrastes validados AA: verde #1A5C3A 7:1 / texto #1A1A18 15:1. -->
+<style>
+:root {
+  --bg-base:#F5F4F0; --bg-card:#FFFFFF; --bg-hover:#EFEEE7;
+  --accent-primary:#1A5C3A; --accent-bright:#14502F; --accent-secondary:#1A5C3A;
+  --accent-warm:#C0552F;   /* terracota com contraste AA (5:1) p/ texto pequeno */
+  --text-primary:#1A1A18; --text-body:#4a4a44; --text-meta:#67675e;
+  --line-soft:rgba(26,92,58,.18); --line-hair:rgba(26,26,24,.09);
+  --tint-accent:rgba(26,92,58,.05); --tint-strong:rgba(26,92,58,.10);
+  --nav-bg:rgba(245,244,240,.86); --grid-rgb:26,92,58;
+  --focus:#14502F;
+  --serif:'Playfair Display',Georgia,serif;
+}
+/* Selo terracota discreto no tema claro */
+.selo--conceito { color:var(--accent-warm); border-color:rgba(192,85,47,.28); }
+/* Cards de problema */
+.prob-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.prob { background:var(--bg-card); border:1px solid var(--line-soft); border-radius:var(--radius); padding:24px 26px; }
+.prob__l { font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-warm); margin-bottom:12px; }
+.prob__t { font-size:15px; color:var(--text-body); line-height:1.6; }
+/* Stat */
+.stat { background:var(--accent-primary); color:#F5F4F0; border-radius:var(--radius); padding:36px 40px; margin-top:24px; display:grid; grid-template-columns:auto 1fr; gap:36px; align-items:center; }
+.stat__n { font-family:var(--serif); font-weight:600; font-size:clamp(40px,6vw,60px); line-height:1.1; white-space:nowrap; }
+.stat__t { font-size:15px; line-height:1.6; opacity:.92; }
+/* Persona */
+.persona { background:var(--bg-card); border:1px solid var(--line-soft); border-radius:var(--radius); padding:32px 34px; }
+.persona__name { font-family:var(--serif); font-weight:600; font-size:26px; color:var(--text-primary); margin-bottom:4px; }
+.persona__role { font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--accent-warm); margin-bottom:24px; }
+.persona__grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 28px; padding-bottom:24px; border-bottom:1px solid var(--line-hair); }
+.persona__l { font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-secondary); margin-bottom:6px; }
+.persona__v { font-size:14.5px; color:var(--text-body); line-height:1.5; }
+.notlist { margin-top:24px; }
+.notlist__l { font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-warm); margin-bottom:14px; }
+.notlist ul { list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; }
+.notlist li { font-size:14.5px; color:var(--text-body); padding-left:22px; position:relative; line-height:1.45; }
+.notlist li::before { content:'✕'; position:absolute; left:0; color:var(--accent-warm); font-size:12px; top:2px; }
+/* Decisões */
+.dec-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.dec { background:var(--bg-card); border:1px solid var(--line-soft); border-left:2px solid var(--accent-warm); border-radius:var(--radius); padding:22px 24px; }
+.dec__q { font-weight:500; font-size:15px; color:var(--text-primary); margin-bottom:8px; display:flex; gap:10px; }
+.dec__q::before { content:'✕'; color:var(--accent-warm); font-weight:700; }
+.dec__a { font-size:14px; color:var(--text-body); line-height:1.6; }
+/* Estados */
+.states { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.state { background:var(--bg-card); border:1px solid var(--line-soft); border-radius:var(--radius); padding:20px; }
+.state__l { font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-primary); margin-bottom:10px; }
+.state__t { font-size:13px; color:var(--text-body); line-height:1.55; }
+/* Tabela diag herda .case-table */
+@media (max-width:760px){ .prob-grid,.dec-grid{grid-template-columns:1fr} .persona__grid,.notlist ul{grid-template-columns:1fr} .states{grid-template-columns:1fr 1fr} .stat{grid-template-columns:1fr;gap:16px} }
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<nav class="nav" aria-label="Navegação principal">
+  <a class="nav__brand" href="../index.html">Luara Oliveira</a>
+  <div class="nav__right">
+    <div class="nav__socials">
+      <a class="icon-btn" href="https://www.linkedin.com/in/luaraoliveir/" target="_blank" rel="noopener" aria-label="LinkedIn (abre em nova aba)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg></a>
+      <a class="icon-btn" href="https://www.behance.net/aluar" target="_blank" rel="noopener" aria-label="Behance (abre em nova aba)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 8.6c.5 0 .96.04 1.38.13.42.08.77.22 1.07.42.3.2.53.46.7.8.16.34.24.76.24 1.27 0 .55-.13 1-.38 1.37-.25.36-.62.66-1.1.88.66.2 1.16.53 1.5 1 .33.47.5 1.04.5 1.7 0 .54-.1 1-.32 1.4-.2.4-.49.72-.84.97-.36.25-.77.43-1.23.55-.46.12-.93.18-1.4.18H2V8.6h6.2zm-.37 4.04c.42 0 .76-.1 1.03-.3.27-.2.4-.53.4-.97 0-.25-.04-.45-.13-.6a.94.94 0 0 0-.36-.37 1.5 1.5 0 0 0-.5-.18 3.4 3.4 0 0 0-.6-.05H4.84v2.47h2.99zm.16 4.24c.23 0 .45-.02.66-.07.2-.04.39-.12.54-.23.15-.1.28-.25.37-.43.09-.18.13-.41.13-.69 0-.54-.15-.93-.46-1.16-.3-.23-.71-.34-1.22-.34h-3.4v2.92h3.38zM16.4 16.6c.36.35.88.52 1.55.52.48 0 .9-.12 1.25-.36.35-.24.56-.5.64-.76h2.05c-.33 1.02-.83 1.74-1.51 2.18-.68.44-1.5.66-2.46.66-.67 0-1.27-.1-1.81-.32a3.8 3.8 0 0 1-1.37-.92 4.1 4.1 0 0 1-.86-1.42 5.2 5.2 0 0 1-.3-1.82c0-.64.1-1.24.31-1.78.2-.55.5-1.02.88-1.42.38-.4.83-.71 1.36-.94a4.5 4.5 0 0 1 1.78-.34c.71 0 1.33.14 1.86.41.53.28.96.65 1.3 1.12.34.47.58 1 .73 1.6.15.6.2 1.22.16 1.88h-6.1c0 .68.23 1.25.6 1.6zm2.72-4.36c-.28-.31-.74-.48-1.32-.48-.38 0-.7.07-.95.2-.25.13-.46.29-.61.48-.15.19-.26.39-.32.6-.06.21-.1.4-.11.57h3.78c-.06-.59-.25-1.04-.47-1.37zM15 8.9h4.74v1.16H15V8.9z"/></svg></a>
+      <a class="icon-btn" href="../em-construcao.html" aria-label="GitHub (em construção)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.57 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.33-1.73-1.33-1.73-1.09-.73.08-.71.08-.71 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6 0c2.28-1.53 3.29-1.21 3.29-1.21.66 1.64.24 2.86.12 3.16.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.52-5.49 5.81.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .32.21.69.83.57A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg></a>
+      <a class="icon-btn" href="http://wa.me/5584998468414" target="_blank" rel="noopener" aria-label="WhatsApp (abre em nova aba)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.87 11.87 0 0 1-1.59-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.42 3.49 11.82 11.82 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.69-1.45L.06 24zm6.6-3.8c1.68.99 3.28 1.59 5.4 1.59 5.45 0 9.89-4.43 9.89-9.88a9.86 9.86 0 0 0-9.88-9.89c-5.46 0-9.9 4.44-9.9 9.89 0 2.23.65 3.9 1.75 5.65l-1 3.66 3.74-.98zm11.39-5.55c-.07-.12-.27-.2-.56-.34-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.07 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41z"/></svg></a>
+    </div>
+    <div class="lang" role="group" aria-label="Selecionar idioma">
+      <a href="acessabr.html" hreflang="pt-BR" aria-current="true" lang="pt-BR">PT</a>
+      <a href="../en/cases/acessabr.html" hreflang="en" lang="en">EN</a>
+      <a href="../es/cases/acessabr.html" hreflang="es" lang="es">ES</a>
+    </div>
+  </div>
+</nav>
+
+<main id="conteudo">
+
+  <a class="case-fab" href="../index.html#cases">Portfólio</a>
+  <header class="case-hero" data-screen-label="Case AcessaBR">
+    <div class="case-hero__top">
+      <span class="selo selo--conceito">Projeto conceitual</span>
+      <span class="case-hero__track">UX/UI · Produto público · Acessibilidade</span>
+    </div>
+    <h1 class="case-hero__title">Design que serve <em>quem o sistema esqueceu</em></h1>
+    <p class="case-hero__lead">Uma plataforma que descobre, explica e guia o acesso a benefícios sociais para quem mais precisa — sem jargão, sem burocracia, sem deixar ninguém pra trás.</p>
+    <div class="case-hero__tags tags" aria-label="Disciplinas tratadas">
+      <span class="tag">Acessibilidade</span><span class="tag">Service Design</span><span class="tag">UI</span><span class="tag">Protótipo</span>
+    </div>
+    <div class="case-meta">
+      <div class="case-meta__item"><p class="case-meta__label">Tipo</p><p class="case-meta__value"><strong>Projeto conceitual</strong><br>Web responsiva, 2025</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Foco</p><p class="case-meta__value">Baixo letramento<br>digital</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Método</p><p class="case-meta__value">Persona, diagnóstico,<br>decisões justificadas</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Princípio</p><p class="case-meta__value">Cada decisão validada<br><strong>pelo público real</strong></p></div>
+    </div>
+  </header>
+
+  <!-- ── PROBLEMA ── -->
+  <section class="case-section reveal" aria-labelledby="prob">
+    <p class="case-eyebrow">O problema</p>
+    <h2 class="case-title" id="prob">Os benefícios existem. Falta uma <em>porta de entrada humana</em></h2>
+    <p class="prose" style="margin-bottom:30px">O Brasil tem mais de 15 programas de assistência social federais ativos, com dinheiro disponível e milhões de elegíveis que nunca acessam o que têm direito.</p>
+    <div class="prob-grid">
+      <div class="prob"><p class="prob__l">O que existe</p><p class="prob__t">Bolsa Família, BPC, Auxílio Gás, Tarifa Social, CadÚnico — todos com critérios públicos e recursos garantidos.</p></div>
+      <div class="prob"><p class="prob__l">O que falta</p><p class="prob__t">Uma interface que fale a língua de quem mais precisa. O problema não é falta de informação: é excesso de ruído inacessível.</p></div>
+      <div class="prob"><p class="prob__l">O que o usuário enfrenta hoje</p><p class="prob__t">Para descobrir se tem direito ao Auxílio Gás, uma pessoa navega por 4+ sites, interpreta linguagem jurídica e precisa saber qual ministério gerencia o quê.</p></div>
+      <div class="prob"><p class="prob__l">Por que é um problema de design</p><p class="prob__t">Os canais existentes pressupõem que o usuário já sabe o que quer. Nenhum resolve o momento anterior: “eu nem sei se tenho direito a alguma coisa.”</p></div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">+2 milhões</div>
+      <p class="stat__t">de famílias elegíveis ao Bolsa Família não estavam cadastradas no CadÚnico em 2024 — a porta de entrada para quase todos os benefícios. <strong>Fonte: MDS.</strong></p>
+    </div>
+  </section>
+
+  <!-- ── PÚBLICO ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="pub">
+    <p class="case-eyebrow">Público-alvo</p>
+    <h2 class="case-title" id="pub">Quem é esse usuário — <em>e o que ele não é</em></h2>
+    <p class="prose" style="margin-bottom:30px">Cada decisão de interface foi justificada com base nesse perfil. Padrões convencionais de UX são suspeitos até provarem que funcionam aqui.</p>
+    <div class="persona">
+      <p class="persona__name">Maria, 43 anos</p>
+      <p class="persona__role">Perfil primário · Chefe de família, Nordeste do Brasil</p>
+      <div class="persona__grid">
+        <div><p class="persona__l">Escolaridade</p><p class="persona__v">Ensino fundamental incompleto ou completo</p></div>
+        <div><p class="persona__l">Acesso à internet</p><p class="persona__v">Exclusivamente pelo celular, via dados móveis</p></div>
+        <div><p class="persona__l">Relação com apps</p><p class="persona__v">Não instala aplicativos — falta de espaço ou desconfiança</p></div>
+        <div><p class="persona__l">Referência de UX</p><p class="persona__v">Compara pelo que sente, não pelo que sabe. Medo de errar, de ser enganada, de perder o que já tem.</p></div>
+      </div>
+      <div class="notlist">
+        <p class="notlist__l">Esse usuário não é</p>
+        <ul>
+          <li>O usuário que “aprende rápido”</li>
+          <li>Alguém com paciência para onboarding longo</li>
+          <li>Quem lê texto corrido em tela</li>
+          <li>Quem confia em sites que pedem CPF logo de cara</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DIAGNÓSTICO ── -->
+  <section class="case-section reveal" aria-labelledby="diag">
+    <p class="case-eyebrow">Diagnóstico</p>
+    <h2 class="case-title" id="diag">O estado atual não foi projetado <em>para quem mais precisa</em></h2>
+    <p class="prose" style="margin-bottom:28px">Mapeamento dos canais existentes e seus problemas principais.</p>
+    <table class="case-table">
+      <thead><tr><th scope="col">Canal</th><th scope="col">Problema principal</th></tr></thead>
+      <tbody>
+        <tr><td>gov.br</td><td>Linguagem jurídica, hierarquia confusa, exige login antes de informar</td></tr>
+        <tr><td>Site do MDS</td><td>Informação fragmentada por programa, sem visão unificada para o usuário</td></tr>
+        <tr><td>App Meu INSS</td><td>Focado em quem já é beneficiário — não resolve o momento da descoberta</td></tr>
+        <tr><td>Ligação 121</td><td>Fila longa, horário limitado, exige verbalizar a dúvida com precisão</td></tr>
+        <tr><td>CRAS presencial</td><td>Deslocamento, filas, dependência de dia útil e de transporte</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── SOLUÇÃO ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="sol">
+    <p class="case-eyebrow">Solução</p>
+    <h2 class="case-title" id="sol">AcessaBR — uma plataforma <em>em três momentos</em></h2>
+    <p class="prose" style="margin-bottom:30px">Não é um portal de notícias sobre benefícios. É uma ferramenta de ação, projetada para o momento anterior ao cadastro.</p>
+    <div class="grid-3" style="margin-bottom:40px">
+      <div class="card"><p class="card__label">01 · Descoberta guiada</p><p class="card__text">5 perguntas em linguagem humana sobre composição familiar, renda e situações específicas. Resultado: lista personalizada de benefícios prováveis.</p></div>
+      <div class="card"><p class="card__label">02 · Explicação acessível</p><p class="card__text">Cada benefício tem: o que é em uma frase, quanto vale, quem pode receber, o que precisa fazer. Nível de leitura do 6º ano. Ícones com label obrigatório.</p></div>
+      <div class="card"><p class="card__label">03 · Guia de ação</p><p class="card__text">Passo a passo concreto para se inscrever: onde ir, o que levar, qual o CRAS mais próximo. Tudo dentro da plataforma, sem redirecionamento.</p></div>
+    </div>
+    <h3 class="card__title" style="font-family:var(--serif);font-size:22px;margin-bottom:18px">Três princípios que guiaram cada decisão</h3>
+    <div class="grid-3">
+      <div class="card" style="border-top:2px solid var(--accent-primary)"><p class="card__label">P1</p><h4 class="card__title" style="font-size:17px">Perguntar, não formulário</h4><p class="card__text">O usuário não preenche campos — responde perguntas uma de cada vez. A interface conduz, não exige.</p></div>
+      <div class="card" style="border-top:2px solid var(--accent-primary)"><p class="card__label">P2</p><h4 class="card__title" style="font-size:17px">Resultado antes de cadastro</h4><p class="card__text">Nenhum CPF, nenhum login antes de mostrar o que a pessoa tem direito. Confiança se constrói com valor, não com coleta de dado.</p></div>
+      <div class="card" style="border-top:2px solid var(--accent-primary)"><p class="card__label">P3</p><h4 class="card__title" style="font-size:17px">Ação possível, não informação impossível</h4><p class="card__text">Cada benefício termina com “o que fazer agora” concreto. Não abre nova aba. Não abandona o usuário.</p></div>
+    </div>
+  </section>
+
+  <!-- ── DECISÕES DE UI ── -->
+  <section class="case-section reveal" aria-labelledby="dec">
+    <p class="case-eyebrow">Decisões de UI</p>
+    <h2 class="case-title" id="dec">O que eu <em>não</em> fiz — e por quê</h2>
+    <p class="prose" style="margin-bottom:30px">A seção mais importante do case. Documentar o que foi descartado e a razão é o que diferencia trabalho sênior de trabalho júnior.</p>
+    <div class="dec-grid">
+      <div class="dec"><p class="dec__q">Dropdown com opções de renda</p><p class="dec__a">Usuário não sabe sua renda exata. Usei faixas com exemplos contextuais: “Menos de R$ 650 por pessoa (ex.: família de 4 com renda até R$ 2.600)”.</p></div>
+      <div class="dec"><p class="dec__q">CPF no início do fluxo</p><p class="dec__a">Pesquisas com populações vulneráveis mostram desconfiança imediata com coleta de dado pessoal. O CPF só entra se o usuário quiser salvar o resultado.</p></div>
+      <div class="dec"><p class="dec__q">Campo de texto livre</p><p class="dec__a">Digitação é barreira real para esse público. Todas as respostas são por botão ou seleção. O teclado só aparece para CEP.</p></div>
+      <div class="dec"><p class="dec__q">Ícones sem texto</p><p class="dec__a">Ícones sem label são convenção cultural aprendida. Para esse público, cada ícone tem label obrigatório ao lado.</p></div>
+      <div class="dec"><p class="dec__q">Barra de progresso em porcentagem</p><p class="dec__a">“67% concluído” é abstrato. Usei “Pergunta 4 de 6” com bolinhas visuais — concreto e escaneável em qualquer nível de letramento.</p></div>
+      <div class="dec"><p class="dec__q">Todos os benefícios de uma vez</p><p class="dec__a">Hierarquizei por probabilidade e impacto. O mais provável aparece primeiro, em destaque. Sobrecarga de informação paralisa, não informa.</p></div>
+    </div>
+  </section>
+
+  <!-- ── FLUXO ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="flow">
+    <p class="case-eyebrow">Fluxo principal</p>
+    <h2 class="case-title" id="flow">Da entrada ao resultado: <em>5 perguntas</em></h2>
+    <div class="steps" style="margin-top:8px">
+      <div class="step"><div class="step__line"><div class="step__dot">1</div><div class="step__connector"></div></div><div class="step__content"><p class="step__title">Quantas pessoas moram na sua casa?</p><p class="step__text">Número de moradores define a base para cálculo de renda per capita.</p></div></div>
+      <div class="step"><div class="step__line"><div class="step__dot">2</div><div class="step__connector"></div></div><div class="step__content"><p class="step__title">Qual é a renda mensal de todo mundo?</p><p class="step__text">Por faixas com exemplos. “Não sei ao certo” é uma opção válida, sem punição.</p></div></div>
+      <div class="step"><div class="step__line"><div class="step__dot">3</div><div class="step__connector"></div></div><div class="step__content"><p class="step__title">Tem crianças ou adolescentes?</p><p class="step__text">Determina elegibilidade a adicionais do Bolsa Família por faixa etária.</p></div></div>
+      <div class="step"><div class="step__line"><div class="step__dot">4</div><div class="step__connector"></div></div><div class="step__content"><p class="step__title">Mora com idosos ou pessoas com deficiência?</p><p class="step__text">Abre elegibilidade ao BPC — benefício específico para esse grupo.</p></div></div>
+      <div class="step"><div class="step__line"><div class="step__dot">5</div><div class="step__connector"></div></div><div class="step__content"><p class="step__title">Já tem cadastro no CadÚnico?</p><p class="step__text">Define o “próximo passo” mostrado no resultado: atualizar ou se cadastrar.</p></div></div>
+      <div class="step"><div class="step__line"><div class="step__dot" style="background:var(--accent-warm)">✓</div></div><div class="step__content"><p class="step__title" style="color:var(--accent-warm)">Resultado personalizado</p><p class="step__text">Lista de benefícios prováveis, hierarquizada por match, com guia de ação para cada um.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ── ESTADOS ── -->
+  <section class="case-section reveal" aria-labelledby="est">
+    <p class="case-eyebrow">Estados de interface</p>
+    <h2 class="case-title" id="est">Documentar estados é <em>onde júnior para</em></h2>
+    <p class="prose" style="margin-bottom:30px">Cada estado abaixo representa uma tela distinta no case. Mostrar apenas o estado “feliz” é incompleto.</p>
+    <div class="states">
+      <div class="state"><p class="state__l">Vazio</p><p class="state__t">Primeira entrada, sem respostas ainda. Sem pressão, sem login solicitado.</p></div>
+      <div class="state"><p class="state__l">Em progresso</p><p class="state__t">Meio do fluxo de perguntas com resposta selecionada e progresso visível.</p></div>
+      <div class="state"><p class="state__l">Analisando</p><p class="state__t">Transição com feedback visual — reforça que o sistema está trabalhando.</p></div>
+      <div class="state"><p class="state__l">Resultado positivo</p><p class="state__t">Família com múltiplos benefícios elegíveis, hierarquizados por probabilidade.</p></div>
+      <div class="state"><p class="state__l">Resultado vazio</p><p class="state__t">Nenhum benefício encontrado — mensagem empática + CadÚnico preventivo.</p></div>
+      <div class="state"><p class="state__l">Detalhe</p><p class="state__t">Bottom sheet com passo a passo para um benefício específico.</p></div>
+      <div class="state"><p class="state__l">Erro de CEP</p><p class="state__t">Campo inválido com mensagem sem culpa e sugestão de ação.</p></div>
+      <div class="state"><p class="state__l">Mobile 320px</p><p class="state__t">Menor Android popular no Brasil — tudo precisa funcionar nessa tela.</p></div>
+    </div>
+  </section>
+
+  <!-- ── PROTÓTIPO ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="proto">
+    <p class="case-eyebrow">Protótipo</p>
+    <h2 class="case-title" id="proto">Do conceito à <em>tela navegável</em></h2>
+    <p class="prose" style="margin-bottom:28px">O fluxo completo foi prototipado: cinco perguntas conduzidas, resultado personalizado e guia de ação. Os mockups das telas-chave ocupam os slots abaixo, prontos para receber as capturas finais.</p>
+    <div class="grid-4" style="gap:16px">
+      <div class="img-slot" style="aspect-ratio:9/18;border-radius:18px"><span class="img-slot__note">Entrada · vazio</span></div>
+      <div class="img-slot" style="aspect-ratio:9/18;border-radius:18px"><span class="img-slot__note">Pergunta · em progresso</span></div>
+      <div class="img-slot" style="aspect-ratio:9/18;border-radius:18px"><span class="img-slot__note">Resultado positivo</span></div>
+      <div class="img-slot" style="aspect-ratio:9/18;border-radius:18px"><span class="img-slot__note">Detalhe · guia de ação</span></div>
+    </div>
+  </section>
+
+  <!-- ── FECHAMENTO ── -->
+  <section class="case-closing reveal" aria-labelledby="fim">
+    <div class="case-closing__inner">
+      <p class="case-closing__eyebrow" id="fim">Aprendizado</p>
+      <p class="case-closing__quote">Acessibilidade não é um recurso adicional na interface. Para quem o sistema esqueceu, ela é a diferença entre acessar um direito e desistir dele.</p>
+      <div class="case-closing__rule"></div>
+      <p class="case-closing__text">Projetar para o usuário de baixo letramento digital obriga a justificar cada decisão pelo público real — e expõe quantas convenções de UX existem por hábito, não por evidência.</p>
+      <div class="case-closing__links">
+        <a class="btn" href="../index.html#cases">← Todos os cases</a>
+        <a class="btn btn--fill" href="jornada-integrada.html">Próximo: Jornada Integrada →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p>© 2026 Luara Oliveira</p>
+    <p>Desenhado, codificado e publicado por mim.</p>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

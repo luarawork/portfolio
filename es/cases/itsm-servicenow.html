@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Jornada del Usuario en ITSM — Service Design · Luara Oliveira</title>
+<meta name="description" content="Estructuración de la jornada del usuario en ServiceNow: gobernanza y buenas prácticas convirtiendo la resistencia en adopción estructurada. +20% de satisfacción en el NPS interno."/>
+<link rel="canonical" href="https://luaraoliveira.com/es/cases/itsm-servicenow.html"/>
+
+<link rel="alternate" hreflang="pt-BR" href="https://luaraoliveira.com/cases/itsm-servicenow.html"/>
+<link rel="alternate" hreflang="en" href="https://luaraoliveira.com/en/cases/itsm-servicenow.html"/>
+<link rel="alternate" hreflang="es" href="https://luaraoliveira.com/es/cases/itsm-servicenow.html"/>
+<link rel="alternate" hreflang="x-default" href="https://luaraoliveira.com/cases/itsm-servicenow.html"/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:locale" content="es_ES"/>
+<meta property="og:title" content="Jornada del Usuario en ITSM — Service Design"/>
+<meta property="og:description" content="Gobernanza y buenas prácticas convirtiendo la resistencia en adopción estructurada. +20% de satisfacción en el NPS interno."/>
+<meta property="og:image" content="https://luaraoliveira.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="../../assets/css/base.css"/>
+<link rel="stylesheet" href="../../assets/css/case.css"/>
+
+<!-- ── Cor-assinatura: teal / petróleo, inspirado no ServiceNow ── -->
+<style>
+:root {
+  --bg-base:#081c1a; --bg-card:#0f2926; --bg-hover:#143430;
+  --accent-primary:#4db8a8; --accent-bright:#6dd0c0; --accent-secondary:#4db8a8;
+  --text-primary:#e8f0ee; --text-body:#a3b8b3; --text-meta:#8aa39d;
+  --line-soft:rgba(77,184,168,.20); --line-hair:rgba(77,184,168,.09);
+  --tint-accent:rgba(77,184,168,.07); --tint-strong:rgba(77,184,168,.13);
+  --nav-bg:rgba(8,28,26,.86); --grid-rgb:77,184,168;
+  --serif:'Playfair Display',Georgia,serif;
+}
+/* Camadas (sistema / usuário / processo) */
+.layers { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.layer { background:var(--bg-card); border:1px solid var(--line-soft); border-top:2px solid var(--accent-primary); border-radius:var(--radius); padding:24px 26px; }
+.layer__tag { font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-secondary); margin-bottom:10px; }
+.layer__title { font-family:var(--serif); font-size:20px; color:var(--text-primary); margin-bottom:8px; }
+.layer__text { font-size:14px; color:var(--text-body); line-height:1.6; }
+/* Pontos de atrito */
+.friction-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line-soft); border:1px solid var(--line-soft); border-radius:var(--radius); overflow:hidden; }
+.friction { background:var(--bg-card); padding:22px 24px; }
+.friction__n { font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-secondary); margin-bottom:10px; }
+.friction__t { font-size:14px; color:var(--text-body); line-height:1.6; }
+/* Ciclo */
+.loop { background:var(--bg-card); border:1px solid var(--line-soft); border-radius:var(--radius); padding:36px 38px; text-align:center; }
+.loop__icon { width:52px; height:52px; border:2px solid var(--accent-primary); border-radius:50%; border-top-color:transparent; margin:0 auto 22px; }
+.loop__title { font-family:var(--serif); font-size:22px; color:var(--text-primary); margin-bottom:14px; }
+.loop__desc { font-size:15px; color:var(--text-body); line-height:1.7; max-width:60ch; margin:0 auto; }
+/* Impacto */
+.imp-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.imp { background:var(--bg-card); border:1px solid var(--line-soft); border-radius:var(--radius); padding:26px; }
+.imp__n { font-family:var(--serif); font-weight:600; font-size:42px; line-height:1; color:var(--accent-primary); margin-bottom:14px; }
+.imp__l { font-size:13px; color:var(--text-body); line-height:1.6; }
+.imp--wide { grid-column:1 / -1; display:grid; grid-template-columns:1fr 1fr; gap:30px; }
+@media (max-width:760px){ .layers{grid-template-columns:1fr} .friction-grid{grid-template-columns:1fr} .imp-grid{grid-template-columns:1fr 1fr} .imp--wide{grid-template-columns:1fr} }
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Saltar al contenido</a>
+
+<nav class="nav" aria-label="Navegación principal">
+  <a class="nav__brand" href="../index.html">Luara Oliveira</a>
+  <div class="nav__right">
+    <div class="nav__socials">
+      <a class="icon-btn" href="https://www.linkedin.com/in/luaraoliveir/" target="_blank" rel="noopener" aria-label="LinkedIn (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg></a>
+      <a class="icon-btn" href="https://www.behance.net/aluar" target="_blank" rel="noopener" aria-label="Behance (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 8.6c.5 0 .96.04 1.38.13.42.08.77.22 1.07.42.3.2.53.46.7.8.16.34.24.76.24 1.27 0 .55-.13 1-.38 1.37-.25.36-.62.66-1.1.88.66.2 1.16.53 1.5 1 .33.47.5 1.04.5 1.7 0 .54-.1 1-.32 1.4-.2.4-.49.72-.84.97-.36.25-.77.43-1.23.55-.46.12-.93.18-1.4.18H2V8.6h6.2zm-.37 4.04c.42 0 .76-.1 1.03-.3.27-.2.4-.53.4-.97 0-.25-.04-.45-.13-.6a.94.94 0 0 0-.36-.37 1.5 1.5 0 0 0-.5-.18 3.4 3.4 0 0 0-.6-.05H4.84v2.47h2.99zm.16 4.24c.23 0 .45-.02.66-.07.2-.04.39-.12.54-.23.15-.1.28-.25.37-.43.09-.18.13-.41.13-.69 0-.54-.15-.93-.46-1.16-.3-.23-.71-.34-1.22-.34h-3.4v2.92h3.38zM16.4 16.6c.36.35.88.52 1.55.52.48 0 .9-.12 1.25-.36.35-.24.56-.5.64-.76h2.05c-.33 1.02-.83 1.74-1.51 2.18-.68.44-1.5.66-2.46.66-.67 0-1.27-.1-1.81-.32a3.8 3.8 0 0 1-1.37-.92 4.1 4.1 0 0 1-.86-1.42 5.2 5.2 0 0 1-.3-1.82c0-.64.1-1.24.31-1.78.2-.55.5-1.02.88-1.42.38-.4.83-.71 1.36-.94a4.5 4.5 0 0 1 1.78-.34c.71 0 1.33.14 1.86.41.53.28.96.65 1.3 1.12.34.47.58 1 .73 1.6.15.6.2 1.22.16 1.88h-6.1c0 .68.23 1.25.6 1.6zm2.72-4.36c-.28-.31-.74-.48-1.32-.48-.38 0-.7.07-.95.2-.25.13-.46.29-.61.48-.15.19-.26.39-.32.6-.06.21-.1.4-.11.57h3.78c-.06-.59-.25-1.04-.47-1.37zM15 8.9h4.74v1.16H15V8.9z"/></svg></a>
+      <a class="icon-btn" href="../em-construcao.html" aria-label="GitHub (en construcción)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.57 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.33-1.73-1.33-1.73-1.09-.73.08-.71.08-.71 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6 0c2.28-1.53 3.29-1.21 3.29-1.21.66 1.64.24 2.86.12 3.16.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.52-5.49 5.81.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .32.21.69.83.57A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg></a>
+      <a class="icon-btn" href="http://wa.me/5584998468414" target="_blank" rel="noopener" aria-label="WhatsApp (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.87 11.87 0 0 1-1.59-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.42 3.49 11.82 11.82 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.69-1.45L.06 24zm6.6-3.8c1.68.99 3.28 1.59 5.4 1.59 5.45 0 9.89-4.43 9.89-9.88a9.86 9.86 0 0 0-9.88-9.89c-5.46 0-9.9 4.44-9.9 9.89 0 2.23.65 3.9 1.75 5.65l-1 3.66 3.74-.98zm11.39-5.55c-.07-.12-.27-.2-.56-.34-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.07 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41z"/></svg></a>
+    </div>
+    <div class="lang" role="group" aria-label="Seleccionar idioma">
+      <a href="../../cases/itsm-servicenow.html" hreflang="pt-BR" lang="pt-BR">PT</a>
+      <a href="../../en/cases/itsm-servicenow.html" hreflang="en" lang="en">EN</a>
+      <a href="itsm-servicenow.html" hreflang="es" aria-current="true" lang="es">ES</a>
+    </div>
+  </div>
+</nav>
+
+<main id="conteudo">
+
+  <a class="case-fab" href="../index.html#cases">Portafolio</a>
+  <header class="case-hero" data-screen-label="Caso ITSM ServiceNow">
+    <div class="case-hero__top">
+      <span class="selo selo--real">Cliente real</span>
+      <span class="case-hero__track">Service Design · ITSM</span>
+    </div>
+    <h1 class="case-hero__title">Jornada del usuario <em>en ITSM</em></h1>
+    <p class="case-hero__lead">ServiceNow como plataforma de transformación de la experiencia de servicio — gobernanza y buenas prácticas convirtiendo la resistencia en adopción estructurada y duradera.</p>
+    <div class="case-hero__tags tags" aria-label="Disciplinas tratadas">
+      <span class="tag">ServiceNow</span><span class="tag">ITIL</span><span class="tag">Gestión del Cambio</span><span class="tag">EX</span><span class="tag">Gobernanza</span><span class="tag">Automatización</span>
+    </div>
+    <div class="case-meta">
+      <div class="case-meta__item"><p class="case-meta__label">Sector</p><p class="case-meta__value">Corporativo /<br>Producto interno</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Plataforma</p><p class="case-meta__value">ServiceNow ITSM<br>Framework ITIL</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Actuación</p><p class="case-meta__value">Técnica, estratégica<br>y de gestión</p></div>
+      <div class="case-meta__item"><p class="case-meta__label">Resultado clave</p><p class="case-meta__value">NPS interno<br><strong>+20% de satisfacción</strong></p></div>
+    </div>
+  </header>
+
+  <!-- ── CONTEXTO ── -->
+  <section class="case-section reveal" aria-labelledby="ctx">
+    <p class="case-eyebrow">Contexto</p>
+    <h2 class="case-title">Una plataforma robusta. <em>Subutilizada.</em></h2>
+    <div class="prose">
+      <p>ServiceNow estaba implementado. Los procesos existían. El catálogo de servicios estaba estructurado. Las directrices de gobernanza seguían las buenas prácticas del framework de gestión de servicios de TI. Y aun así, los usuarios no operaban el sistema como debían — o simplemente no lo utilizaban.</p>
+      <p>El problema no era la herramienta. Era la distancia entre el usuario y el servicio: templates que no dialogaban con los problemas reales, una taxonomía desconectada del vocabulario cotidiano de quien necesitaba abrir un ticket, y la percepción difusa de que esquivar el portal era más eficiente que utilizarlo correctamente.</p>
+      <p>En un entorno corporativo de gran porte, esa distancia tiene un costo medible: tickets mal clasificados, reasignaciones en cadena, reaperturas recurrentes, tiempos de atención dilatados y equipos de soporte sobrecargados con un triaje que debería resolverse en el origen.</p>
+    </div>
+    <p class="pull">“El usuario no se resistía al sistema. Se resistía a la fricción que el sistema imponía — y al desconocimiento del costo que esa resistencia generaba para todos.”</p>
+    <div class="prose">
+      <p>El proyecto nació de la necesidad de invertir esa ecuación — no solo técnicamente, sino a través de la lente de la experiencia y la gobernanza. Hacer de ServiceNow un portal que el usuario <strong>elegiría</strong> usar, comprendiendo por qué importaba para sí mismo y para la organización.</p>
+    </div>
+  </section>
+
+  <!-- ── DIAGNÓSTICO ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="diag">
+    <p class="case-eyebrow">Diagnóstico</p>
+    <h2 class="case-title">Dónde estaba <em>la fricción</em></h2>
+    <p class="prose" style="margin-bottom:30px">El punto de partida fue mapear los puntos de fricción reales en la jornada — sin asumir el problema a priori, sino identificando sistemáticamente dónde el comportamiento se desviaba del flujo esperado y cuáles eran las consecuencias operativas de esa desviación.</p>
+    <div class="friction-grid">
+      <div class="friction"><p class="friction__n">Punto de fricción 01</p><p class="friction__t">Tickets abiertos con los templates incorrectos, generando reasignaciones sucesivas y prolongando el tiempo de resolución, con impacto directo en los SLAs.</p></div>
+      <div class="friction"><p class="friction__n">Punto de fricción 02</p><p class="friction__t">Baja adherencia al portal: los usuarios preferían el contacto directo por e-mail o canales informales, esquivando el flujo estructurado y comprometiendo la trazabilidad y la gobernanza.</p></div>
+      <div class="friction"><p class="friction__n">Punto de fricción 03</p><p class="friction__t">Reaperturas recurrentes — síntoma de atención prestada sin resolución efectiva, frecuentemente causada por un triaje impreciso desde la apertura.</p></div>
+      <div class="friction"><p class="friction__n">Punto de fricción 04</p><p class="friction__t">Ausencia de correspondencia entre el vocabulario natural del usuario y la taxonomía del sistema. El usuario no sabía nombrar su problema en los términos del portal.</p></div>
+      <div class="friction"><p class="friction__n">Punto de fricción 05</p><p class="friction__t">Templates con campos excesivos o desalineados con el proceso real, aumentando la fricción en la apertura y contribuyendo al abandono o al llenado inadecuado.</p></div>
+      <div class="friction"><p class="friction__n">Punto de fricción 06</p><p class="friction__t">Desconocimiento de la lógica del proceso ITSM: cómo se enrutan los tickets, el impacto de la clasificación correcta y el papel de cada etapa en la resolución.</p></div>
+    </div>
+    <p class="prose" style="margin-top:28px">El diagnóstico evidenció que la fricción no estaba concentrada en un único punto, sino distribuida a lo largo de toda la experiencia de apertura y seguimiento — desde la intención inicial del usuario hasta la resolución efectiva y el cierre con calidad.</p>
+  </section>
+
+  <!-- ── ABORDAGEM ── -->
+  <section class="case-section reveal" aria-labelledby="abord">
+    <p class="case-eyebrow">Enfoque</p>
+    <h2 class="case-title">La adopción no se impone. <em>Se estructura.</em></h2>
+    <p class="prose" style="margin-bottom:30px">La hipótesis central fue que la adopción sostenida exige intervención simultánea en tres capas. Actuar en una sola produciría resultados parciales y no sostenibles.</p>
+    <div class="layers">
+      <div class="layer"><p class="layer__tag">Capa 01</p><p class="layer__title">Sistema</p><p class="layer__text">Estructura, templates y automatización. Hacer que el camino correcto sea genuinamente más fácil de recorrer.</p></div>
+      <div class="layer"><p class="layer__tag">Capa 02</p><p class="layer__title">Usuario</p><p class="layer__text">Comprensión, comportamiento y autonomía. Claridad sobre por qué el nuevo camino es mejor que el atajo.</p></div>
+      <div class="layer"><p class="layer__tag">Capa 03</p><p class="layer__title">Proceso</p><p class="layer__text">Flujo, gobernanza y buenas prácticas de gestión de servicios, alineadas con los requisitos de la organización.</p></div>
+    </div>
+    <p class="pull pull--center" style="margin-top:40px">“Ningún cambio de comportamiento se sostiene sin claridad sobre por qué el nuevo camino es mejor que el atajo — y sin que el sistema haga ese camino genuinamente más fácil de recorrer.”<span class="pull__rule"></span></p>
+  </section>
+
+  <!-- ── INICIATIVAS ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="init">
+    <p class="case-eyebrow">Iniciativas</p>
+    <h2 class="case-title">Los pilares <em>de ejecución</em></h2>
+    <div style="margin-top:8px">
+      <div class="pillar">
+        <div class="pillar__num">01</div>
+        <div>
+          <h3 class="pillar__title">Análisis comportamental y mapeo semántico</h3>
+          <p class="pillar__text">La investigación reveló un patrón consistente: al acceder al portal, el usuario quería escribir el problema con sus propias palabras y encontrar el template a partir de ahí, sin conocer la taxonomía del sistema. Ese insight fundamentó el mapeo semántico — el relevamiento de las expresiones y variaciones lingüísticas usadas para describir cada categoría, vinculadas directamente a los templates correspondientes. El resultado fue una capa de facilitación que eliminó la dependencia del conocimiento previo de la estructura del catálogo.</p>
+          <div class="pillar__tags tags"><span class="tag">Comportamiento del Usuario</span><span class="tag">Estructura del Sistema</span></div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__num">02</div>
+        <div>
+          <h3 class="pillar__title">Reestructuración y racionalización de los templates</h3>
+          <p class="pillar__text">Auditoría completa del catálogo, revisando cada template en cuanto a su adherencia al proceso real y a la calidad del llenado. Se eliminaron campos redundantes, preguntas fuera de alcance y etapas que creaban fricción sin agregar valor. La racionalización redujo el tiempo de apertura, disminuyó los errores de clasificación y aumentó la completitud de la información entregada a los equipos.</p>
+          <div class="pillar__tags tags"><span class="tag">Catálogo de Servicios</span><span class="tag">Gobernanza ITIL</span></div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__num">03</div>
+        <div>
+          <h3 class="pillar__title">Automatización de procesos e integración de plataformas</h3>
+          <p class="pillar__text">Mapeo y automatización de flujos de alto volumen — incidentes y solicitudes de distintas complejidades — para reducir el tiempo de resolución y garantizar consistencia. Una parte esencial fue mapear plataformas externas a integrar con ServiceNow: la integración con SailPoint IdentityIQ (IIQ), por ejemplo, automatizó tickets de identidad y acceso, eliminando etapas manuales. La priorización siguió el volumen, la criticidad y el impacto en el SLA.</p>
+          <div class="pillar__tags tags"><span class="tag">Automatización</span><span class="tag">Integración de Sistemas</span><span class="tag">Eficiencia Operativa</span></div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__num">04</div>
+        <div>
+          <h3 class="pillar__title">Programa de educación, comunicación y gestión del cambio</h3>
+          <p class="pillar__text">Programa estructurado de comunicación interna y gestión del cambio — campañas dirigidas, comunicaciones por e-mail, materiales de apoyo y guías de uso. La estrategia fue más allá del “cómo usar”: explicó la lógica del proceso ITSM, el impacto de la clasificación correcta en el tiempo de atención y las consecuencias de esquivar el flujo. Hacer visible la lógica para el usuario final fue condición para que el cambio de comportamiento se sostuviera.</p>
+          <div class="pillar__tags tags"><span class="tag">Gestión del Cambio</span><span class="tag">Comunicación Interna</span></div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__num">05</div>
+        <div>
+          <h3 class="pillar__title">Capacitación de proveedores</h3>
+          <p class="pillar__text">Formación de los equipos proveedores responsables de la atención, garantizando que las mejoras en la jornada de apertura tuvieran correspondencia en la calidad y consistencia de la atención prestada. La adopción solo se consolida cuando ambos extremos de la jornada operan con el mismo entendimiento.</p>
+          <div class="pillar__tags tags"><span class="tag">Capacitación</span><span class="tag">Gobernanza de Proveedores</span></div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__num">06</div>
+        <div>
+          <h3 class="pillar__title">Expansión de la base de conocimiento</h3>
+          <p class="pillar__text">Estructuración de la base de conocimiento como infraestructura permanente de la jornada — no un recurso periférico, sino una capa de soporte disponible en cualquier fase. Artículos, documentación técnica por categoría y materiales de autoservicio hicieron al usuario progresivamente más autónomo, reduciendo la dependencia del contacto directo con el soporte.</p>
+          <div class="pillar__tags tags"><span class="tag">Knowledge Management</span><span class="tag">Autoservicio</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SUSTENTAÇÃO ── -->
+  <section class="case-section reveal" aria-labelledby="sust">
+    <p class="case-eyebrow">Sostenimiento</p>
+    <h2 class="case-title">No un proyecto. <em>Un proceso.</em></h2>
+    <p class="prose" style="margin-bottom:30px">Uno de los riesgos más comunes en las iniciativas de adopción es tratar el cambio como un evento: algo que ocurre, produce resultados y se cierra. La lógica aquí fue estructuralmente diferente.</p>
+    <div class="loop">
+      <div class="loop__icon" aria-hidden="true"></div>
+      <h3 class="loop__title">Ciclo de mejora continua</h3>
+      <p class="loop__desc">Desde los primeros cambios, se estableció un ciclo sistemático de monitoreo y ajuste — siguiendo métricas de uso, identificando nuevos puntos de fricción y revisando templates, automatizaciones y materiales a medida que el comportamiento de los usuarios evolucionaba. Ese ciclo sigue activo, incorporado a la rutina de gestión del portal.</p>
+    </div>
+    <p class="prose" style="margin-top:28px">El sostenimiento transforma un resultado puntual en madurez operativa. Lo que empezó como intervención se volvió práctica institucionalizada — y es esa distinción la que caracteriza una transformación real de proceso.</p>
+  </section>
+
+  <!-- ── IMPACTO ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="imp">
+    <p class="case-eyebrow">Impacto</p>
+    <h2 class="case-title">Lo que <em>cambió</em></h2>
+    <div class="imp-grid">
+      <div class="imp"><div class="imp__n">+20%</div><p class="imp__l">de satisfacción en el NPS interno, midiendo la percepción de los usuarios sobre la calidad del soporte y la experiencia con el portal.</p></div>
+      <div class="imp"><div class="imp__n">↑</div><p class="imp__l">Aumento medible en la adherencia a ServiceNow como canal oficial de apertura y seguimiento de tickets.</p></div>
+      <div class="imp"><div class="imp__n">↓</div><p class="imp__l">Reducción del tiempo medio de atención, con caída en el volumen de reasignaciones y en las reaperturas por resolución incompleta.</p></div>
+      <div class="imp"><div class="imp__n">↓</div><p class="imp__l">Reducción de tickets mal clasificados en la apertura, con mejora en la precisión del enrutamiento y en la completitud de la información.</p></div>
+      <div class="imp imp--wide">
+        <p style="font-size:16px;color:var(--text-primary);line-height:1.7">Más allá de los indicadores cuantitativos, la transformación más relevante fue estructural: el portal dejó de percibirse como una exigencia burocrática y pasó a reconocerse como el camino más eficiente para resolver un problema — que es, en esencia, el objetivo de cualquier iniciativa de adopción exitosa.</p>
+        <p class="imp__l" style="align-self:center">Equipos de soporte con triaje más preciso, usuarios con mayor autonomía operativa y un proceso de atención con más previsibilidad y trazabilidad de inicio a fin.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── APRENDIZADO ── -->
+  <section class="case-section reveal" aria-labelledby="apr">
+    <p class="case-eyebrow">Aprendizaje</p>
+    <h2 class="case-title">Lo que el proyecto <em>consolidó</em></h2>
+    <div class="highlight">
+      <ul>
+        <li><span class="mk">i.</span><span>La adopción es un problema de diseño y gobernanza, no solo de formación. Capacitar al usuario sin simplificar el sistema y estructurar el proceso produce esfuerzo sin resultado duradero — las tres dimensiones deben integrarse.</span></li>
+        <li><span class="mk">ii.</span><span>El lenguaje del usuario es dato de proyecto, no detalle de implementación. Un template técnicamente correcto con terminología desconocida sigue produciendo fricción y error. El mapeo comportamental partió de cómo piensa el usuario, no de cómo se organiza el sistema.</span></li>
+        <li><span class="mk">iii.</span><span>La transformación de proceso exige acción en ambos extremos de la jornada. Mejorar la experiencia de quien abre tickets sin capacitar a quien los recibe es intervenir en la mitad del sistema.</span></li>
+        <li><span class="mk">iv.</span><span>La automatización sin mapeo de integraciones es automatización incompleta. Identificar plataformas externas a conectar (como SailPoint IIQ) fue condición para generar impacto real, no solo desplazar trabajo manual.</span></li>
+        <li><span class="mk">v.</span><span>Un resultado sostenible exige infraestructura de escucha y revisión continua. El ciclo de monitoreo garantizó que las mejoras siguieran siendo relevantes a medida que el entorno evolucionaba.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── FECHAMENTO ── -->
+  <section class="case-closing reveal" aria-labelledby="fim">
+    <div class="case-closing__inner">
+      <p class="case-closing__eyebrow" id="fim">Síntesis</p>
+      <p class="case-closing__quote">La adopción sostenida no nace de un sistema impuesto, sino de un sistema que el usuario elige usar porque lo entiende, y porque el camino correcto es el más fácil.</p>
+      <div class="case-closing__rule"></div>
+      <p class="case-closing__text">El Service Design en ITSM es, al final, el trabajo de alinear sistema, usuario y proceso hasta que la gobernanza y la experiencia apunten al mismo lugar.</p>
+      <div class="case-closing__links">
+        <a class="btn" href="../index.html#cases">← Todos los casos</a>
+        <a class="btn btn--fill" href="acessabr.html">Siguiente: AcessaBR →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p>© 2026 Luara Oliveira</p>
+    <p>Diseñado, programado y publicado por mí.</p>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>

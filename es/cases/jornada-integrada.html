@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Jornada Integrada — Service Design · Luara Oliveira</title>
+<meta name="description" content="Rediseño sistémico del onboarding de una plataforma B2B de MDM, disolviendo silos entre preventa, activación y retención. Time-to-Value 30% más rápido."/>
+<link rel="canonical" href="https://luaraoliveira.com/es/cases/jornada-integrada.html"/>
+
+<link rel="alternate" hreflang="pt-BR" href="https://luaraoliveira.com/cases/jornada-integrada.html"/>
+<link rel="alternate" hreflang="en" href="https://luaraoliveira.com/en/cases/jornada-integrada.html"/>
+<link rel="alternate" hreflang="es" href="https://luaraoliveira.com/es/cases/jornada-integrada.html"/>
+<link rel="alternate" hreflang="x-default" href="https://luaraoliveira.com/cases/jornada-integrada.html"/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:locale" content="es_ES"/>
+<meta property="og:title" content="Jornada Integrada — Service Design"/>
+<meta property="og:description" content="Rediseño sistémico del onboarding de una plataforma B2B de MDM. Time-to-Value 30% más rápido."/>
+<meta property="og:image" content="https://luaraoliveira.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="../../assets/css/base.css"/>
+<link rel="stylesheet" href="../../assets/css/case.css"/>
+
+<!-- ── Cor-assinatura: verde profundo + dourado-champagne (editorial sênior) ── -->
+<style>
+:root {
+  --bg-base:#0d1f1a; --bg-card:#142b25; --bg-hover:#1a3830;
+  --accent-primary:#c9a961; --accent-bright:#dcc07f; --accent-secondary:#c9a961;
+  --text-primary:#f4f1e8; --text-body:#b8c2bc; --text-meta:#93a39a;
+  --line-soft:rgba(201,169,97,.20); --line-hair:rgba(201,169,97,.09);
+  --tint-accent:rgba(201,169,97,.07); --tint-strong:rgba(201,169,97,.14);
+  --nav-bg:rgba(13,31,26,.86); --grid-rgb:201,169,97;
+  --serif:'Playfair Display',Georgia,serif;
+}
+/* Visuais bespoke deste case (diagrama de carga + blueprint em camadas) */
+.load-diagram { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.load-col__label { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-meta); margin-bottom: 12px; }
+.load-col--new .load-col__label { color: var(--accent-primary); }
+.load-col__head { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--text-primary); margin-bottom: 20px; }
+.load-bars { position: relative; height: 132px; margin-bottom: 18px; }
+.load-bar { position: absolute; border-radius: 3px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #0d1f1a; font-size: 9.5px; line-height: 1.25; padding: 2px; }
+.load-bar small { opacity: .8; font-size: 8.5px; }
+.load-col__note { font-size: 12.5px; line-height: 1.6; color: var(--text-meta); font-style: italic; }
+.load-col--new .load-col__note { color: var(--accent-primary); }
+
+.bp { background: var(--bg-base); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 30px 26px; }
+.bp__row { display: grid; grid-template-columns: 130px repeat(4, 1fr); gap: 12px; align-items: center; }
+.bp__row + .bp__row { margin-top: 10px; }
+.bp__phase { text-align: center; }
+.bp__phase-num { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; color: var(--accent-primary); margin-bottom: 5px; }
+.bp__phase-name { font-size: 12.5px; color: var(--text-primary); font-weight: 500; }
+.bp__team { font-family: var(--serif); font-style: italic; font-size: 12px; color: var(--text-meta); }
+.bp__cell { height: 30px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 9.5px; color: #0d1f1a; font-weight: 500; }
+.bp__cell--lead { background: var(--accent-primary); }
+.bp__cell--part { background: var(--accent-primary); opacity: .6; }
+.bp__cell--obs  { background: var(--accent-primary); opacity: .38; }
+.bp__cell--always { background: var(--accent-primary); opacity: .5; }
+.bp__cell--off  { border: 1px dashed var(--line-soft); }
+.bp__legend { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; border-top: 1px solid var(--line-hair); margin-top: 22px; padding-top: 18px; }
+.bp__legend-item { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-body); }
+.bp__chip { width: 18px; height: 10px; border-radius: 2px; background: var(--accent-primary); }
+@media (max-width: 760px) {
+  .load-diagram { grid-template-columns: 1fr; gap: 28px; }
+  .bp { overflow-x: auto; }
+  .bp__row { grid-template-columns: 92px repeat(4, minmax(64px,1fr)); min-width: 460px; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Saltar al contenido</a>
+
+<!-- ── NAV (esqueleto compartilhado) ── -->
+<nav class="nav" aria-label="Navegación principal">
+  <a class="nav__brand" href="../index.html">Luara Oliveira</a>
+  <div class="nav__right">
+    <div class="nav__socials">
+      <a class="icon-btn" href="https://www.linkedin.com/in/luaraoliveir/" target="_blank" rel="noopener" aria-label="LinkedIn (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg></a>
+      <a class="icon-btn" href="https://www.behance.net/aluar" target="_blank" rel="noopener" aria-label="Behance (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 8.6c.5 0 .96.04 1.38.13.42.08.77.22 1.07.42.3.2.53.46.7.8.16.34.24.76.24 1.27 0 .55-.13 1-.38 1.37-.25.36-.62.66-1.1.88.66.2 1.16.53 1.5 1 .33.47.5 1.04.5 1.7 0 .54-.1 1-.32 1.4-.2.4-.49.72-.84.97-.36.25-.77.43-1.23.55-.46.12-.93.18-1.4.18H2V8.6h6.2zm-.37 4.04c.42 0 .76-.1 1.03-.3.27-.2.4-.53.4-.97 0-.25-.04-.45-.13-.6a.94.94 0 0 0-.36-.37 1.5 1.5 0 0 0-.5-.18 3.4 3.4 0 0 0-.6-.05H4.84v2.47h2.99zm.16 4.24c.23 0 .45-.02.66-.07.2-.04.39-.12.54-.23.15-.1.28-.25.37-.43.09-.18.13-.41.13-.69 0-.54-.15-.93-.46-1.16-.3-.23-.71-.34-1.22-.34h-3.4v2.92h3.38zM16.4 16.6c.36.35.88.52 1.55.52.48 0 .9-.12 1.25-.36.35-.24.56-.5.64-.76h2.05c-.33 1.02-.83 1.74-1.51 2.18-.68.44-1.5.66-2.46.66-.67 0-1.27-.1-1.81-.32a3.8 3.8 0 0 1-1.37-.92 4.1 4.1 0 0 1-.86-1.42 5.2 5.2 0 0 1-.3-1.82c0-.64.1-1.24.31-1.78.2-.55.5-1.02.88-1.42.38-.4.83-.71 1.36-.94a4.5 4.5 0 0 1 1.78-.34c.71 0 1.33.14 1.86.41.53.28.96.65 1.3 1.12.34.47.58 1 .73 1.6.15.6.2 1.22.16 1.88h-6.1c0 .68.23 1.25.6 1.6zm2.72-4.36c-.28-.31-.74-.48-1.32-.48-.38 0-.7.07-.95.2-.25.13-.46.29-.61.48-.15.19-.26.39-.32.6-.06.21-.1.4-.11.57h3.78c-.06-.59-.25-1.04-.47-1.37zM15 8.9h4.74v1.16H15V8.9z"/></svg></a>
+      <a class="icon-btn" href="../em-construcao.html" aria-label="GitHub (en construcción)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.57 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.33-1.73-1.33-1.73-1.09-.73.08-.71.08-.71 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6 0c2.28-1.53 3.29-1.21 3.29-1.21.66 1.64.24 2.86.12 3.16.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.52-5.49 5.81.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .32.21.69.83.57A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg></a>
+      <a class="icon-btn" href="http://wa.me/5584998468414" target="_blank" rel="noopener" aria-label="WhatsApp (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.87 11.87 0 0 1-1.59-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.42 3.49 11.82 11.82 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.69-1.45L.06 24zm6.6-3.8c1.68.99 3.28 1.59 5.4 1.59 5.45 0 9.89-4.43 9.89-9.88a9.86 9.86 0 0 0-9.88-9.89c-5.46 0-9.9 4.44-9.9 9.89 0 2.23.65 3.9 1.75 5.65l-1 3.66 3.74-.98zm11.39-5.55c-.07-.12-.27-.2-.56-.34-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.07 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41z"/></svg></a>
+    </div>
+    <div class="lang" role="group" aria-label="Seleccionar idioma">
+      <a href="../../cases/jornada-integrada.html" hreflang="pt-BR" lang="pt-BR">PT</a>
+      <a href="../../en/cases/jornada-integrada.html" hreflang="en" lang="en">EN</a>
+      <a href="jornada-integrada.html" hreflang="es" aria-current="true" lang="es">ES</a>
+    </div>
+  </div>
+</nav>
+
+<main id="conteudo">
+
+  <!-- ── HERO ── -->
+  <a class="case-fab" href="../index.html#cases">Portafolio</a>
+  <header class="case-hero" data-screen-label="Caso Jornada Integrada">
+    <div class="case-hero__top">
+      <span class="selo selo--real">Cliente real</span>
+      <span class="case-hero__track">Service Design · SaaS</span>
+    </div>
+    <h1 class="case-hero__title">Jornada <em>Integrada</em></h1>
+    <p class="case-hero__lead">Rediseño sistémico del onboarding de una plataforma B2B de MDM, disolviendo los silos entre preventa, activación y retención.</p>
+    <div class="case-hero__tags tags" aria-label="Disciplinas tratadas">
+      <span class="tag">Service Blueprint</span>
+      <span class="tag">Investigación</span>
+      <span class="tag">Cocreación</span>
+      <span class="tag">Onboarding</span>
+      <span class="tag">AS-IS / TO-BE</span>
+    </div>
+    <div class="case-meta">
+      <div class="case-meta__item">
+        <p class="case-meta__label">Rol</p>
+        <p class="case-meta__value">Service Designer<br>Co-líder del rediseño</p>
+      </div>
+      <div class="case-meta__item">
+        <p class="case-meta__label">Equipos involucrados</p>
+        <p class="case-meta__value">Ventas, Onboarding,<br>Soporte y Customer Success</p>
+      </div>
+      <div class="case-meta__item">
+        <p class="case-meta__label">Métodos</p>
+        <p class="case-meta__value">Service blueprint,<br>jornada AS-IS / TO-BE</p>
+      </div>
+      <div class="case-meta__item">
+        <p class="case-meta__label">Resultado clave</p>
+        <p class="case-meta__value">Time-to-Value<br><strong>30% más rápido</strong></p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── CONTEXTO ── -->
+  <section class="case-section reveal" aria-labelledby="ctx">
+    <p class="case-eyebrow">Contexto</p>
+    <h2 class="case-title" id="ctx">El síntoma y el sistema</h2>
+    <div class="lead-cols prose">
+      <div>
+        <p>La plataforma es un MDM corporativo, contratado por empresas para gestionar flotas de dispositivos móviles. La diversidad de clientes era extrema: grandes corporativos, empresas de tecnología, organismos públicos, redes educativas, bancos, operadores logísticos, industrias y muchos otros segmentos. Cada uno con sus propias reglas de compliance, escala de operación y expectativa de soporte.</p>
+        <p>El síntoma más visible era la baja conversión de leads. La investigación reveló una causa estructural: el servicio operaba en secuencia lineal, mientras que la expectativa del cliente exigía capas simultáneas. Cada hand-off cargaba pérdida de contexto, retrabajo y debilitamiento del vínculo construido antes.</p>
+      </div>
+      <div class="highlight" style="margin:0">
+        <p class="highlight__label">Fricciones mapeadas en el AS-IS</p>
+        <ul>
+          <li><span class="mk">i.</span> Onboarding como gate de pago: el cliente llegaba sin conocimiento previo</li>
+          <li><span class="mk">ii.</span> Soporte ausente de la preventa, generando deuda técnica en el onboarding</li>
+          <li><span class="mk">iii.</span> Hand-off a retención como ruptura del vínculo, no transferencia</li>
+          <li><span class="mk">iv.</span> POC genérica que no creaba anclaje en el producto</li>
+          <li><span class="mk">v.</span> Base de conocimiento insuficiente para sostener la autonomía</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HIPÓTESE ── -->
+  <section class="case-section case-section--band reveal">
+    <p class="case-eyebrow" style="text-align:center">Hipótesis de diseño</p>
+    <p class="pull pull--center">Si los equipos operan en superposición planificada, y no en secuencia, la jornada del cliente deja de tener costuras visibles y cada fase se vuelve acumulación, no sustitución.<span class="pull__rule"></span></p>
+  </section>
+
+  <!-- ── MÉTODO ── -->
+  <section class="case-section reveal" aria-labelledby="met">
+    <p class="case-eyebrow">Método</p>
+    <h2 class="case-title" id="met">De la escucha al blueprint</h2>
+    <div class="grid-4" style="margin-bottom:36px">
+      <div class="card">
+        <p class="card__label">Fase 01 · Inmersión</p>
+        <p class="card__text">Entrevistas con líderes de los cuatro equipos y escucha de calls de venta, onboarding y soporte para mapear lenguaje, expectativa y contradicciones operativas.</p>
+      </div>
+      <div class="card">
+        <p class="card__label">Fase 02 · Diagnóstico</p>
+        <p class="card__text">Construcción del blueprint AS-IS exponiendo frontstage, backstage y momentos de fricción. Las mayores pérdidas estaban en los hand-offs, no en las fases en sí.</p>
+      </div>
+      <div class="card">
+        <p class="card__label">Fase 03 · Cocreación</p>
+        <p class="card__text">Workshops con los cuatro equipos para diseñar un modelo TO-BE en superposición. La presencia de todos forzó la negociación de fronteras y responsabilidades.</p>
+      </div>
+      <div class="card">
+        <p class="card__label">Fase 04 · Implementación</p>
+        <p class="card__text">Pilotaje con clientes reales, protocolos de hand-off documentados y ritos de transición establecidos entre onboarding y retención.</p>
+      </div>
+    </div>
+    <div class="highlight">
+      <p class="highlight__label">Principios de diseño definidos en el workshop</p>
+      <div class="grid-3" style="gap:24px;margin-top:4px">
+        <div>
+          <p style="font-family:var(--serif);font-style:italic;font-size:15px;color:var(--text-primary);margin-bottom:8px">“Ningún equipo entra o sale solo.”</p>
+          <p class="card__text">Toda transición entre equipos exige superposición mínima y ritual de traspaso documentado.</p>
+        </div>
+        <div>
+          <p style="font-family:var(--serif);font-style:italic;font-size:15px;color:var(--text-primary);margin-bottom:8px">“El cliente aprende, no observa.”</p>
+          <p class="card__text">Desde el primer contacto, el cliente opera el producto con sus propios datos, no ve demostraciones.</p>
+        </div>
+        <div>
+          <p style="font-family:var(--serif);font-style:italic;font-size:15px;color:var(--text-primary);margin-bottom:8px">“La autonomía es infraestructura.”</p>
+          <p class="card__text">La base de conocimiento se trató como pilar de diseño, no como apoyo de soporte.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INSIGHT CENTRAL ── -->
+  <section class="case-section reveal" aria-labelledby="ins">
+    <p class="case-eyebrow">Insight central</p>
+    <h2 class="case-title" id="ins">Diluyendo la densidad del onboarding</h2>
+    <div class="prose" style="margin-bottom:36px">
+      <p>En el modelo antiguo, el onboarding concentraba toda la complejidad: aprender el producto, migrar datos, configurar políticas, capacitar al equipo y absorber las reglas del nicho. Era denso, traumático y operaba como el único punto de entrada posible. La intervención fue redistribuir esa carga a lo largo de toda la jornada, transformando momentos antes pasivos en momentos de aprendizaje.</p>
+    </div>
+
+    <div class="card load-diagram">
+      <div class="load-col">
+        <p class="load-col__label">Modelo anterior</p>
+        <p class="load-col__head">“Todo ocurre en el onboarding.”</p>
+        <div class="load-bars">
+          <div class="load-bar" style="left:0;top:56px;width:18%;height:18px;background:var(--bg-hover);color:var(--text-body)">Preventa</div>
+          <div class="load-bar" style="left:20%;top:56px;width:18%;height:18px;background:var(--bg-hover);color:var(--text-body)">POC</div>
+          <div class="load-bar" style="left:40%;top:14px;width:38%;height:104px;background:var(--accent-primary)">Onboarding<small>Aprendizaje + migración</small><small>+ config. + formación</small></div>
+          <div class="load-bar" style="right:0;top:56px;width:18%;height:18px;background:var(--bg-hover);color:var(--text-body)">Retención</div>
+        </div>
+        <p class="load-col__note">Toda la carga cognitiva y operativa concentrada en una única fase post-contrato.</p>
+      </div>
+      <div class="load-col load-col--new">
+        <p class="load-col__label">Modelo rediseñado</p>
+        <p class="load-col__head">“El aprendizaje es la jornada.”</p>
+        <div class="load-bars">
+          <div class="load-bar" style="left:0;top:34px;width:23%;height:70px;background:var(--accent-primary);opacity:.85">Preventa<small>+ aprendizaje</small></div>
+          <div class="load-bar" style="left:25%;top:34px;width:23%;height:70px;background:var(--accent-primary);opacity:.9">POC<small>+ datos reales</small></div>
+          <div class="load-bar" style="left:50%;top:34px;width:23%;height:70px;background:var(--accent-primary)">Onboarding<small>consultoría</small></div>
+          <div class="load-bar" style="right:0;top:34px;width:23%;height:70px;background:var(--accent-primary);opacity:.85">Retención<small>+ expansión</small></div>
+        </div>
+        <p class="load-col__note">Carga distribuida en cuatro fases proporcionales, con aprendizaje y datos acumulando desde el inicio.</p>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:32px">
+      <p>Cuando el cliente empieza a introducir sus propios datos en la plataforma durante la POC y aprende a operar el sistema desde el primer contacto, dos cosas cambian en paralelo. Primero, comprende las ventajas del producto aplicadas a su propio negocio, no en abstracto. Segundo, acumula una capa creciente de configuración que haría que cambiar de proveedor pareciera demasiado trabajo. El switching cost deja de ser argumento de venta y pasa a ser experiencia vivida.</p>
+    </div>
+  </section>
+
+  <!-- ── SOLUÇÃO: BLUEPRINT EM CAMADAS ── -->
+  <section class="case-section reveal" aria-labelledby="sol">
+    <p class="case-eyebrow">Solución</p>
+    <h2 class="case-title" id="sol">Blueprint de la jornada <em>en capas</em></h2>
+
+    <div class="bp" role="img" aria-label="Blueprint que muestra cómo Ventas, Onboarding, Soporte y Retención se superponen a lo largo de las cuatro fases, con la base de conocimiento siempre disponible.">
+      <div class="bp__row">
+        <div></div>
+        <div class="bp__phase"><div class="bp__phase-num">Fase 01</div><div class="bp__phase-name">Preventa</div></div>
+        <div class="bp__phase"><div class="bp__phase-num">Fase 02</div><div class="bp__phase-name">POC</div></div>
+        <div class="bp__phase"><div class="bp__phase-num">Fase 03</div><div class="bp__phase-name">Onboarding</div></div>
+        <div class="bp__phase"><div class="bp__phase-num">Fase 04</div><div class="bp__phase-name">Retención</div></div>
+      </div>
+      <div class="bp__row">
+        <div class="bp__team">Ventas</div>
+        <div class="bp__cell bp__cell--lead">Lidera</div>
+        <div class="bp__cell bp__cell--part">Participa</div>
+        <div class="bp__cell bp__cell--obs"></div>
+        <div class="bp__cell bp__cell--obs"></div>
+      </div>
+      <div class="bp__row">
+        <div class="bp__team">Onboarding</div>
+        <div class="bp__cell bp__cell--part">Participa</div>
+        <div class="bp__cell bp__cell--lead">Lidera</div>
+        <div class="bp__cell bp__cell--lead">Lidera</div>
+        <div class="bp__cell bp__cell--obs">Observa</div>
+      </div>
+      <div class="bp__row">
+        <div class="bp__team">Soporte</div>
+        <div class="bp__cell bp__cell--obs">Observa</div>
+        <div class="bp__cell bp__cell--part">Participa</div>
+        <div class="bp__cell bp__cell--lead">Activo</div>
+        <div class="bp__cell bp__cell--lead">Activo</div>
+      </div>
+      <div class="bp__row">
+        <div class="bp__team">Retención</div>
+        <div class="bp__cell bp__cell--off"></div>
+        <div class="bp__cell bp__cell--off"></div>
+        <div class="bp__cell bp__cell--part">Entra</div>
+        <div class="bp__cell bp__cell--lead">Lidera</div>
+      </div>
+      <div class="bp__row">
+        <div class="bp__team">Base de conocimiento</div>
+        <div class="bp__cell bp__cell--always">Siempre</div>
+        <div class="bp__cell bp__cell--always">Siempre</div>
+        <div class="bp__cell bp__cell--always">Siempre</div>
+        <div class="bp__cell bp__cell--always">Siempre</div>
+      </div>
+      <div class="bp__legend">
+        <span class="bp__legend-item"><span class="bp__chip"></span>Lidera</span>
+        <span class="bp__legend-item"><span class="bp__chip" style="opacity:.6"></span>Participa</span>
+        <span class="bp__legend-item"><span class="bp__chip" style="opacity:.38"></span>Observa</span>
+        <span class="bp__legend-item"><span class="bp__chip" style="background:transparent;border:1px dashed var(--line-soft)"></span>Fuera de fase</span>
+      </div>
+    </div>
+
+    <div style="margin-top:44px">
+      <div class="pillar">
+        <div class="pillar__num">01</div>
+        <div>
+          <h3 class="pillar__title">Ventas como ritual colectivo</h3>
+          <p class="pillar__text">Onboarding entra en la reunión de descubrimiento para conducir la demo con datos reales del cliente. Soporte acompaña como observador técnico. El cliente sale de la primera interacción operando una plataforma ya configurada para su contexto, no viendo una presentación.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__num">02</div>
+        <div>
+          <h3 class="pillar__title">POC como switching cost</h3>
+          <p class="pillar__text">Con la plataforma preconfigurada con datos reales, la POC deja de ser prueba y se vuelve operación. El cliente acumula configuración y familiaridad a lo largo de las semanas, y cambiar de proveedor pasa a parecer demasiado trabajo. Anclaje por experiencia, no por argumento.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__num">03</div>
+        <div>
+          <h3 class="pillar__title">Onboarding como consultoría</h3>
+          <p class="pillar__text">Cuando el cliente llega al onboarding post-firma ya con dominio operativo, el equipo deja de enseñar a usarlo y pasa a traducir el producto al negocio. El onboarding se convierte en espacio de generación de insight, calibrado para el nicho de cada cliente.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar__num">04</div>
+        <div>
+          <h3 class="pillar__title">Hand-off como continuidad</h3>
+          <p class="pillar__text">Retención entra a la mitad del onboarding, no al final. La superposición planificada sustituye la ruptura por un handover gradual, preservando el vínculo construido y permitiendo que las conversaciones de expansión emerjan de la propia relación.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar--feature" style="margin-top:24px">
+      <p class="card__label">Pilar 05 · Frente que lideré personalmente</p>
+      <h3 class="pillar__title" style="margin-top:6px">Base de conocimiento como infraestructura</h3>
+      <p class="pillar__text" style="max-width:760px">Para que la superposición de equipos funcionara sin sobrecargar a ninguno, la autonomía del cliente tuvo que ampliarse. Lideré la expansión de la base de conocimiento en dos frentes: contenido escrito (artículos, FAQs y documentación técnica organizada por nicho de cliente) y contenido en video (tutoriales y webinars). La base dejó de ser un repositorio de soporte y pasó a ser una capa permanente de la jornada, disponible en cualquier fase.</p>
+    </div>
+  </section>
+
+  <!-- ── IMPACTO ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="imp">
+    <p class="case-eyebrow">Impacto medido</p>
+    <h2 class="case-title" id="imp">Time-to-Value <em>30% más rápido</em></h2>
+    <div class="metric metric--hero" style="margin-bottom:40px">
+      <div>
+        <div class="metric__num">30%</div>
+        <p class="metric__label">de reducción en el tiempo hasta que el cliente extrae valor real de la plataforma.</p>
+      </div>
+      <div class="prose">
+        <p><strong>Qué es Time-to-Value.</strong> TTV es el intervalo entre la firma del contrato y el momento en que el cliente empieza a extraer valor concreto del producto. En SaaS B2B, es una de las métricas más críticas de salud de la operación: un TTV largo significa cliente frustrado, churn temprano y dificultad de expansión; un TTV corto significa cliente comprometido, retención alta y apertura para upsell.</p>
+        <p>En el modelo antiguo, el reloj empezaba a contar solo después del pago. En el modelo rediseñado, empieza en la preventa, cuando el cliente ya está operando el producto con sus propios datos.</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card"><p class="card__label">Aprendizaje anticipado</p><p class="card__text">El cliente llega al posventa ya dominando el producto, eliminando semanas de formación básica.</p></div>
+      <div class="card"><p class="card__label">Configuración distribuida</p><p class="card__text">Los datos del cliente entran en la plataforma ya en la POC, evitando la migración concentrada en el onboarding.</p></div>
+      <div class="card"><p class="card__label">Soporte sin fricción</p><p class="card__text">La presencia del soporte desde la preventa elimina el retrabajo técnico tras la firma.</p></div>
+      <div class="card"><p class="card__label">Autonomía sostenida</p><p class="card__text">La base de conocimiento permite que el cliente avance solo entre los momentos guiados, manteniendo el ritmo.</p></div>
+    </div>
+  </section>
+
+  <!-- ── IMPACTO SISTÊMICO ── -->
+  <section class="case-section reveal" aria-labelledby="sis">
+    <p class="case-eyebrow">Impacto sistémico</p>
+    <h2 class="case-title" id="sis">Qué cambió en el sistema</h2>
+    <div class="grid-2">
+      <div class="card">
+        <p class="card__label">Para el cliente</p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div><p style="color:var(--text-primary);font-size:15px;font-weight:500;margin-bottom:4px">Curva de aprendizaje anticipada</p><p class="card__text">Llega al onboarding con dominio operativo, acortando la fase de activación.</p></div>
+          <div><p style="color:var(--text-primary);font-size:15px;font-weight:500;margin-bottom:4px">Vínculo distribuido entre equipos</p><p class="card__text">La confianza deja de depender de un único punto de contacto y se distribuye por la jornada.</p></div>
+          <div><p style="color:var(--text-primary);font-size:15px;font-weight:500;margin-bottom:4px">Autonomía entre touchpoints</p><p class="card__text">La base de conocimiento permite avanzar entre fases sin depender exclusivamente de personas.</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="card__label">Para la operación</p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div><p style="color:var(--text-primary);font-size:15px;font-weight:500;margin-bottom:4px">POC como driver de conversión</p><p class="card__text">Un switching cost cualificado redujo la fricción comercial en el cierre.</p></div>
+          <div><p style="color:var(--text-primary);font-size:15px;font-weight:500;margin-bottom:4px">Comunicación entre equipos fluida</p><p class="card__text">La presencia compartida eliminó reuniones de alineación y correos de contexto.</p></div>
+          <div><p style="color:var(--text-primary);font-size:15px;font-weight:500;margin-bottom:4px">Upsell como consecuencia</p><p class="card__text">La expansión emergió orgánicamente de la madurez del cliente, no de un esfuerzo comercial aislado.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FECHAMENTO ── -->
+  <section class="case-closing reveal" aria-labelledby="fim">
+    <div class="case-closing__inner">
+      <p class="case-closing__eyebrow" id="fim">Aprendizaje</p>
+      <p class="case-closing__quote">Cuando el diseño del servicio reconoce que las jornadas operan en capas y no en etapas, la pregunta deja de ser “cómo mejorar cada fase” y pasa a ser “cómo orquestar las presencias adecuadas en cada momento”.</p>
+      <div class="case-closing__rule"></div>
+      <p class="case-closing__text">El proyecto evidenció que la continuidad del cliente se construye en el espacio entre los equipos, no dentro de ellos. Corresponde al Service Designer cuidar ese espacio.</p>
+      <div class="case-closing__links">
+        <a class="btn" href="../index.html#cases">← Todos los casos</a>
+        <a class="btn btn--fill" href="watcher.html">Siguiente: Watcher →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p>© 2026 Luara Oliveira</p>
+    <p>Diseñado, programado y publicado por mí.</p>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>
