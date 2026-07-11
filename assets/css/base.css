@@ -109,16 +109,30 @@ body::before {
   height: 64px;
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 0 var(--pad-x);
   background: var(--nav-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line-soft);
 }
+/* Conteúdo do nav segue a mesma coluna de leitura do restante da página
+   (--maxw / --pad-x, igual a .wrap) — evita que marca e ícones fiquem
+   colados às bordas físicas da tela em telas largas, e garante que os
+   dois lados tenham exatamente o mesmo respiro lateral. */
+.nav__inner {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 var(--pad-x);
+}
 .nav__brand {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--serif);
   font-size: 19px;
+  line-height: 1;
   font-weight: 600;
   letter-spacing: -.01em;
   color: var(--text-primary);
@@ -137,8 +151,11 @@ body::before {
 }
 .nav__sections::-webkit-scrollbar { display: none; }
 .nav__link {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--mono);
   font-size: 11.5px;
+  line-height: 1;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--text-meta);
@@ -342,7 +359,7 @@ main { position: relative; z-index: 1; }
 }
 @media (max-width: 640px) {
   :root { --pad-x: 36px; --sec-pad: 40px; }
-  .nav { gap: 10px; }
+  .nav__inner { gap: 10px; }
   .nav__brand { font-size: 17px; }
   .footer__inner { flex-direction: column; align-items: flex-start; }
 }
@@ -354,8 +371,8 @@ main { position: relative; z-index: 1; }
    linha 1: marca (largura total); linha 2: sociais à esquerda + idioma à
    direita (space-between), sem sobreposição e com alvos de toque de 44px. */
 @media (max-width: 560px) {
-  .nav {
-    height: auto;
+  .nav { height: auto; }
+  .nav__inner {
     flex-wrap: wrap;
     align-items: center;
     gap: 0;
@@ -385,6 +402,14 @@ main { position: relative; z-index: 1; }
     margin: 132px 0 4px var(--pad-x);
   }
   .case-hero { padding-top: 14px; }
+}
+
+/* Telas muito estreitas (ex.: 320px): 4 ícones de 44px + seletor de idioma
+   somados excedem a largura disponível. Reduz apenas o padding interno do
+   seletor de idioma e o gap entre os grupos — os ícones seguem com 44px. */
+@media (max-width: 360px) {
+  .lang a { padding: 6px 5px; }
+  .nav__right { gap: 2px; }
 }
 
 /* ---- 12. Movimento reduzido ------------------------------------------------ */
