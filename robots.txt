@@ -5,4 +5,4 @@ Disallow: /em-construcao.html
 Disallow: /en/em-construcao.html
 Disallow: /es/em-construcao.html
 
-Sitemap: https://luaraoliveira.com/sitemap.xml
+Sitemap: https://luara.work/sitemap.xml
