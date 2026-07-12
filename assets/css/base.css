@@ -167,7 +167,6 @@ body::before {
 }
 .nav__link:hover { color: var(--accent-bright); background: var(--tint-accent); }
 .nav__link[aria-current="true"] { color: var(--accent-bright); background: var(--tint-accent); }
-.nav__link--back { color: var(--accent-primary); }
 
 .nav__right { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
 
