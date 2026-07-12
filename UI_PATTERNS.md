@@ -196,9 +196,9 @@ Herde `base.css`, inclua nav e footer padrão, e crie a versão espelhada em
   tipográficas (sem `<img>`), prontas para receber uma thumbnail — para
   adicionar uma, insira `<img>` dentro do elemento com `.case-card__cover`
   (ou `.img-slot` dentro de um case) preenchendo via `object-fit: cover`.
-- **Retrato/imagens pessoais**: ficam em `assets/img/`. Fontes originais e
-  rascunhos não usados em produção ficam em `uploads/` (não referenciadas
-  pelo HTML final).
+- **Retrato/imagens pessoais**: nenhuma página em produção usa `<img>` hoje
+  (a home não tem foto de perfil). Fontes originais e rascunhos não usados
+  em produção ficam em `uploads/` (não referenciadas pelo HTML final).
 - **Metadados de SEO/Open Graph**: no `<head>` de cada página (`title`,
   `meta description`, `og:*`, `twitter:*`, `canonical`, `hreflang`).
 
