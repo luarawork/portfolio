@@ -116,14 +116,11 @@ compartilhado) e especializados em [assets/css/landing.css](assets/css/landing.c
 ```
 .
 ├── index.html                  # Landing (PT — idioma padrão, raiz)
-├── em-construcao.html          # Placeholder (ex.: link do GitHub)
 ├── en/                         # Versão em inglês — mesma estrutura e IDs
 │   ├── index.html
-│   ├── em-construcao.html
 │   └── cases/
 ├── es/                         # Versão em espanhol — mesma estrutura e IDs
 │   ├── index.html
-│   ├── em-construcao.html
 │   └── cases/
 ├── cases/                      # Páginas de case (PT)
 │   ├── jornada-integrada.html
@@ -181,8 +178,8 @@ entre idiomas.
 6. Atualize `sitemap.xml` com as 3 URLs e os `hreflang` recíprocos.
 
 ### Nova página de nível superior
-Siga o mesmo padrão de `em-construcao.html`: herde `base.css`, inclua nav e
-footer padrão, e crie a versão espelhada em `en/` e `es/`.
+Herde `base.css`, inclua nav e footer padrão, e crie a versão espelhada em
+`en/` e `es/`.
 
 ---
 

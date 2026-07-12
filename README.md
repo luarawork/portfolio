@@ -43,14 +43,11 @@ arquivos estáticos roda o site.
 ```
 .
 ├── index.html                  # Landing (PT — idioma padrão)
-├── em-construcao.html          # Página do repositório (placeholder do GitHub)
 ├── en/                         # Versão em inglês (mesma estrutura)
 │   ├── index.html
-│   ├── em-construcao.html
 │   └── cases/
 ├── es/                         # Versão em espanhol (mesma estrutura)
 │   ├── index.html
-│   ├── em-construcao.html
 │   └── cases/
 ├── cases/                      # Páginas de case (PT)
 │   ├── jornada-integrada.html  # Service Design · SaaS
