@@ -1,63 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Sitemap — Luara Oliveira · Portfólio. Inclui as três versões de idioma
-     com referências hreflang recíprocas (pt-BR padrão, en, es, x-default). -->
-<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Home -->
   <url>
     <loc>https://luara.work/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://luara.work/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://luara.work/en/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://luara.work/es/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://luara.work/"/>
+    <lastmod>2026-07-11</lastmod>
     <priority>1.0</priority>
   </url>
-  <url><loc>https://luara.work/en/</loc><priority>0.9</priority></url>
-  <url><loc>https://luara.work/es/</loc><priority>0.9</priority></url>
 
-  <!-- Case · Jornada Integrada -->
   <url>
     <loc>https://luara.work/cases/jornada-integrada.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://luara.work/cases/jornada-integrada.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://luara.work/en/cases/jornada-integrada.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://luara.work/es/cases/jornada-integrada.html"/>
+    <lastmod>2026-07-11</lastmod>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://luara.work/en/cases/jornada-integrada.html</loc><priority>0.7</priority></url>
-  <url><loc>https://luara.work/es/cases/jornada-integrada.html</loc><priority>0.7</priority></url>
-
-  <!-- Case · Watcher -->
   <url>
     <loc>https://luara.work/cases/watcher.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://luara.work/cases/watcher.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://luara.work/en/cases/watcher.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://luara.work/es/cases/watcher.html"/>
+    <lastmod>2026-07-11</lastmod>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://luara.work/en/cases/watcher.html</loc><priority>0.7</priority></url>
-  <url><loc>https://luara.work/es/cases/watcher.html</loc><priority>0.7</priority></url>
-
-  <!-- Case · ITSM ServiceNow -->
   <url>
     <loc>https://luara.work/cases/itsm-servicenow.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://luara.work/cases/itsm-servicenow.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://luara.work/en/cases/itsm-servicenow.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://luara.work/es/cases/itsm-servicenow.html"/>
+    <lastmod>2026-07-11</lastmod>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://luara.work/en/cases/itsm-servicenow.html</loc><priority>0.7</priority></url>
-  <url><loc>https://luara.work/es/cases/itsm-servicenow.html</loc><priority>0.7</priority></url>
-
-  <!-- Case · AcessaBR -->
   <url>
     <loc>https://luara.work/cases/acessabr.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://luara.work/cases/acessabr.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://luara.work/en/cases/acessabr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://luara.work/es/cases/acessabr.html"/>
+    <lastmod>2026-07-11</lastmod>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://luara.work/en/cases/acessabr.html</loc><priority>0.7</priority></url>
-  <url><loc>https://luara.work/es/cases/acessabr.html</loc><priority>0.7</priority></url>
+
+  <url>
+    <loc>https://luara.work/en/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luara.work/en/cases/jornada-integrada.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luara.work/en/cases/watcher.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luara.work/en/cases/itsm-servicenow.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luara.work/en/cases/acessabr.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://luara.work/es/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luara.work/es/cases/jornada-integrada.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luara.work/es/cases/watcher.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luara.work/es/cases/itsm-servicenow.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://luara.work/es/cases/acessabr.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
+  </url>
 
 </urlset>
