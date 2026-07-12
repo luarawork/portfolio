@@ -30,7 +30,7 @@ acessível por princípio.
 | Marcação     | HTML5 semântico                                         |
 | Estilo       | CSS puro com custom properties (sem pré-processador)    |
 | Comportamento| JavaScript vanilla (ES2015+), sem dependências          |
-| Tipografia   | Google Fonts — Playfair Display, DM Sans, DM Mono       |
+| Tipografia   | Google Fonts — Playfair Display, DM Serif Display, DM Sans, DM Mono, Bebas Neue (case Watcher) |
 | Build        | Nenhum. Arquivos estáticos servidos diretamente.        |
 
 Sem `node_modules`, sem bundler, sem transpilação. Qualquer servidor de
