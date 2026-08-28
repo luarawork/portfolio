@@ -51,9 +51,9 @@ arquivos estáticos roda o site.
 │   └── cases/
 ├── cases/                      # Páginas de case (PT)
 │   ├── jornada-integrada.html  # Service Design · SaaS
-│   ├── watcher.html            # UX/UI · Mobile
+│   ├── chuvarada.html          # Data Product · Risco hidrológico
 │   ├── itsm-servicenow.html    # Service Design · ITSM
-│   └── acessabr.html           # UX/UI · Acessibilidade (tema claro)
+│   └── watcher.html            # UX/UI · Mobile
 ├── assets/
 │   ├── css/
 │   │   ├── base.css            # Esqueleto compartilhado + tokens (tema navy)
@@ -79,8 +79,8 @@ expostas como custom properties em `:root`.
 
 Cada página de case mantém sua **cor-assinatura** própria sobrescrevendo apenas
 os tokens de cor num bloco `<style>` no `<head>` — sem duplicar layout nem
-componentes. É por isso que o AcessaBR consegue ser um tema **claro** rodando no
-mesmo esqueleto dos temas escuros.
+componentes. O mesmo esqueleto já hospedou temas claros e escuros sem qualquer
+mudança de estrutura, só de tokens.
 
 ```css
 /* Exemplo: cabeçalho de um case sobrescreve só as cores */

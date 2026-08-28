@@ -51,9 +51,9 @@ tokens de cor num `<style>` inline no `<head>`, mantendo o mesmo esqueleto
 | Case                | `--sig` (usado nos cards da home) |
 | ------------------- | ---------------------------------- |
 | Jornada Integrada   | `#c9a961` (dourado)                |
-| Watcher             | `#F5D407` (amarelo)                 |
+| Chuvarada           | `#4FB3E8` (azul-chuva)              |
 | ITSM ServiceNow     | `#4db8a8` (verde-água)              |
-| AcessaBR            | `#D97757` (terracota) — único tema **claro**, mesmo esqueleto |
+| Watcher             | `#F5D407` (amarelo)                 |
 
 ---
 
@@ -124,9 +124,9 @@ compartilhado) e especializados em [assets/css/landing.css](assets/css/landing.c
 │   └── cases/
 ├── cases/                      # Páginas de case (PT)
 │   ├── jornada-integrada.html
-│   ├── watcher.html
+│   ├── chuvarada.html
 │   ├── itsm-servicenow.html
-│   └── acessabr.html
+│   └── watcher.html
 ├── assets/
 │   ├── css/
 │   │   ├── base.css            # Esqueleto + tokens (tema navy)
@@ -137,7 +137,7 @@ compartilhado) e especializados em [assets/css/landing.css](assets/css/landing.c
 │   └── og-image.png
 ├── screenshots/                # Capturas de referência (não usadas em produção)
 ├── uploads/                    # Rascunhos/versões antigas de cases e imagens-fonte
-├── sitemap.xml                 # hreflang recíproco das 3 línguas
+├── sitemap.xml                 # loc/lastmod/priority das páginas públicas
 └── robots.txt
 ```
 
@@ -162,8 +162,7 @@ entre idiomas.
    duplique o que já existe em `base.css`.
 
 ### Novo case
-1. Copie um `cases/*.html` existente como ponto de partida (ex.: `watcher.html`
-   para tema escuro, `acessabr.html` para tema claro).
+1. Copie um `cases/*.html` existente como ponto de partida (ex.: `jornada-integrada.html`).
 2. No `<head>`, sobrescreva **apenas os tokens de cor** num `<style>` inline
    (`--bg-base`, `--bg-card`, `--accent-primary`, etc.) para a nova
    cor-assinatura — não toque em layout ou tipografia.
