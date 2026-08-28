@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Chuvarada — Mapa de Riesgo Hidrológico · Luara Oliveira</title>
+<meta name="description" content="Mapa de riesgo hidrológico en tiempo real para 28.483 barrios brasileños — producto público open source que traduce seis fuentes de datos en un score de 1 a 10 por barrio."/>
+<link rel="canonical" href="https://luara.work/es/cases/chuvarada.html"/>
+
+<link rel="alternate" hreflang="pt-BR" href="https://luara.work/cases/chuvarada.html"/>
+<link rel="alternate" hreflang="en" href="https://luara.work/en/cases/chuvarada.html"/>
+<link rel="alternate" hreflang="es" href="https://luara.work/es/cases/chuvarada.html"/>
+<link rel="alternate" hreflang="x-default" href="https://luara.work/cases/chuvarada.html"/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:locale" content="es_ES"/>
+<meta property="og:title" content="Chuvarada — Mapa de riesgo en tiempo real · Luara Oliveira"/>
+<meta property="og:description" content="Mapa de riesgo hidrológico en tiempo real para 28.483 barrios brasileños, con un score de 1 a 10 por barrio."/>
+<meta property="og:image" content="https://luara.work/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="../../assets/css/base.css"/>
+<link rel="stylesheet" href="../../assets/css/case.css"/>
+
+<!-- ── Cor-assinatura: azul-lluvia, dato hidrológico en tiempo real ── -->
+<style>
+:root {
+  --bg-base:#0a1826; --bg-card:#12253a; --bg-hover:#17304a;
+  --accent-primary:#4FB3E8; --accent-bright:#7FC9F0; --accent-secondary:#5A9BC4;
+  --text-primary:#eaf3fa; --text-body:#9db3c2; --text-meta:#86a0b0;
+  --line-soft:rgba(79,179,232,.20); --line-hair:rgba(79,179,232,.08);
+  --tint-accent:rgba(79,179,232,.07); --tint-strong:rgba(79,179,232,.14);
+  --nav-bg:rgba(10,24,38,.86); --grid-rgb:79,179,232;
+  --serif:'Playfair Display',Georgia,serif;
+}
+/* La ficha lateral de este case tiene 5 campos (no 4) */
+.case-meta { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 760px) { .case-meta { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#content">Saltar al contenido</a>
+
+<nav class="nav" aria-label="Navegación principal">
+  <div class="nav__inner">
+  <a class="nav__brand" href="../index.html">Luara Oliveira</a>
+  <div class="nav__right">
+    <div class="nav__socials">
+      <a class="icon-btn" href="https://www.linkedin.com/in/luarawork/" target="_blank" rel="noopener" aria-label="LinkedIn (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg></a>
+      <a class="icon-btn" href="https://github.com/luarawork" target="_blank" rel="noopener" aria-label="GitHub (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.57 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.36-1.33-1.73-1.33-1.73-1.09-.73.08-.71.08-.71 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6 0c2.28-1.53 3.29-1.21 3.29-1.21.66 1.64.24 2.86.12 3.16.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.52-5.49 5.81.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .32.21.69.83.57A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg></a>
+      <a class="icon-btn" href="https://medium.com/@luarawork" target="_blank" rel="noopener" aria-label="Medium (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg></a>
+      <a class="icon-btn" href="https://www.behance.net/luarawork" target="_blank" rel="noopener" aria-label="Behance (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 8.6c.5 0 .96.04 1.38.13.42.08.77.22 1.07.42.3.2.53.46.7.8.16.34.24.76.24 1.27 0 .55-.13 1-.38 1.37-.25.36-.62.66-1.1.88.66.2 1.16.53 1.5 1 .33.47.5 1.04.5 1.7 0 .54-.1 1-.32 1.4-.2.4-.49.72-.84.97-.36.25-.77.43-1.23.55-.46.12-.93.18-1.4.18H2V8.6h6.2zm-.37 4.04c.42 0 .76-.1 1.03-.3.27-.2.4-.53.4-.97 0-.25-.04-.45-.13-.6a.94.94 0 0 0-.36-.37 1.5 1.5 0 0 0-.5-.18 3.4 3.4 0 0 0-.6-.05H4.84v2.47h2.99zm.16 4.24c.23 0 .45-.02.66-.07.2-.04.39-.12.54-.23.15-.1.28-.25.37-.43.09-.18.13-.41.13-.69 0-.54-.15-.93-.46-1.16-.3-.23-.71-.34-1.22-.34h-3.4v2.92h3.38zM16.4 16.6c.36.35.88.52 1.55.52.48 0 .9-.12 1.25-.36.35-.24.56-.5.64-.76h2.05c-.33 1.02-.83 1.74-1.51 2.18-.68.44-1.5.66-2.46.66-.67 0-1.27-.1-1.81-.32a3.8 3.8 0 0 1-1.37-.92 4.1 4.1 0 0 1-.86-1.42 5.2 5.2 0 0 1-.3-1.82c0-.64.1-1.24.31-1.78.2-.55.5-1.02.88-1.42.38-.4.83-.71 1.36-.94a4.5 4.5 0 0 1 1.78-.34c.71 0 1.33.14 1.86.41.53.28.96.65 1.3 1.12.34.47.58 1 .73 1.6.15.6.2 1.22.16 1.88h-6.1c0 .68.23 1.25.6 1.6zm2.72-4.36c-.28-.31-.74-.48-1.32-.48-.38 0-.7.07-.95.2-.25.13-.46.29-.61.48-.15.19-.26.39-.32.6-.06.21-.1.4-.11.57h3.78c-.06-.59-.25-1.04-.47-1.37zM15 8.9h4.74v1.16H15V8.9z"/></svg></a>
+    </div>
+    <div class="lang" role="group" aria-label="Seleccionar idioma">
+      <a href="../../cases/chuvarada.html" hreflang="pt-BR" lang="pt-BR">PT</a>
+      <a href="../../en/cases/chuvarada.html" hreflang="en" lang="en">EN</a>
+      <a href="chuvarada.html" hreflang="es" aria-current="true" lang="es">ES</a>
+    </div>
+  </div>
+  </div>
+</nav>
+
+<main id="content">
+
+  <!-- ── HERO ── -->
+  <a class="case-fab" href="../index.html#cases">Portafolio</a>
+  <header class="case-hero">
+    <div class="case-hero__top">
+      <span class="selo selo--real">Proyecto real</span>
+      <span class="case-hero__track">Producto de Datos · UX/UI · Dev Front-end</span>
+    </div>
+    <h1 class="case-hero__title">El mapa de riesgo que llega <em>antes de la lluvia</em></h1>
+    <p class="case-hero__lead">Chuvarada cubre 28.483 barrios brasileños con datos hidrológicos en tiempo real — para que la evacuación ocurra antes, no después.</p>
+    <div class="case-hero__tags tags" aria-label="Disciplinas tratadas">
+      <span class="tag">Datos en tiempo real</span>
+      <span class="tag">Riesgo hidrológico</span>
+      <span class="tag">Cartografía</span>
+      <span class="tag">Open Source</span>
+      <span class="tag">Impacto social</span>
+    </div>
+    <div class="case-meta">
+      <div class="case-meta__item">
+        <p class="case-meta__label">Tipo</p>
+        <p class="case-meta__value">Proyecto real<br>Producto público</p>
+      </div>
+      <div class="case-meta__item">
+        <p class="case-meta__label">Producto</p>
+        <p class="case-meta__value">Web app (PWA)<br>2024–2025</p>
+      </div>
+      <div class="case-meta__item">
+        <p class="case-meta__label">Foco</p>
+        <p class="case-meta__value">Riesgo hidrológico<br>a escala nacional</p>
+      </div>
+      <div class="case-meta__item">
+        <p class="case-meta__label">Método</p>
+        <p class="case-meta__value">Open data, modelo ponderado,<br>centroide IBGE</p>
+      </div>
+      <div class="case-meta__item">
+        <p class="case-meta__label">Principio</p>
+        <p class="case-meta__value">Dato público + decisión de producto<br><strong>= herramienta de protección real</strong></p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── EL PROBLEMA ── -->
+  <section class="case-section reveal" aria-labelledby="ctx">
+    <p class="case-eyebrow">El problema</p>
+    <h2 class="case-title" id="ctx">La alerta existe. La granularidad, <em>no</em>.</h2>
+    <div class="lead-cols">
+      <div class="prose">
+        <p>Brasil tiene sistemas de alerta meteorológica. Lo que no tiene es precisión de barrio: las alertas de la Defensa Civil se emiten por municipio — y alguien que vive en una ladera en Recife no sabe si el riesgo está en su calle o a tres barrios de distancia.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card"><p class="card__label">Lo que existe</p><p class="card__text">CEMADEN emite alertas municipales. La Defensa Civil hace comunicados regionales. gov.br concentra los datos, pero no los traduce para quien está en el lugar.</p></div>
+        <div class="card"><p class="card__label">Lo que falta</p><p class="card__text">Granularidad de barrio, en tiempo real, accesible para cualquier persona desde el celular — sin login, sin instalación, sin jerga técnica.</p></div>
+      </div>
+    </div>
+    <div class="metric metric--hero" style="margin-top:36px">
+      <div>
+        <div class="metric__num">28.483</div>
+        <p class="metric__label">barrios cubiertos</p>
+      </div>
+      <div class="prose">
+        <p>Con score de riesgo calculado cada hora, usando seis fuentes de datos públicos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRINCIPIO DE PRODUCTO ── -->
+  <section class="case-section case-section--band reveal">
+    <p class="case-eyebrow" style="text-align:center">Principio de producto</p>
+    <p class="pull pull--center">Si el punto georreferenciado está mal, el score de riesgo también estará mal — y una alerta equivocada es peor que ninguna alerta.<span class="pull__rule"></span></p>
+  </section>
+
+  <!-- ── EL DESAFÍO TÉCNICO ── -->
+  <section class="case-section reveal" aria-labelledby="tech">
+    <p class="case-eyebrow">El desafío técnico (que se convirtió en decisión de producto)</p>
+    <h2 class="case-title" id="tech">Brasil no tiene <em>centroides de barrio</em></h2>
+    <div class="prose">
+      <p>El problema no era falta de datos — era incompatibilidad de datos. Brasil organiza su administración por distritos, no por barrios. El Censo IBGE 2022 mapeó barrios pero sin centroides para geocodificación.</p>
+      <p>Sin centroide, no hay forma confiable de asociar un punto geográfico a un barrio con precisión. La solución estándar (centro geométrico del polígono) colocaría el punto representativo en áreas deshabitadas — cerros, ríos, terrenos vacíos.</p>
+    </div>
+    <div class="highlight">
+      <p class="highlight__label">La solución</p>
+      <p class="card__text">Centroide ponderado por población usando los datos del Censo IBGE 2022. El punto representativo de cada barrio cae donde las personas realmente viven, no en el centro geométrico del polígono.</p>
+    </div>
+    <div class="highlight" style="margin-top:16px">
+      <p class="highlight__label">Por qué esto importa para el producto</p>
+      <p class="card__text">Si el punto georreferenciado está mal, el score de riesgo de ese barrio también estará mal. Esta fue una decisión de producto disfrazada de problema técnico — y la más importante del proyecto.</p>
+    </div>
+  </section>
+
+  <!-- ── LA SOLUCIÓN ── -->
+  <section class="case-section reveal" aria-labelledby="sol">
+    <p class="case-eyebrow">La solución</p>
+    <h2 class="case-title" id="sol">Seis fuentes. Siete variables. <em>Un número por barrio.</em></h2>
+    <p class="prose" style="margin-bottom:28px">Chuvarada combina seis fuentes de datos públicos y gratuitos, actualizadas automáticamente, para calcular el riesgo de cada barrio cada hora.</p>
+
+    <table class="case-table">
+      <thead><tr><th scope="col">Fuente</th><th scope="col">Proveedor</th><th scope="col">Qué entrega</th></tr></thead>
+      <tbody>
+        <tr><td>MERGE/CPTEC</td><td>INPE</td><td>Precipitación satelital + pluviómetros</td></tr>
+        <tr><td>Open-Meteo</td><td>Open-Meteo</td><td>Viento, humedad, presión, lluvia horaria, humedad del suelo</td></tr>
+        <tr><td>NASA SRTM</td><td>NASA</td><td>Altimetría del terreno (~30m de resolución)</td></tr>
+        <tr><td>ANA/BHO</td><td>Agencia Nacional de Aguas</td><td>Red hidrográfica nacional</td></tr>
+        <tr><td>Censo IBGE 2022</td><td>IBGE</td><td>Malla de barrios de todo Brasil</td></tr>
+        <tr><td>TideCheck</td><td>UHSLC / FES2022</td><td>Nivel de marea real (113 de 115 ciudades costeras)</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="card__title" style="font-family:var(--serif);font-size:20px;margin:32px 0 8px">Cómo se calcula el score</h3>
+    <p class="prose" style="margin-bottom:20px">Las siete variables se combinan con pesos definidos por la relevancia de cada una para el riesgo de inundación:</p>
+
+    <table class="case-table">
+      <thead><tr><th scope="col">Variable</th><th scope="col">Peso</th></tr></thead>
+      <tbody>
+        <tr><td>Pico de lluvia (3h)</td><td>22%</td></tr>
+        <tr><td>Lluvia 72h</td><td>16%</td></tr>
+        <tr><td>Lluvia última hora</td><td>15%</td></tr>
+        <tr><td>Pendiente del terreno</td><td>14%</td></tr>
+        <tr><td>Humedad del suelo</td><td>14%</td></tr>
+        <tr><td>Proximidad hídrica</td><td>11%</td></tr>
+        <tr><td>Marea</td><td>8%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="highlight" style="margin-top:24px">
+      <p class="highlight__label">Resultado</p>
+      <p class="card__text">Score de 1 a 10, recalculado cada hora, traducido en cinco niveles: <strong style="color:var(--text-primary)">Normal / Atención / Moderado / Alto / Crítico</strong>.</p>
+    </div>
+
+    <div class="highlight" style="margin-top:16px">
+      <p class="highlight__label">Reglas automáticas de escalamiento a Crítico</p>
+      <ul>
+        <li><span class="mk">i.</span> Más de 50mm de lluvia en la última hora</li>
+        <li><span class="mk">ii.</span> Marea superior al 80% combinada con lluvia en zona costera</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── DECISIONES DE PRODUCTO ── -->
+  <section class="case-section reveal" aria-labelledby="dec">
+    <p class="case-eyebrow">Decisiones de producto</p>
+    <h2 class="case-title" id="dec">Lo que <em>no</em> hice — y por qué</h2>
+    <p class="prose" style="margin-bottom:28px">La sección más importante del caso. Documentar lo que fue descartado y por qué es lo que diferencia el trabajo sénior del júnior.</p>
+    <div class="grid-2">
+      <div class="card"><h3 class="card__title" style="font-size:16px">Escala numérica, no semáforo</h3><p class="card__text">Verde/amarillo/rojo colapsa matices. Un score de 4,8 y uno de 7,2 parecen iguales en un semáforo, pero representan riesgos completamente diferentes. La escala 1–10 comunica tendencia y permite comparación histórica.</p></div>
+      <div class="card"><h3 class="card__title" style="font-size:16px">Humedad del suelo como variable (14%)</h3><p class="card__text">Es la variable más contraintuitiva — y la más importante en muchos escenarios. Lluvia ligera en suelo saturado genera más inundación que lluvia fuerte en suelo seco. Quitarla por ser difícil de explicar sería sacrificar precisión por simplicidad.</p></div>
+      <div class="card"><h3 class="card__title" style="font-size:16px">Barrio, no municipio</h3><p class="card__text">La granularidad municipal ya existe y no resuelve el problema. El producto solo tiene sentido si la respuesta es más precisa que lo que ya existe. El barrio es la propuesta de valor — sin ella, no hay producto.</p></div>
+      <div class="card"><h3 class="card__title" style="font-size:16px">Relatos de la comunidad como validación, no como fuente primaria</h3><p class="card__text">El dato satelital es preciso a escala — el relato humano es preciso a nivel local. Los dos se complementan: el modelo detecta el evento, el relato confirma dónde está impactando. Invertir esta jerarquía haría el sistema manipulable.</p></div>
+      <div class="card" style="grid-column:1/-1"><h3 class="card__title" style="font-size:16px">Limitaciones honestas publicadas en la plataforma</h3><p class="card__text">Sin datos de drenaje urbano (no existen como dato público en Brasil). Pesos sin calibración regional formal. São Paulo, Campinas y Sorocaba cubiertas por distritos, no barrios. Publicar las limitaciones no debilita el producto — aumenta la confianza de quienes toman decisiones basados en él.</p></div>
+    </div>
+  </section>
+
+  <!-- ── RESULTADO ── -->
+  <section class="case-section case-section--band reveal" aria-labelledby="res">
+    <p class="case-eyebrow">Resultado</p>
+    <h2 class="case-title" id="res">Producto en producción. <em>Open source.</em></h2>
+    <div class="grid-4" style="margin-bottom:28px">
+      <div class="card"><p class="card__label">Cobertura</p><p class="card__text">28.483 barrios cubiertos</p></div>
+      <div class="card"><p class="card__label">Actualización</p><p class="card__text">Score recalculado cada hora</p></div>
+      <div class="card"><p class="card__label">Datos</p><p class="card__text">6 fuentes de datos públicos integradas</p></div>
+      <div class="card"><p class="card__label">Plataforma</p><p class="card__text">PWA instalable — funciona como app, sin tienda</p></div>
+    </div>
+    <div class="highlight">
+      <p class="highlight__label">Accede al proyecto</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px">
+        <a class="btn btn--fill" href="https://chuvarada.vercel.app" target="_blank" rel="noopener">Ver Chuvarada →</a>
+        <a class="btn" href="https://github.com/luarawork/chuvarada" target="_blank" rel="noopener">Código en GitHub →</a>
+      </div>
+      <p class="card__text">Artículos publicados en Substack (PT) y Medium (EN).</p>
+    </div>
+  </section>
+
+  <!-- ── CIERRE ── -->
+  <section class="case-closing reveal" aria-labelledby="fim">
+    <div class="case-closing__inner">
+      <h2 class="case-closing__eyebrow" id="fim">Aprendizaje</h2>
+      <p class="case-closing__quote">El dato en tiempo real sin decisión de producto es ruido. Cada variable del modelo existe porque hay una pregunta real del usuario detrás — “¿está mi barrio en riesgo ahora?” — y la respuesta necesita llegar antes de que la pregunta se vuelva demasiado urgente.</p>
+      <div class="case-closing__rule"></div>
+      <p class="case-closing__text">El problema técnico más difícil del proyecto (los centroides de barrio) era, en realidad, un problema de producto. Si el punto geográfico está mal, el score estará mal — y una alerta equivocada es peor que ninguna alerta.</p>
+      <div class="case-closing__links">
+        <a class="btn" href="../index.html#cases">← Todos los casos</a>
+        <a class="btn btn--fill" href="itsm-servicenow.html">Siguiente: Jornada en ITSM →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p>© 2026 Luara Oliveira</p>
+    <p>Diseñado, programado y publicado por mí.</p>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js"></script>
+</body>
+</html>
