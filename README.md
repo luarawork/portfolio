@@ -1,162 +1,94 @@
-# Luara Oliveira — Portfólio
+# Portfólio · Luara Oliveira
 
-Site de portfólio pessoal de **Luara Oliveira**, na convergência entre análise,
-design e gestão. Construído à mão em HTML, CSS e JavaScript — sem frameworks e
-sem build step. O próprio código é parte do portfólio: legível, documentado e
-acessível por princípio.
+**UX/UI Designer sênior, também atuando como Service Designer.**
+Design de interface guiado por evidência — com pesquisa, service design, dados e código como extensões do mesmo trabalho.
 
-🔗 **Produção:** https://luara.work/
+**Ao vivo:** [luara.work](https://luara.work) &nbsp;·&nbsp; PT · [EN](https://luara.work/en/) · [ES](https://luara.work/es/)
 
 ---
 
-## Sumário
+## Sobre
 
-- [Stack](#stack)
-- [Estrutura de arquivos](#estrutura-de-arquivos)
-- [Decisões de arquitetura](#decisões-de-arquitetura)
-  - [Tema compartilhado por tokens](#tema-compartilhado-por-tokens)
-  - [Internacionalização (PT / EN / ES)](#internacionalização-pt--en--es)
-  - [Acessibilidade](#acessibilidade)
-  - [Progressive enhancement](#progressive-enhancement)
-- [Como rodar localmente](#como-rodar-localmente)
-- [Convenções de código](#convenções-de-código)
+Portfólio pessoal que reúne quatro cases — de trabalho real com cliente a projeto autoral open source — atravessando UX/UI, service design, pesquisa, dados e desenvolvimento.
 
----
+O site foi concebido, desenhado, codificado e publicado pela própria autora, do design ao deploy. O código deste repositório é parte da demonstração: sem framework, sem build step, com acessibilidade e design system tratados como requisito, não como enfeite.
+
+## Cases
+
+| Case | Natureza | Resumo |
+|------|----------|--------|
+| [Jornada Integrada](https://luara.work/cases/jornada-integrada) | Cliente real | Redesenho sistêmico do onboarding de uma plataforma B2B de MDM, dissolvendo silos entre pré-venda, ativação e retenção. |
+| [Watcher](https://luara.work/cases/watcher) | Projeto conceitual | App que reúne o que você assiste nas diferentes plataformas de streaming em um só lugar, com descoberta guiada por contexto. |
+| [Jornada do Usuário em ITSM](https://luara.work/cases/itsm-servicenow) | Cliente real | Estruturação da jornada no ServiceNow, convertendo resistência em adoção estruturada e duradoura. |
+| [Chuvarada](https://luara.work/cases/chuvarada) | Projeto autoral · Open Source | Mapa de risco hidrológico em tempo real para 28.483 bairros brasileiros, com score de 1 a 10 por bairro. |
+
+## Características
+
+- **Acessibilidade WCAG 2.1 AA** — contraste validado em todas as paletas, foco visível por teclado, suporte a `prefers-reduced-motion`, HTML semântico e navegação por teclado.
+- **Trilíngue (PT / EN / ES)** com `hreflang` e estrutura espelhada entre idiomas.
+- **Design system próprio** — tokens semânticos e uma cor-assinatura por case, sem depender de biblioteca de UI.
+- **SEO** — dados estruturados `schema.org/Person` (JSON-LD), Open Graph e Twitter Card em todas as páginas.
+- **Sem build step, sem framework** — HTML5, CSS puro e JavaScript vanilla.
+- **Responsivo**, mobile-first.
 
 ## Stack
 
-| Camada       | Tecnologia                                              |
-| ------------ | ------------------------------------------------------- |
-| Marcação     | HTML5 semântico                                         |
-| Estilo       | CSS puro com custom properties (sem pré-processador)    |
-| Comportamento| JavaScript vanilla (ES2015+), sem dependências          |
-| Tipografia   | Google Fonts — Playfair Display, DM Serif Display, DM Sans, DM Mono, Bebas Neue (case Watcher) |
-| Build        | Nenhum. Arquivos estáticos servidos diretamente.        |
+HTML5 semântico · CSS (custom properties, camadas) · JavaScript vanilla.
+Tipografia via Google Fonts (Playfair Display, DM Sans, DM Mono).
+Hospedagem: **Netlify**.
 
-Sem `node_modules`, sem bundler, sem transpilação. Qualquer servidor de
-arquivos estáticos roda o site.
-
----
-
-## Estrutura de arquivos
+## Estrutura
 
 ```
-.
-├── index.html                  # Landing (PT — idioma padrão)
-├── en/                         # Versão em inglês (mesma estrutura)
-│   ├── index.html
-│   └── cases/
-├── es/                         # Versão em espanhol (mesma estrutura)
-│   ├── index.html
-│   └── cases/
-├── cases/                      # Páginas de case (PT)
-│   ├── jornada-integrada.html  # Service Design · SaaS
-│   ├── chuvarada.html          # Data Product · Risco hidrológico
-│   ├── itsm-servicenow.html    # Service Design · ITSM
-│   └── watcher.html            # UX/UI · Mobile
+portfolio/
+├── index.html              # Home (PT — padrão)
+├── en/                     # Versão em inglês (index + cases)
+├── es/                     # Versão em espanhol (index + cases)
+├── cases/
+│   ├── jornada-integrada.html
+│   ├── watcher.html
+│   ├── itsm-servicenow.html
+│   └── chuvarada.html
 ├── assets/
-│   ├── css/
-│   │   ├── base.css            # Esqueleto compartilhado + tokens (tema navy)
-│   │   ├── landing.css         # Componentes exclusivos da landing
-│   │   └── case.css            # Estrutura compartilhada das páginas de case
-│   ├── js/
-│   │   └── site.js             # Comportamento progressivo da landing
+│   ├── css/                # base · landing · case
+│   ├── js/                 # site.js
+│   ├── chuvarada/          # capturas do produto
 │   ├── favicon.svg
-│   └── og-image.png            # Imagem de compartilhamento (Open Graph)
-├── sitemap.xml                 # Inclui hreflang recíproco das 3 línguas
-└── robots.txt
+│   └── og-image.png
+└── README.md
 ```
 
----
+## Rodando localmente
 
-## Decisões de arquitetura
-
-### Tema compartilhado por tokens
-
-Todas as páginas herdam **um único esqueleto** (`base.css`): navegação, rodapé,
-ritmo de espaçamento, tipografia, tags, selos e estados de foco. As cores são
-expostas como custom properties em `:root`.
-
-Cada página de case mantém sua **cor-assinatura** própria sobrescrevendo apenas
-os tokens de cor num bloco `<style>` no `<head>` — sem duplicar layout nem
-componentes. O mesmo esqueleto já hospedou temas claros e escuros sem qualquer
-mudança de estrutura, só de tokens.
-
-```css
-/* Exemplo: cabeçalho de um case sobrescreve só as cores */
-:root {
-  --bg-base: #0d1f1a;
-  --accent-primary: #c9a961;
-  --text-primary: #f4f1e8;
-  /* ...layout, tipografia e componentes vêm de base.css */
-}
-```
-
-### Internacionalização (PT / EN / ES)
-
-- PT é o idioma padrão na raiz (`/`); EN em `/en/`; ES em `/es/`.
-- Estrutura, IDs e classes são **idênticos** entre as três versões — só o
-  conteúdo textual muda.
-- Cada página declara `hreflang` recíproco (`pt-BR`, `en`, `es`, `x-default`)
-  no `<head>`, e o `sitemap.xml` repete essas relações.
-- O seletor de idioma marca o ativo com `aria-current="true"`.
-
-### Acessibilidade
-
-A acessibilidade é tratada como requisito, não como ajuste posterior:
-
-- **Contraste** — todos os pares texto/fundo validados em WCAG 2.1 AA; os
-  valores das razões estão anotados ao lado de cada token em `base.css`.
-- **Foco visível** — `:focus-visible` com anel de alto contraste em todos os
-  interativos.
-- **Semântica** — um único `<h1>` por página, headings sem pular níveis,
-  `<nav>`/`<main>`/`<section aria-labelledby>`, skip-link para o conteúdo.
-- **Alvos de toque** — mínimo de 44×44px em links e botões.
-- **Movimento** — `prefers-reduced-motion: reduce` desliga todas as animações.
-- **Ícones** — decorativos com `aria-hidden`; acionáveis com `aria-label`.
-
-### Progressive enhancement
-
-A página é **100% funcional sem JavaScript**. O `site.js` apenas adiciona
-camadas opcionais (animação de entrada, scroll spy, ofuscação leve do e-mail) e
-degrada com segurança onde a API `IntersectionObserver` não existe. O estado
-visível é sempre o padrão — nenhum conteúdo depende de JS para aparecer.
-
-Nenhum dado é gravado em `localStorage` ou `sessionStorage`.
-
----
-
-## Como rodar localmente
-
-Por serem arquivos estáticos, basta servir a pasta raiz. Exemplos:
+Site estático, sem dependências. Basta servir a pasta:
 
 ```bash
-# Python 3
+# Python
 python3 -m http.server 8000
 
-# Node (npx, sem instalar nada)
-npx serve .
+# ou Node
+npx serve
 ```
 
-Depois abra `http://localhost:8000`.
+Depois, abra `http://localhost:8000`.
 
-> Abrir o `index.html` direto via `file://` também funciona, mas servir por
-> HTTP reproduz fielmente o comportamento de produção (incluindo caminhos
-> relativos entre as versões de idioma).
+## Design system
+
+Todos os componentes referenciam apenas **tokens semânticos** (`--accent`, `--surface`, `--ink`…), nunca cores fixas. A identidade da landing define os valores; **cada case sobrescreve sua cor-assinatura** (e o tema, quando necessário) sem tocar em nenhum componente. É o que mantém quatro identidades visuais distintas dentro de um sistema único.
+
+## Contato
+
+- Site — [luara.work](https://luara.work)
+- LinkedIn — [in/luarawork](https://www.linkedin.com/in/luarawork/)
+- GitHub — [luarawork](https://github.com/luarawork)
+- Behance — [luarawork](https://www.behance.net/luarawork)
+- Medium — [@luarawork](https://medium.com/@luarawork)
+- E-mail — luara.working@gmail.com
+
+## Licença
+
+Conteúdo, textos, cases e imagens © 2026 Luara Oliveira. Todos os direitos reservados.
 
 ---
 
-## Convenções de código
-
-- **CSS** — organizado em seções numeradas e comentadas; nomes de classe em
-  padrão BEM-like (`.bloco__elemento--modificador`); zero `!important` fora do
-  bloco de override de movimento reduzido.
-- **JS** — uma função pura e documentada (JSDoc) por responsabilidade,
-  orquestradas por um `init()`; sem variáveis globais (tudo num IIFE em
-  `'use strict'`).
-- **HTML** — canônico e validável: todo elemento não-void é fechado
-  explicitamente, atributos entre aspas duplas.
-
----
-
-© 2026 Luara Oliveira · Desenhado, codificado e publicado por mim.
+Desenhado, codificado e publicado por mim.
