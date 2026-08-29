@@ -43,6 +43,32 @@
 /* La ficha lateral de este case tiene 5 campos (no 4) */
 .case-meta { grid-template-columns: repeat(5, 1fr); }
 @media (max-width: 760px) { .case-meta { grid-template-columns: 1fr 1fr; } }
+
+/* ── Figuras (telas do produto) ── */
+.case-figure { margin: 28px 0; }
+.case-figure img {
+  width: 100%; height: auto; display: block;
+  border-radius: 10px; border: 1px solid var(--line-soft);
+  background: var(--bg-card);
+}
+.case-figure figcaption {
+  margin-top: 10px; font-size: 13.5px; line-height: 1.6; color: var(--text-meta);
+}
+.case-figure figcaption strong { color: var(--text-body); }
+
+/* Card do bairro ao lado do texto */
+.ui-card-row { display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: start; margin-top: 8px; }
+.ui-card-row .case-figure img { max-width: 300px; margin-inline: auto; }
+@media (max-width: 760px) { .ui-card-row { grid-template-columns: 1fr; gap: 20px; } }
+
+/* ── Diagramas SVG ── */
+.diagram-wrap {
+  background: var(--bg-card); border: 1px solid var(--line-soft);
+  border-radius: 12px; padding: 20px; margin: 24px 0;
+}
+.diagram { width: 100%; height: auto; display: block; }
+.diagram text { font-family: 'DM Mono', ui-monospace, monospace; }
+.diagram .dg-h { font-family: 'DM Sans', sans-serif; }
 </style>
 <script type="application/ld+json">
 {
@@ -171,6 +197,47 @@
       <p class="highlight__label">Por qué esto importa para el producto</p>
       <p class="card__text">Si el punto georreferenciado está mal, el score de riesgo de ese barrio también estará mal. Esta fue una decisión de producto disfrazada de problema técnico — y la más importante del proyecto.</p>
     </div>
+
+    <div class="diagram-wrap">
+      <svg class="diagram" viewBox="0 0 720 420" role="img" aria-labelledby="cent-t cent-d" xmlns="http://www.w3.org/2000/svg">
+        <title id="cent-t">Centro geométrico frente a centroide ponderado por población</title>
+        <desc id="cent-d">Dos diagramas del mismo barrio. A la izquierda, el centro geométrico del polígono cae en un área deshabitada, sobre el río. A la derecha, el centroide ponderado por población cae donde la gente realmente vive.</desc>
+        <!-- PANEL IZQUIERDO: centro geométrico -->
+        <g transform="translate(20,20)">
+          <text class="dg-h" x="0" y="14" fill="var(--text-meta)" font-size="12" letter-spacing="1.5">CENTRO GEOMÉTRICO DEL POLÍGONO</text>
+          <g transform="translate(0,28)">
+            <polygon points="40,70 160,40 270,90 255,215 150,255 55,180" fill="var(--tint-accent)" stroke="var(--line-soft)" stroke-width="1.5"/>
+            <path d="M55,120 C120,86 205,78 268,104" fill="none" stroke="var(--accent-secondary)" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+            <text x="238" y="98" fill="var(--accent-secondary)" font-size="10" opacity=".8">río</text>
+            <g fill="var(--accent-secondary)" opacity=".55">
+              <circle cx="95" cy="192" r="4.5"/><circle cx="115" cy="202" r="4.5"/><circle cx="80" cy="207" r="4.5"/><circle cx="106" cy="216" r="4.5"/><circle cx="131" cy="192" r="4.5"/><circle cx="90" cy="176" r="4.5"/><circle cx="121" cy="216" r="4.5"/><circle cx="141" cy="206" r="4.5"/><circle cx="101" cy="231" r="4.5"/><circle cx="76" cy="190" r="4.5"/>
+            </g>
+            <!-- punto geométrico (equivocado) -->
+            <g>
+              <line x1="145" y1="118" x2="145" y2="150" stroke="#e0776b" stroke-width="1.5"/><line x1="129" y1="134" x2="161" y2="134" stroke="#e0776b" stroke-width="1.5"/>
+              <circle cx="145" cy="134" r="9" fill="none" stroke="#e0776b" stroke-width="2.5"/>
+            </g>
+            <text x="150" y="290" fill="var(--text-body)" font-size="12.5" font-family="'DM Sans',sans-serif" text-anchor="middle">Cae en el vacío — cerro, río, terreno sin gente.</text>
+          </g>
+        </g>
+        <!-- PANEL DERECHO: centroide ponderado -->
+        <g transform="translate(380,20)">
+          <text class="dg-h" x="0" y="14" fill="var(--accent-bright)" font-size="12" letter-spacing="1.5">CENTROIDE PONDERADO POR POBLACIÓN</text>
+          <g transform="translate(0,28)">
+            <polygon points="40,70 160,40 270,90 255,215 150,255 55,180" fill="var(--tint-strong)" stroke="var(--line-soft)" stroke-width="1.5"/>
+            <path d="M55,120 C120,86 205,78 268,104" fill="none" stroke="var(--accent-secondary)" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+            <text x="238" y="98" fill="var(--accent-secondary)" font-size="10" opacity=".8">río</text>
+            <g fill="var(--accent-primary)" opacity=".85">
+              <circle cx="95" cy="192" r="4.5"/><circle cx="115" cy="202" r="4.5"/><circle cx="80" cy="207" r="4.5"/><circle cx="106" cy="216" r="4.5"/><circle cx="131" cy="192" r="4.5"/><circle cx="90" cy="176" r="4.5"/><circle cx="121" cy="216" r="4.5"/><circle cx="141" cy="206" r="4.5"/><circle cx="101" cy="231" r="4.5"/><circle cx="76" cy="190" r="4.5"/>
+            </g>
+            <!-- punto ponderado (correcto) -->
+            <circle cx="106" cy="203" r="12" fill="none" stroke="var(--accent-bright)" stroke-width="2"/>
+            <circle cx="106" cy="203" r="6" fill="var(--accent-bright)"/>
+            <text x="150" y="290" fill="var(--text-body)" font-size="12.5" font-family="'DM Sans',sans-serif" text-anchor="middle">Cae donde la gente realmente vive.</text>
+          </g>
+        </g>
+      </svg>
+    </div>
   </section>
 
   <!-- ── LA SOLUCIÓN ── -->
@@ -218,6 +285,103 @@
         <li><span class="mk">i.</span> Más de 50mm de lluvia en la última hora</li>
         <li><span class="mk">ii.</span> Marea superior al 80% combinada con lluvia en zona costera</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ── LA INTERFAZ ── -->
+  <section class="case-section reveal" aria-labelledby="ui">
+    <p class="case-eyebrow">La interfaz</p>
+    <h2 class="case-title" id="ui">Del modelo a un mapa que <em>cualquiera entiende</em></h2>
+    <p class="prose" style="margin-bottom:28px">El modelo devuelve un número. El trabajo de la interfaz es volver ese número legible para quien está en una ladera, en el celular, sin inicio de sesión y sin jerga — y comunicar no solo el riesgo, sino el porqué.</p>
+
+    <figure class="case-figure">
+      <img src="../../assets/chuvarada/zoom-sp.png" alt="Mapa de Chuvarada con zoom en la región metropolitana de São Paulo, mostrando el riesgo coloreado barrio por barrio, del verde al amarillo, con un pie de contexto que indica lluvia y humedad." loading="lazy" width="1915" height="957"/>
+      <figcaption><strong>Granularidad de barrio, visible.</strong> Con zoom en São Paulo, la malla fina de los barrios aparece frente al municipio — la tesis central del producto deja de ser argumento y se vuelve evidencia. El gradiente comunica la tendencia; el pie trae el contexto (lluvia, humedad) del punto observado.</figcaption>
+    </figure>
+
+    <figure class="case-figure">
+      <img src="../../assets/chuvarada/mapa-nacional.png" alt="Mapa de Chuvarada mostrando todo Brasil, con campo de búsqueda por ciudad o barrio, leyenda, alternadores de capa y de tema claro/oscuro y un indicador de estado nacional." loading="lazy" width="1913" height="951"/>
+      <figcaption><strong>Escala nacional, una pantalla.</strong> Búsqueda por ciudad o barrio, leyenda de los cinco niveles, alternancia de capa (lluvia/temperatura) y de tema, y un atajo "Cómo funciona". Sin instalación y sin registro para llegar a la información.</figcaption>
+    </figure>
+
+    <div class="ui-card-row">
+      <figure class="case-figure" style="margin:0">
+        <img src="../../assets/chuvarada/card-bairro.png" alt="Tarjeta de un barrio en Chuvarada: nombre del área, nivel Atención, puntuación 3.2, línea de tiempo de próximas horas y días con puntos de colores, y lista de factores de riesgo (lluvia, humedad del suelo, terreno, proximidad hídrica) cada uno con su peso y barra." loading="lazy" width="370" height="843"/>
+      </figure>
+      <div>
+        <p class="prose" style="margin-bottom:20px">La tarjeta del barrio es donde el diseño y el modelo se encuentran. En vez de esconder el cálculo, <strong style="color:var(--text-primary)">expone cada factor de riesgo con el peso que tuvo en la puntuación</strong> — humedad del suelo, terreno, proximidad hídrica, lluvia — y traduce el dato bruto a un lenguaje interpretable ("58% por debajo del promedio histórico para agosto"). Mostrar el razonamiento, en vez de entregar solo el veredicto, es lo que genera confianza en quien decide evacuar.</p>
+        <div class="grid-2">
+          <div class="card"><h3 class="card__title" style="font-size:15px">Puntuación + cinco niveles</h3><p class="card__text">Número (1–10) y color juntos: legible para quien lee por color y para quien compara por valor.</p></div>
+          <div class="card"><h3 class="card__title" style="font-size:15px">Línea de tiempo con incertidumbre</h3><p class="card__text">Próximas horas y días — y la interfaz avisa que el pronóstico pierde precisión con el tiempo.</p></div>
+          <div class="card"><h3 class="card__title" style="font-size:15px">Factores transparentes</h3><p class="card__text">Cada variable del modelo aparece con su contribución. El peso deja de ser un detalle técnico y se vuelve información para el usuario.</p></div>
+          <div class="card"><h3 class="card__title" style="font-size:15px">Guardar el barrio</h3><p class="card__text">Seguir dónde se vive, o dónde está la familia, sin cuenta — lo esencial en el celular, en el momento que importa.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CÓMO SE CONSTRUYÓ ── -->
+  <section class="case-section reveal" aria-labelledby="build">
+    <p class="case-eyebrow">Cómo se construyó</p>
+    <h2 class="case-title" id="build">Seis fuentes, una puntuación por hora, <em>una app sin tienda</em></h2>
+    <p class="prose" style="margin-bottom:8px">Un producto de escala nacional, construido y mantenido por una persona. Lo que lo hace posible es una arquitectura ligera y desarrollo asistido por IA.</p>
+
+    <div class="diagram-wrap">
+      <svg class="diagram" viewBox="0 0 760 430" role="img" aria-labelledby="arch-t arch-d" xmlns="http://www.w3.org/2000/svg">
+        <title id="arch-t">Arquitectura de Chuvarada</title>
+        <desc id="arch-d">Seis fuentes públicas de datos alimentan, cada hora, un modelo ponderado que calcula la puntuación de riesgo de 28.483 barrios; los datos se guardan en Supabase y los sirve una PWA en Next.js con Leaflet, que muestra el mapa y la tarjeta del barrio.</desc>
+        <defs>
+          <marker id="arrArch" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--accent-secondary)"/>
+          </marker>
+        </defs>
+
+        <!-- COL 1 — fuentes -->
+        <text class="dg-h" x="20" y="24" fill="var(--text-meta)" font-size="12" letter-spacing="1.2">FUENTES PÚBLICAS</text>
+        <g font-size="12" font-family="'DM Sans',sans-serif">
+          <g><rect x="20" y="38" width="190" height="40" rx="6" fill="var(--bg-hover)" stroke="var(--line-soft)"/><text x="34" y="63" fill="var(--text-body)">INPE — MERGE/CPTEC</text></g>
+          <g><rect x="20" y="86" width="190" height="40" rx="6" fill="var(--bg-hover)" stroke="var(--line-soft)"/><text x="34" y="111" fill="var(--text-body)">Open-Meteo</text></g>
+          <g><rect x="20" y="134" width="190" height="40" rx="6" fill="var(--bg-hover)" stroke="var(--line-soft)"/><text x="34" y="159" fill="var(--text-body)">NASA SRTM</text></g>
+          <g><rect x="20" y="182" width="190" height="40" rx="6" fill="var(--bg-hover)" stroke="var(--line-soft)"/><text x="34" y="207" fill="var(--text-body)">ANA / BHO</text></g>
+          <g><rect x="20" y="230" width="190" height="40" rx="6" fill="var(--bg-hover)" stroke="var(--line-soft)"/><text x="34" y="255" fill="var(--text-body)">Censo IBGE 2022</text></g>
+          <g><rect x="20" y="278" width="190" height="40" rx="6" fill="var(--bg-hover)" stroke="var(--line-soft)"/><text x="34" y="303" fill="var(--text-body)">TideCheck</text></g>
+        </g>
+        <!-- riel colector -->
+        <path d="M210,58 H236 M210,106 H236 M210,154 H236 M210,202 H236 M210,250 H236 M210,298 H236" stroke="var(--line-soft)" stroke-width="1.5"/>
+        <path d="M236,58 V298" stroke="var(--accent-secondary)" stroke-width="1.5" opacity=".6"/>
+        <line x1="236" y1="178" x2="292" y2="178" stroke="var(--accent-secondary)" stroke-width="2" marker-end="url(#arrArch)"/>
+
+        <!-- COL 2 — procesamiento -->
+        <text class="dg-h" x="300" y="24" fill="var(--text-meta)" font-size="12" letter-spacing="1.2">PROCESAMIENTO · CADA HORA</text>
+        <g font-family="'DM Sans',sans-serif">
+          <rect x="300" y="86" width="210" height="52" rx="8" fill="var(--tint-accent)" stroke="var(--line-soft)"/><text x="405" y="117" fill="var(--text-primary)" font-size="13" text-anchor="middle">Cron por hora</text>
+          <rect x="300" y="162" width="210" height="60" rx="8" fill="var(--tint-strong)" stroke="var(--line-soft)"/><text x="405" y="188" fill="var(--text-primary)" font-size="13" text-anchor="middle">Modelo ponderado</text><text x="405" y="207" fill="var(--text-meta)" font-size="11" text-anchor="middle">7 variables · pesos</text>
+          <rect x="300" y="246" width="210" height="52" rx="8" fill="var(--tint-accent)" stroke="var(--line-soft)"/><text x="405" y="270" fill="var(--text-primary)" font-size="13" text-anchor="middle">Puntuación 1–10 por barrio</text><text x="405" y="288" fill="var(--accent-bright)" font-size="11" text-anchor="middle">28.483 barrios</text>
+        </g>
+        <line x1="405" y1="138" x2="405" y2="158" stroke="var(--accent-secondary)" stroke-width="2" marker-end="url(#arrArch)"/>
+        <line x1="405" y1="222" x2="405" y2="242" stroke="var(--accent-secondary)" stroke-width="2" marker-end="url(#arrArch)"/>
+        <line x1="510" y1="272" x2="566" y2="272" stroke="var(--accent-secondary)" stroke-width="2" marker-end="url(#arrArch)"/>
+
+        <!-- COL 3 — entrega -->
+        <text class="dg-h" x="574" y="24" fill="var(--text-meta)" font-size="12" letter-spacing="1.2">ENTREGA</text>
+        <g font-family="'DM Sans',sans-serif">
+          <rect x="574" y="246" width="170" height="52" rx="8" fill="var(--bg-hover)" stroke="var(--line-soft)"/><text x="659" y="276" fill="var(--text-body)" font-size="13" text-anchor="middle">Supabase</text>
+          <rect x="574" y="162" width="170" height="60" rx="8" fill="var(--bg-hover)" stroke="var(--line-soft)"/><text x="659" y="188" fill="var(--text-body)" font-size="13" text-anchor="middle">PWA · Next.js</text><text x="659" y="207" fill="var(--text-meta)" font-size="11" text-anchor="middle">Leaflet.js</text>
+          <rect x="574" y="86" width="170" height="52" rx="8" fill="var(--tint-accent)" stroke="var(--line-soft)"/><text x="659" y="110" fill="var(--text-primary)" font-size="13" text-anchor="middle">Mapa + tarjeta</text><text x="659" y="128" fill="var(--text-meta)" font-size="11" text-anchor="middle">del barrio</text>
+        </g>
+        <line x1="659" y1="246" x2="659" y2="224" stroke="var(--accent-secondary)" stroke-width="2" marker-end="url(#arrArch)"/>
+        <line x1="659" y1="162" x2="659" y2="140" stroke="var(--accent-secondary)" stroke-width="2" marker-end="url(#arrArch)"/>
+      </svg>
+    </div>
+
+    <div class="grid-2" style="margin-top:8px">
+      <div class="card"><p class="card__label">Stack</p><p class="card__text">Next.js + TypeScript y Tailwind en la interfaz; Leaflet.js en la cartografía; Supabase como base de datos; despliegue continuo en Vercel; PWA instalable.</p></div>
+      <div class="card"><p class="card__label">Pipeline</p><p class="card__text">Cada hora, las seis fuentes públicas se consolidan y el modelo ponderado recalcula la puntuación de riesgo de los 28.483 barrios.</p></div>
+    </div>
+
+    <div class="highlight" style="margin-top:16px">
+      <p class="highlight__label">Método — Spec-Driven Development con IA</p>
+      <p class="card__text">Construido en solitario con <strong style="color:var(--text-primary)">Spec-Driven Development</strong> y Claude Code: la especificación viene antes del código, y la IA acelera la implementación sin sacar las decisiones de diseño y de producto de mis manos. Es lo que permite que una persona lance — y mantenga — un producto de este tamaño.</p>
     </div>
   </section>
 
