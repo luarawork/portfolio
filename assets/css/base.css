@@ -287,6 +287,7 @@ main { position: relative; z-index: 1; }
 }
 .selo--real      { color: var(--accent-bright);   background: var(--tint-strong); }
 .selo--conceito  { color: var(--text-meta); }
+.selo--autoral   { color: var(--accent-primary);  border-color: var(--accent-primary); }
 
 /* Tags = skills / disciplinas tratadas no case */
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
