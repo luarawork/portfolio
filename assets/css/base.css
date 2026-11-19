@@ -11,7 +11,7 @@
 
 /* ---- 1. Reset enxuto -------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
 img, svg { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
 a { color: inherit; }
@@ -415,6 +415,20 @@ main { position: relative; z-index: 1; }
 @media (max-width: 360px) {
   .lang a { padding: 6px 5px; }
   .nav__right { gap: 2px; }
+}
+
+/* ---- Barra de progresso de leitura (injetada pelo site.js) ----------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 101;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--p, 0));
+  background: linear-gradient(90deg, var(--accent-secondary), var(--accent-bright));
+  pointer-events: none;
 }
 
 /* ---- 12. Movimento reduzido ------------------------------------------------ */

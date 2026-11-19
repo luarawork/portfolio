@@ -12,6 +12,11 @@
  *   2. assembleEmail()       — monta o e-mail em runtime (anti-spam leve)
  *   3. setupRevealOnScroll() — anima a entrada das seções ao rolar
  *   4. setupScrollSpy()      — destaca no nav a seção visível
+ *   5. setupScrollProgress() — barra fina de progresso de leitura no topo
+ *   6. setupStagger()        — índice --i para a entrada em sequência das grades
+ *   7. setupRotator()        — alterna os cargos no hero
+ *   8. setupCounters()       — números do bloco "Em números" contam ao aparecer
+ *   9. setupSpotlight()      — luz que acompanha o cursor nos cards
  *
  * Princípios:
  *   • Nenhum dado é gravado em localStorage/sessionStorage.
@@ -158,6 +163,142 @@
     });
   };
 
+  // --- 5. Barra de progresso de leitura -----------------------------------
+
+  /**
+   * Injeta uma barra fina no topo que acompanha a rolagem. É decorativa
+   * (aria-hidden) e não depende de animação: só reflete a posição atual.
+   * @returns {void}
+   */
+  const setupScrollProgress = () => {
+    const bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
+
+    let ticking = false;
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      bar.style.setProperty('--p', p.toFixed(4));
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  };
+
+  // --- 6. Entrada em sequência ----------------------------------------------
+
+  /**
+   * Numera os filhos das grades ([data-stagger] e .cases__grid) com --i.
+   * O CSS usa esse índice para atrasar a entrada de cada card.
+   * @returns {void}
+   */
+  const setupStagger = () => {
+    document.querySelectorAll('[data-stagger], .cases__grid').forEach((grid) => {
+      Array.from(grid.children).forEach((child, i) => child.style.setProperty('--i', String(i)));
+    });
+  };
+
+  // --- 7. Cargo rotativo no hero --------------------------------------------
+
+  /**
+   * Alterna as palavras de [data-words] (separadas por "|"). O elemento é
+   * aria-hidden: leitores de tela recebem a lista completa num .sr-only ao
+   * lado. Com movimento reduzido, fica parado na primeira palavra.
+   * @returns {void}
+   */
+  const setupRotator = () => {
+    const rotator = document.querySelector('.rotator[data-words]');
+    if (!rotator || env.reduceMotion) return;
+
+    const words = rotator.dataset.words.split('|').map((w) => w.trim()).filter(Boolean);
+    if (words.length < 2) return;
+
+    let index = 0;
+    const swap = () => {
+      if (document.hidden) return;
+      const current = rotator.querySelector('.rotator__word:not(.is-out)');
+      index = (index + 1) % words.length;
+
+      const next = document.createElement('span');
+      next.className = 'rotator__word is-in';
+      next.textContent = words[index];
+      rotator.appendChild(next);
+
+      if (current) {
+        current.classList.remove('is-in');
+        current.classList.add('is-out');
+        current.addEventListener('animationend', () => current.remove(), { once: true });
+        window.setTimeout(() => current.remove(), 800); // garantia se a animação não rodar
+      }
+    };
+    window.setInterval(swap, 2600);
+  };
+
+  // --- 8. Contadores --------------------------------------------------------
+
+  /**
+   * Conta de 0 até o valor final quando o número entra na tela. O HTML já
+   * traz o valor final, então sem JS (ou com movimento reduzido) o número
+   * aparece pronto. Só zera no instante em que a contagem começa.
+   * @returns {void}
+   */
+  const setupCounters = () => {
+    const counters = Array.from(document.querySelectorAll('[data-count]'));
+    if (counters.length === 0 || env.reduceMotion || !env.supportsIO) return;
+
+    const render = (el, value) => {
+      el.textContent = `${el.dataset.prefix || ''}${value}${el.dataset.suffix || ''}`;
+    };
+
+    const run = (el) => {
+      const target = Number(el.dataset.count);
+      if (!Number.isFinite(target)) return;
+      const duration = 1400;
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        render(el, Math.round(target * eased));
+        if (t < 1) window.requestAnimationFrame(tick);
+      };
+      render(el, 0);
+      window.requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        run(entry.target);
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.6 });
+
+    counters.forEach((el) => observer.observe(el));
+  };
+
+  // --- 9. Spotlight nos cards -----------------------------------------------
+
+  /**
+   * Atualiza --mx/--my com a posição do cursor dentro do card, para o
+   * gradiente do ::after seguir o mouse. Só em dispositivos com mouse.
+   * @returns {void}
+   */
+  const setupSpotlight = () => {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    document.querySelectorAll('.spotlight, .case-card').forEach((card) => {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+      }, { passive: true });
+    });
+  };
+
   // --- Inicialização --------------------------------------------------------
 
   /**
@@ -170,6 +311,11 @@
     assembleEmail();
     setupRevealOnScroll();
     setupScrollSpy();
+    setupScrollProgress();
+    setupStagger();
+    setupRotator();
+    setupCounters();
+    setupSpotlight();
   };
 
   init();
