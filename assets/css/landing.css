@@ -292,13 +292,12 @@
 }
 
 /* ============================================================================
-   Motion e novos blocos (nov/2026)
-   Regras de movimento seguem o princípio do site: animar só transform (e,
-   no título, um brilho de cor), nunca esconder conteúdo. Tudo que se move
-   fica dentro de prefers-reduced-motion: no-preference.
+   Hero, processo de trabalho e reconhecimentos (nov/2026)
+   Movimento: um momento de entrada no hero e o traço do processo desenhado
+   quando a seção aparece. Só transform/cor, nunca escondendo conteúdo.
    ========================================================================== */
 
-/* ---- Hero: aurora de fundo ------------------------------------------------- */
+/* ---- Hero ------------------------------------------------------------------ */
 .hero { position: relative; isolation: isolate; }
 .hero::before {
   content: '';
@@ -313,60 +312,119 @@
   filter: blur(42px);
   opacity: .6;
 }
-
-/* ---- Hero: cargo rotativo -------------------------------------------------- */
+.hero__heading { display: flex; flex-direction: column; gap: 14px; margin-bottom: 26px; font-weight: inherit; }
+.hero__heading .hero__title { display: block; margin-bottom: 0; }
 .hero__role {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: .6ch;
-  font-family: var(--mono);
-  font-size: 12.5px;
-  letter-spacing: .08em;
-  color: var(--text-meta);
-  margin-bottom: 22px;
-}
-.rotator {
-  display: inline-grid;
-  overflow: hidden;
+  display: block;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(19px, 2.2vw, 23px);
-  letter-spacing: 0;
-  line-height: 1.25;
-  color: var(--accent-bright);
-  padding-bottom: 2px;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent-secondary) 60%, transparent);
+  font-weight: 400;
+  font-size: clamp(24px, 3.4vw, 34px);
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  color: var(--accent-primary);
 }
-.rotator__word { grid-area: 1 / 1; white-space: nowrap; }
+.hero .hero__lead {
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 300;
+  font-size: clamp(16.5px, 1.8vw, 18.5px);
+  line-height: 1.7;
+  color: var(--text-body);
+  max-width: 54ch;
+  margin-bottom: 30px;
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+.hero__avail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-meta);
+}
+.hero__dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4db8a8;
+}
 
-/* ---- Bloco "Em números" ---------------------------------------------------- */
-.impact__grid {
+/* ---- Competências: processo em 4 etapas ------------------------------------ */
+.process {
   list-style: none;
-  margin-top: 18px;
+  position: relative;
+  margin-top: 36px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  gap: 28px;
 }
-.impact__item {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius);
-  padding: 22px 22px 24px;
+.process::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-secondary), var(--line-soft));
+  transform-origin: 0 50%;
 }
-.impact__value {
+.process__step { position: relative; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.process__marker {
+  position: relative;
+  z-index: 1;
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-secondary);
+  background: var(--bg-base);
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--text-primary);
+}
+.process__name {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(34px, 4.6vw, 44px);
-  line-height: 1;
-  letter-spacing: -.02em;
+  font-size: 22px;
+  line-height: 1.2;
   color: var(--text-primary);
-  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
 }
-.impact__label { font-size: 14px; line-height: 1.55; color: var(--text-body); }
+.process__desc { font-size: 15px; line-height: 1.6; color: var(--text-body); }
+.process__methods {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-hair);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--accent-primary);
+}
+.process__seen { margin-top: auto; padding-top: 6px; font-size: 13px; color: var(--text-meta); }
+.process__seen a { color: var(--accent-primary); text-underline-offset: 3px; text-decoration-color: var(--accent-secondary); }
+.process__seen a:hover { color: var(--accent-bright); }
+
+.toolbox__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--text-primary);
+  margin: 48px 0 12px;
+}
+.toolbox { border-top: 1px solid var(--line-soft); }
+.toolbox__row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-hair);
+}
+.toolbox dt { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--accent-primary); padding-top: 3px; }
+.toolbox dd { font-size: 15px; line-height: 1.6; color: var(--text-body); }
 
 /* ---- Reconhecimentos ------------------------------------------------------- */
 .recog__grid {
@@ -383,13 +441,7 @@
   border-radius: var(--radius);
   padding: 22px 24px;
 }
-.recog__kicker {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--accent-primary);
-}
+.recog__kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--accent-primary); }
 .recog__title {
   font-family: var(--serif);
   font-weight: 600;
@@ -400,36 +452,35 @@
 }
 .recog__text { font-size: 14.5px; line-height: 1.6; color: var(--text-body); }
 
-/* ---- Spotlight: luz que segue o cursor nos cards --------------------------- */
-.spotlight, .case-card { position: relative; isolation: isolate; }
-.spotlight::after, .case-card::after {
+/* ---- Luz que segue o cursor nos cards de case ------------------------------ */
+.case-card { position: relative; isolation: isolate; }
+.case-card::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  border-radius: inherit;
   pointer-events: none;
-  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(var(--grid-rgb), .10), transparent 70%);
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--grid-rgb), .10), transparent 70%);
   opacity: 0;
   transition: opacity .25s ease;
 }
 @media (hover: hover) and (pointer: fine) {
-  .spotlight:hover::after, .case-card:hover::after { opacity: 1; }
+  .case-card:hover::after { opacity: 1; }
 }
 
-/* ---- Animações (só com movimento liberado) --------------------------------- */
+/* ---- Movimento ------------------------------------------------------------- */
 @media (prefers-reduced-motion: no-preference) {
   .hero::before { animation: aurora 22s ease-in-out infinite alternate; }
 
-  /* Entrada escalonada do hero */
-  .js .hero__text > * { animation: heroIn .9s cubic-bezier(.16, 1, .3, 1) both; }
-  .js .hero__text > :nth-child(2) { animation-delay: .07s; }
-  .js .hero__text > :nth-child(3) { animation-delay: .14s; }
-  .js .hero__text > :nth-child(4) { animation-delay: .21s; }
-  .js .hero__text > :nth-child(5) { animation-delay: .28s; }
+  /* Entrada do hero: nome, cargo, texto e ações em sequência */
+  .js .hero__title, .js .hero__role, .js .hero__lead, .js .hero__actions, .js .hero__avail {
+    animation: heroIn .9s cubic-bezier(.16, 1, .3, 1) both;
+  }
+  .js .hero__role    { animation-delay: .08s; }
+  .js .hero__lead    { animation-delay: .16s; }
+  .js .hero__actions { animation-delay: .24s; }
+  .js .hero__avail   { animation-delay: .32s; }
 
-  /* Brilho que atravessa o nome uma vez. Fallback: cor sólida. */
   @supports ((background-clip: text) or (-webkit-background-clip: text)) {
     .js .hero__title {
       background: linear-gradient(100deg,
@@ -437,50 +488,64 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      animation: heroIn .9s .07s cubic-bezier(.16, 1, .3, 1) both,
-                 titleShine 2.2s .6s ease-out both;
+      animation: heroIn .9s cubic-bezier(.16, 1, .3, 1) both, titleShine 2.2s .6s ease-out both;
     }
   }
 
-  /* Troca de palavra no cargo rotativo */
-  .rotator__word.is-in  { animation: wordIn .55s .2s cubic-bezier(.16, 1, .3, 1) both; }
-  .rotator__word.is-out { animation: wordOut .35s cubic-bezier(.7, 0, .84, 0) both; }
+  .hero__dot { animation: pulse 2.4s ease-out infinite; }
 
-  /* Filhos das grades entram em sequência quando a seção aparece */
-  .js .reveal.is-visible [data-stagger] > *,
-  .js .reveal.is-visible .cases__grid > * {
-    animation: revealUp .7s cubic-bezier(.22, .61, .36, 1) backwards;
-    animation-delay: calc(var(--i, 0) * 70ms);
-  }
+  /* Processo: o traço se desenha e as etapas acendem em ordem */
+  .js #skills.reveal:not(.is-visible) .process::before { transform: scaleX(0); }
+  .js #skills.reveal.is-visible .process::before { transition: transform 1.4s cubic-bezier(.22, .61, .36, 1) .15s; }
+  .js #skills.is-visible .process__marker { animation: markerOn .5s ease-out both; }
+  .js #skills.is-visible .process__step:nth-child(2) .process__marker { animation-delay: .45s; }
+  .js #skills.is-visible .process__step:nth-child(3) .process__marker { animation-delay: .8s; }
+  .js #skills.is-visible .process__step:nth-child(4) .process__marker { animation-delay: 1.15s; }
+  .js #skills.is-visible .process__step:nth-child(1) .process__marker { animation-delay: .1s; }
 }
 @keyframes aurora {
   0%   { transform: translate3d(0, 0, 0) scale(1); }
   50%  { transform: translate3d(3%, -4%, 0) scale(1.08); }
   100% { transform: translate3d(-4%, 3%, 0) scale(1.02); }
 }
-@keyframes heroIn {
-  from { transform: translateY(26px); }
-  to   { transform: none; }
+@keyframes heroIn { from { transform: translateY(26px); } to { transform: none; } }
+@keyframes titleShine { from { background-position: 100% 0; } to { background-position: 0 0; } }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(77, 184, 168, .55); }
+  70%  { box-shadow: 0 0 0 8px rgba(77, 184, 168, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(77, 184, 168, 0); }
 }
-@keyframes titleShine {
-  from { background-position: 100% 0; }
-  to   { background-position: 0 0; }
-}
-@keyframes wordIn {
-  from { transform: translateY(105%); }
-  to   { transform: none; }
-}
-@keyframes wordOut {
-  from { transform: none; }
-  to   { transform: translateY(-105%); }
+@keyframes markerOn {
+  from { border-color: var(--accent-secondary); box-shadow: none; }
+  to   { border-color: var(--accent-bright); box-shadow: 0 0 0 4px var(--tint-strong); }
 }
 
-/* ---- Responsivo dos novos blocos ------------------------------------------- */
+/* ---- Responsivo ------------------------------------------------------------ */
 @media (max-width: 900px) {
-  .impact__grid { grid-template-columns: 1fr 1fr; }
+  .process { grid-template-columns: 1fr 1fr; row-gap: 36px; }
+  .process::before { display: none; }
 }
 @media (max-width: 760px) {
   .recog__grid { grid-template-columns: 1fr; gap: 12px; }
-  .impact__grid { gap: 12px; }
-  .impact__item, .recog__item { min-width: 0; }
+  .recog__item { min-width: 0; }
+
+  /* Processo vira linha do tempo vertical */
+  .process { grid-template-columns: 1fr; gap: 30px; }
+  .process::before {
+    display: block;
+    top: 16px;
+    bottom: 16px;
+    left: 15px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, var(--accent-secondary), var(--line-soft));
+    transform-origin: 50% 0;
+  }
+  .process__step { padding-left: 50px; }
+  .process__marker { position: absolute; left: 0; top: 0; }
+  .process__name { margin-top: 2px; }
+  .js #skills.reveal:not(.is-visible) .process::before { transform: scaleY(0); }
+
+  .toolbox__row { grid-template-columns: 1fr; gap: 4px; }
 }
