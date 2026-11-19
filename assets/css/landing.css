@@ -334,21 +334,7 @@
   max-width: 54ch;
   margin-bottom: 30px;
 }
-.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
-.hero__avail {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--text-meta);
-}
-.hero__dot {
-  flex: none;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #4db8a8;
-}
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ---- Competências: processo em 4 etapas ------------------------------------ */
 .process {
@@ -473,13 +459,12 @@
   .hero::before { animation: aurora 22s ease-in-out infinite alternate; }
 
   /* Entrada do hero: nome, cargo, texto e ações em sequência */
-  .js .hero__title, .js .hero__role, .js .hero__lead, .js .hero__actions, .js .hero__avail {
+  .js .hero__title, .js .hero__role, .js .hero__lead, .js .hero__actions {
     animation: heroIn .9s cubic-bezier(.16, 1, .3, 1) both;
   }
   .js .hero__role    { animation-delay: .08s; }
   .js .hero__lead    { animation-delay: .16s; }
   .js .hero__actions { animation-delay: .24s; }
-  .js .hero__avail   { animation-delay: .32s; }
 
   @supports ((background-clip: text) or (-webkit-background-clip: text)) {
     .js .hero__title {
@@ -491,8 +476,6 @@
       animation: heroIn .9s cubic-bezier(.16, 1, .3, 1) both, titleShine 2.2s .6s ease-out both;
     }
   }
-
-  .hero__dot { animation: pulse 2.4s ease-out infinite; }
 
   /* Processo: o traço se desenha e as etapas acendem em ordem */
   .js #skills.reveal:not(.is-visible) .process::before { transform: scaleX(0); }
@@ -510,11 +493,6 @@
 }
 @keyframes heroIn { from { transform: translateY(26px); } to { transform: none; } }
 @keyframes titleShine { from { background-position: 100% 0; } to { background-position: 0 0; } }
-@keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(77, 184, 168, .55); }
-  70%  { box-shadow: 0 0 0 8px rgba(77, 184, 168, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(77, 184, 168, 0); }
-}
 @keyframes markerOn {
   from { border-color: var(--accent-secondary); box-shadow: none; }
   to   { border-color: var(--accent-bright); box-shadow: 0 0 0 4px var(--tint-strong); }
