@@ -1,7 +1,7 @@
 # Portfólio · Luara Oliveira
 
-**UX/UI Designer sênior, também atuando como Service Designer.**
-Design de interface guiado por evidência — com pesquisa, service design, dados e código como extensões do mesmo trabalho.
+**UX/UI e Product Designer · Design Engineer.**
+Da pesquisa à interface, e da interface ao código, com IA.
 
 **Ao vivo:** [luara.work](https://luara.work) &nbsp;·&nbsp; PT · [EN](https://luara.work/en/) · [ES](https://luara.work/es/)
 
@@ -9,7 +9,7 @@ Design de interface guiado por evidência — com pesquisa, service design, dado
 
 ## Sobre
 
-Portfólio pessoal que reúne quatro cases — de trabalho real com cliente a projeto autoral open source — atravessando UX/UI, service design, pesquisa, dados e desenvolvimento.
+Portfólio pessoal com quatro cases, de trabalho real com cliente a projeto autoral de código aberto, atravessando pesquisa, design de interface, design de serviços, produto e desenvolvimento.
 
 O site foi concebido, desenhado, codificado e publicado pela própria autora, do design ao deploy. O código deste repositório é parte da demonstração: sem framework, sem build step, com acessibilidade e design system tratados como requisito, não como enfeite.
 
@@ -83,6 +83,7 @@ Todos os componentes referenciam apenas **tokens semânticos** (`--accent`, `--s
 - GitHub — [luarawork](https://github.com/luarawork)
 - Behance — [luarawork](https://www.behance.net/luarawork)
 - Medium — [@luarawork](https://medium.com/@luarawork)
+- Substack — [@luarawork](https://substack.com/@luarawork)
 - E-mail — luara.working@gmail.com
 
 ## Licença
